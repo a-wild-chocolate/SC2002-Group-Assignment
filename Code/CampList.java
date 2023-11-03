@@ -51,5 +51,16 @@ public class CampList {
 	public void deleteCamp(Camp camp){
 		this.campList.remove(camp);
 	}
-
+	
+	public void editCamp(String campName, Camp newCamp) {
+        for (int i = 0; i < campList.size(); i++) {
+            Camp camp = campList.get(i);
+            if (camp.getCampName().equals(campName)) {
+                campList.set(i, newCamp);
+                return; // Exit the loop once the camp is edited
+            }
+        }
+        System.out.println("Camp not found. No changes made.");
+    }
+	
 }
