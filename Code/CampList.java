@@ -5,6 +5,10 @@ public class CampList {
 
 	private List<Camp> campList;
 
+	public CampList() {
+        this.campList = new ArrayList<>();
+    }
+
 	public List<Camp> getCampList() {
 		return this.campList;
 	}
