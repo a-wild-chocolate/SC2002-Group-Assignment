@@ -8,7 +8,9 @@ public class Searcher {
 	 */
 	public CampList searching(CampList campList) {
 		// TODO - implement Searcher.searching
-		throw new UnsupportedOperationException();
+		int choice;
+		System.out.println("Please choose the parameter you want");
+
 	}
 
 }

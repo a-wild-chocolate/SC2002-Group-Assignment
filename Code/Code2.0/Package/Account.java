@@ -5,7 +5,7 @@ import java.util.List;
 public abstract class Account extends AccountInformation {
 
 	protected Searcher searcher;
-	protected Displayer campDisplayer;
+	protected Displayer campDisplayer = new Displayer();
 
 
 	public abstract void ViewCampList();

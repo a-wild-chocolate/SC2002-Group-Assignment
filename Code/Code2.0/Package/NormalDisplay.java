@@ -8,7 +8,10 @@ public class NormalDisplay extends Displayer {
 	 */
 	public void display(CampList campList) {
 		// TODO - implement NormalDisplay.display
-		throw new UnsupportedOperationException();
+		for(Camp camp:campList.)
+		{
+			camp.printAllInformation();
+		}
 	}
 
 }

@@ -2,10 +2,10 @@ package Package;
 
 public class CampList {
 
-	private ArrayList<Camp> campList;
+	protected ArrayList<Camp> campList;
 
-	public ArrayList<Camp> getCampList() {
-
+	public static ArrayList<Camp> getCampList() {
+	return this.campList;
 	}
 
 	/**
