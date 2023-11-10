@@ -1,11 +1,12 @@
 package Package;
+import java.util.ArrayList;
 
 public class CampList {
 
-	protected ArrayList<Camp> campList;
+	protected static ArrayList<Camp> campList;
 
 	public static ArrayList<Camp> getCampList() {
-	return this.campList;
+	return campList;
 	}
 
 	/**
@@ -39,9 +40,19 @@ public class CampList {
 	 * 
 	 * @param campName
 	 */
-	public void deleteCamp(String campName) {
+	public static void deleteCamp(String campName) {
 		// TODO - implement CampList.deleteCamp
-		throw new UnsupportedOperationException();
+		int position=0;
+		for(Camp camp:campList)
+		{
+
+			if(camp.getCampName().equals(campName))
+			{
+				campList.remove(position);
+				break;
+			}
+			position++;
+		}
 	}
 
 	/**

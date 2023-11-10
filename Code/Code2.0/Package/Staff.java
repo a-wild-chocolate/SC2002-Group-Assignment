@@ -92,11 +92,11 @@ public class Staff extends Account {
 			System.out.println("0) quit");
 			for(int i =0;i<createCampList.length;i++)
 			{
-				System.out.printf(i+") "+createCampList[i].getCampName()+"\n");
+				System.out.printf(i+") "+createCampList.get(i).getCampName()+"\n");
 			}
 			choiceCamp=sc.nextInt();
 			if (choiceCamp==0) break;
-			currentCamp=createCampList[choiceCamp];
+			currentCamp=createCampList.get(choiceCamp);
 			do{
 				System.out.println("Current camp information:");
 				currentCamp.printInformation();
@@ -156,14 +156,14 @@ public class Staff extends Account {
 		System.out.println("Warning! You are delete a camp. Please Confirm! 0:YES 1:NO");
 		confirm=sc.nextInt();
 		if(confirm==1) return;
-		camplist.delete(createCampList[choice].getCampName());
+		CampList.deleteCamp(createCampList.get(choice).getCampName());
 	}
 
 	public void viewCampList() {
 		// TODO - implement Staff.viewCampList
 		int choice=0;
 		int filterChoice;
-		campDisplayer. (getCampList());
+		campDisplayer.display(getCampList());
 		do {
 
 			System.out.println("1) Quit; ");
