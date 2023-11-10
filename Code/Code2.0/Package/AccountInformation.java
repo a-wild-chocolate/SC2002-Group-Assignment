@@ -10,7 +10,9 @@ public class AccountInformation extends AccountManager {
 	private String password = "password";
 
 	public AccountInformation(String userID, String name,  String faculty) {
-		this.userID=
+		this.userID=userID;
+		this.name=name;
+		this.faculty=faculty;
 	}
 
 	public String getUserID() {

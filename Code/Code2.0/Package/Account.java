@@ -1,16 +1,18 @@
 package Package;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Account extends AccountInformation {
 
-	private Searcher searcher;
-	private Displayer campDisplayer;
-	protected Scanner sc=new Scanner(System.in);
+	protected Searcher searcher;
+	protected Displayer campDisplayer;
+
 
 	public abstract void ViewCampList();
 
-	public Account() {
+	public Account(String userID, String name,  String faculty) {
 		// TODO - implement Account.Account
-		throw new UnsupportedOperationException();
+		super(userID,name,faculty);
 	}
 
 	public void printInformation() {
