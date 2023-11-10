@@ -1,4 +1,6 @@
 package Package;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AccountInformation extends AccountManager {
 
@@ -8,7 +10,7 @@ public class AccountInformation extends AccountManager {
 	private String password = "password";
 
 	public AccountInformation(String userID, String name,  String faculty) {
-		this.
+		this.userID=
 	}
 
 	public String getUserID() {
