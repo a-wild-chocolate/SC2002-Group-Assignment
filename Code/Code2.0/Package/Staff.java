@@ -13,9 +13,9 @@ public class Staff extends Account {
 	private Scanner sc = new Scanner(System.in);
 	//private Converter cv = new Converter();
 	//constructor
-	public Staff(String userID, String name,  String faculty) {
+	public Staff(String userID, String name, Faculty faculty, String password, String securityQuestion, String secureAnswer) {
 		// TODO - implement Staff.Staff
-		super(userID,name,faculty);
+		super(userID,name,faculty,password,securityQuestion,secureAnswer);
 		createCampList = new ArrayList<>();
 	}
 
