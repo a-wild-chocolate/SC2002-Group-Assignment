@@ -43,9 +43,7 @@ public class AccountInformation extends AccountManager {
 	this.faculty=faculty;
 	}
 
-	public Faculty getFaculty() {
-return this.faculty;
-	}
+	public Faculty getFaculty() {return this.faculty;}
 
 
 }
