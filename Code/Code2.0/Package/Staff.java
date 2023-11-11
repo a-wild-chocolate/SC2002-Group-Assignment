@@ -354,7 +354,7 @@ public class Staff extends Account {
 	}
 
 	public void viewCampCreated() {
-		displayer.display(this.createCampList);
+		displayer.display(this.createCampList,this);
 		do {
 
 			System.out.println("1) Quit; ");
