@@ -34,59 +34,104 @@ public class Staff extends Account {
 
 	public void addCamp() {
 
-		String CampName;
-		int day;
-		int month;
-		int year;
-		LocalDate CampDate;
-		LocalDate RegistrationDate;
-		Faculty UserGroup;
-		String Location;
-		int TotalSlot=0;
+		String campName;
+		LocalDate campDate;
+		LocalDate registrationDate;
+		ArrayList<Faculty> userGroup=new ArrayList<Faculty>();
+		String location;
+		int totalSlot=0;
 		int committeeSlot=0;
 		String description="NA";
+		boolean visibility=false;
 		Camp newCamp;
 
-		System.out.println("Please enter the name of camp");
-		CampName=sc.nextLine();
 
+// get camp name
+		System.out.println("Please enter the name of camp");
+		campName=sc.nextLine();
+
+//get camp date
 		System.out.println("Please enter the date of Camp");   //TODO: transfer single date to a range
 		System.out.println("Enter a date (yyyy-MM-dd): ");
 		String userInput = sc.nextLine();
-		LocalDate campDate = Converter.stringToLocalDate(userInput);
+		campDate = Converter.stringToLocalDate(userInput);
 
-		System.out.println("Please enter the last registrate date of Camp,format:day month year. (eg:02 03 2024)");
-		day=sc.nextInt();
-		month=sc.nextInt();
-		year=sc.nextInt();
-		RegistrationDate= new Date(day,month,year);
+//get camp registration date
+		System.out.println("Please enter the last registrate date of Camp");
+		System.out.println("Please enter the date of Camp");   //TODO: transfer single date to a range
+		System.out.println("Enter a date (yyyy-MM-dd): ");
+		userInput = sc.nextLine();
+		registrationDate = Converter.stringToLocalDate(userInput);
 
-		System.out.println("Please select the user group");
-		Faculty[] facultyList = Faculty.values();
-		for (int i = 0; i < facultyList.length; i++) {
-			System.out.println((i + 1) + ")" + facultyList[i]);}
-		UserGroup= facultyList[sc.nextInt()];
+// get user group
+		System.out.println("Available Faculties:");
+		int i =0;
+		for(Faculty f:Faculty.values())
+		{
+			System.out.println(i+1+") "+f);
+			i++;
+		}
+		System.out.println("Please enter the number of the faculty to select the user group of the camp (0 to finish)");
+		while(true){
+			int userChioce = sc.nextInt();
+			//quit
+			if (userChioce==0) break;
+			//input check
+			if(userChioce<1||userChioce>Faculty.values().length)
+			{
+				System.out.println("Invalid selection, please  enter a valid number.");
+				continue;
+			}
+			//add into selected faculty list
+			Faculty selectedFaculty = Faculty.values()[userChioce-1];
+			userGroup.add(selectedFaculty);
+		}
 
+//get location
 		System.out.println("Please enter the location of the camp");
-		Location = sc.nextLine();
+		location = sc.nextLine();
 
+//get total slot
 		do{
-			System.out.println("Please enter the number of the total slot");
-			TotalSlot=sc.nextInt();
-		}while(TotalSlot<0);
-
+			System.out.println("Please enter the number of the total attendee slot (exclude committee slot)");
+			totalSlot=sc.nextInt();
+			if (totalSlot<=0) System.out.println("Invalid input! Please input a positive number.");
+		}while(totalSlot<=0);
+//get committee slot
 		do{
 			System.out.println("Please enter the number of the committee slot, it should be less than 10");
 			committeeSlot=sc.nextInt();
 			if(committeeSlot>10||committeeSlot<0) System.out.println("Invalid Input! Please input again");
 		}while(committeeSlot>10||committeeSlot<0);
-
+//get descriptio
 		System.out.println("Please enter the description of the camp");
 		description=sc.nextLine();
-		newCamp = new Camp();
+//get visibility
+		while(true) {
+			System.out.println("Do u want to make this camp visible to students?");
+			System.out.println("0) No");
+			System.out.println("1) Yes");
+			int v = sc.nextInt();
+			//input check
+			if (v != 0 || v != 1) {
+				System.out.println("Invalid input!!! Please enter agian!");
+				continue;
+			}
+			//get visibility
+			else
+			{
+				if (v==0) visibility=false;
+				else if(v==1) visibility=true;
+				break;
+			}
+		}
 
+//creat new camp
+		newCamp = new Camp(campName,campDate,registrationDate,userGroup,location,totalSlot,committeeSlot,description,this,visibility);
 		campList.addCamp(newCamp);
-
+		System.out.println("Successfully create a new camp! The details show below:");
+		newCamp.printAllInformation();
+//return to staff start.
 	}
 
 	public void editCamp() {
@@ -94,57 +139,95 @@ public class Staff extends Account {
 		Camp currentCamp;
 		int choiceCamp=-1;
 		int choicePart=-1;
+		String userInput;
 		do
 		{
 			System.out.println("Please choose the camp you want to edit:");
 			System.out.println("0) quit");
 			for(int i =0;i<createCampList.length;i++)
 			{
-				System.out.printf(i+") "+createCampList.get(i).getCampName()+"\n");
+				System.out.printf(i+1+") "+createCampList.get(i).getCampName()+"\n");
 			}
 			choiceCamp=sc.nextInt();
 			if (choiceCamp==0) break;
-			currentCamp=createCampList.get(choiceCamp);
+			currentCamp=createCampList.get(choiceCamp-1);
 			do{
 				System.out.println("Current camp information:");
-				currentCamp.printInformation();
-				System.out.printf("Which part of camp you want to edit?\n");
-				System.out.printf("1) Camp name\n2) Camp date\n3)Camp  registration date\n4) Total Slot\n5) Committee Slot\n6) Description\n6) Quit");
+				currentCamp.printAllInformation();
+				System.out.printf("Which part of camp do you want to edit?\n");
+				System.out.printf("1) Camp name\n2) Camp date\n3)Camp registration date\n4) Total Slot\n5) Committee Slot\n6) Description\n7) Visibility\n8)Location\n9)User Group\n0) Quit");
 				choicePart=sc.nextInt();
 				switch (choicePart) {
+					//Camp name
 					case 1:
+						System.out.println("The current camp name is: "+currentCamp.getCampName());
 						System.out.println("please enter new name:");
 						String name= sc.nextLine();
 						currentCamp.setCampName(name);
 						break;
+					// Camp date
 					case 2:
-						System.out.println("please enter new camp date:");
-						int day1=sc.nextInt();
-						int month1=sc.nextInt();
-						int year1=sc.nextInt();
-						Date CampDate1= new Date(day1,month1,year1);
-						currentCamp.setDate(CampDate1);
+						System.out.println("The current camp date is: "+currentCamp.getDate());
+						System.out.println("please enter new camp date:");//TODO: transfer single date to a range
+						System.out.println("Enter a date in format(yyyy-MM-dd): ");
+						userInput = sc.nextLine();
+						LocalDate campDate = Converter.stringToLocalDate(userInput);
+						currentCamp.setDate(campDate);
 						break;
+					//Camp registration date
 					case 3:
-						System.out.println("please enter new last date of camp registration:");
-						int day2=sc.nextInt();
-						int month2=sc.nextInt();
-						int year2=sc.nextInt();
-						Date CampDate2= new Date(day2,month2,year2);
-						currentCamp.setDate(CampDate2);
+						System.out.println("The current camp registration date is: "+currentCamp.getRegistrationDate());
+						System.out.println("Please enter the last registrate date of Camp");//TODO: transfer single date to a range
+						System.out.println("Enter a date in format(yyyy-MM-dd): ");
+						userInput = sc.nextLine();
+						LocalDate registrationDate = Converter.stringToLocalDate(userInput);
+						currentCamp.setRegistrationDate(registrationDate);
 						break;
+					//Camp Total Slot
 					case 4:
-						System.out.println("please enter new camp slot:");
+						System.out.println("Please enter new camp slot:");
 						int Tslot= sc.nextInt();
 						currentCamp.setTotalSlot(Tslot);
 						break;
+					//Camp Registration Slot
 					case 5:
-						System.out.println("please enter new committee slot:");
+						System.out.println("Please enter new committee slot:");
 						int Cslot= sc.nextInt();
-						currentCamp.setTotalSlot(Cslot);
+						currentCamp.setCommitteeSlot(Cslot);
 						break;
-					case 6: break;
-					default:
+					//Camp Description
+					case 6:
+						System.out.println("The current description is: "+currentCamp.getDescription());
+						System.out.println("Please enter new description:");
+						String description = sc.nextLine();
+						currentCamp.setDescription(description);
+						break;
+					//Camp visibility
+					case 7:
+						boolean visibility=currentCamp.getVisibility();
+						System.out.println("The current visibility is: "+currentCamp.getVisibility());
+						while(true) {
+							System.out.println("Do u want to make this camp visible to students now?");
+							System.out.println("0) No");
+							System.out.println("1) Yes");
+							int v = sc.nextInt();
+							//input check
+							if (v != 0 || v != 1) {
+								System.out.println("Invalid input!!! Please enter agian!");
+								continue;
+							}
+							//get visibility
+							else
+							{
+								if (v==0) visibility=false;
+								else if(v==1) visibility=true;
+								break;
+							}
+						}
+						currentCamp.setVisibility(visibility);
+					case 0: break;
+
+					default:System.out.println("Invalid Input!!! Please try again");
 						break;
 				}
 			}while(choicePart!=6);

@@ -37,7 +37,7 @@ public class CampInformation {
 		this.campName = campName;
 	}
 
-	public Date getDate() {
+	public LocalDate getDate() {
 		return this.date;
 	}
 
@@ -45,11 +45,11 @@ public class CampInformation {
 	 * 
 	 * @param date
 	 */
-	public void setDate(Date date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 
-	public Date getRegistrationDate() {
+	public LocalDate getRegistrationDate() {
 		return this.registrationDate;
 	}
 
@@ -57,7 +57,7 @@ public class CampInformation {
 	 * 
 	 * @param registrationDate
 	 */
-	public void setRegistrationDate(Date registrationDate) {
+	public void setRegistrationDate(LocalDate registrationDate) {
 		this.registrationDate = registrationDate;
 	}
 
@@ -109,18 +109,14 @@ public class CampInformation {
 		this.committeeSlot = committeeSlot;
 	}
 
-	public int getDescription() {
-		// TODO - implement CampInformation.getDescription
-		throw new UnsupportedOperationException();
-	}
+	public String getDescription() {return this.description;}
 
 	/**
 	 * 
-	 * @param Description
+	 * @param description
 	 */
-	public void setDescription(int Description) {
-		// TODO - implement CampInformation.setDescription
-		throw new UnsupportedOperationException();
+	public void setDescription(String description) {
+		this.description=description;
 	}
 
 
