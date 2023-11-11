@@ -1,10 +1,23 @@
 package Package;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Attendee extends Student {
 
 	private ArrayList<Camp> attendeeStatus;
 	private ArrayList<Camp> withdrawStatus;
 	private ArrayList<Enquiry> enquiryList;
+	Scanner sc = new Scanner(System.in);
+
+	public Attendee(String userID, String name, Faculty faculty, String password, String securityQuestion, String secureAnswer) {
+		super(userID,name,faculty,password,securityQuestion,secureAnswer);
+		attendeeStatus = new ArrayList<Camp>();
+		withdrawStatus = new ArrayList<Camp>();
+		enquiryList = new ArrayList<Enquiry>();
+	}
+
+
 
 	public ArrayList<Camp> getAttendeeStatus() {
 
@@ -56,13 +69,9 @@ public class Attendee extends Student {
 		throw new UnsupportedOperationException();
 	}
 
-	/**
-	 * 
-	 * @param camp
-	 */
-	public void registerAsCommittee(Camp camp) {
-		// TODO - implement Student.registerAsCommittee
-		throw new UnsupportedOperationException();
+	public void registerAsCommittee() {
+		//check this camp is it in the withdrawList
+
 	}
 
 	/**
@@ -93,19 +102,44 @@ public class Attendee extends Student {
 	}
 
 	public void viewOwnCamp() {
-		// TODO - implement Student.viewOwnCamp
-		throw new UnsupportedOperationException();
+		campDisplayer= new RestrictedDisplay();
+		campDisplayer.display(this.attendeeStatus,this);
 	}
 
 	public void withdrawCamp() {
-		// TODO - implement Student.withdrawCamp
-		throw new UnsupportedOperationException();
+		System.out.println("Please enter the number of Camp you want to withdraw:");
+		int i=1;
+		int choice =0;
+		for (Camp c : this.attendeeStatus)
+		{
+			System.out.println(i+") "+c.getCampName());
+		}
+		System.out.println("0) Quit");
+
+		while(true)
+		{
+			choice=sc.nextInt();
+			if(choice==0) break;
+			if(choice <0 || choice>this.attendeeStatus.size())
+			{
+				System.out.println("Invalid Input!!!Please try again");
+				continue;
+			}
+			else {
+				Camp removedCamp = this.attendeeStatus.get(choice-1);
+				System.out.println("Warning! You are withdrawing "+ removedCamp.getCampName()+ ". \n Please confirm to continue: 1) Yes 2) No");
+				int confirm=0;
+				confirm=sc.nextInt();
+				if(confirm==0) return;
+				this.attendeeStatus.remove(removedCamp);
+				removedCamp.getStudentList().remove(this);
+				this.withdrawStatus.add(removedCamp);
+				System.out.println("Successfully delete "+removedCamp.getCampName()+" camp");
+			}
+		}
 	}
 
-	public Attendee() {
-		// TODO - implement Student.Attendee
-		throw new UnsupportedOperationException();
-	}
+
 
 	public void start() {
 		// TODO - implement Student.start

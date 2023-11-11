@@ -297,6 +297,11 @@ public class Staff extends Account {
 				System.out.println("Invalid Input!!! Please try again");
 				continue;
 			}
+			if(createCampList.get(choice-1).getStudentList().size()!=0||createCampList.get(choice-1).getCommitteeMemberList().size()!=0)
+			{
+				System.out.println("You can not delete this camp since there are students in this camp.");
+				break;
+			}
 			name=createCampList.get(choice-1).getCampName();
 			System.out.println("Warning! You are deleting"+name+"camp. Please Confirm! 0:YES 1:NO");
 			confirm=sc.nextInt();
