@@ -11,6 +11,15 @@ public class Camp extends CampInformation {
 	private Boolean visibility; //on/off visible to students. Different from user group.
 	private ArrayList<Student> studentList;
 	private int remainSlot;
+
+	public ArrayList<Student> getCommitteeMemberList() {
+		return committeeMemberList;
+	}
+
+	public void setCommitteeMemberList(ArrayList<Student> committeeMemberList) {
+		this.committeeMemberList = committeeMemberList;
+	}
+
 	private ArrayList<Student> committeeMemberList;
 
 	public Camp(String campName, LocalDate date , LocalDate registrationDate, ArrayList<Faculty> userGroup , String location, int totalSlot, int committeeSlot, String description,Staff staffInCharge, Boolean visibility)
@@ -98,6 +107,7 @@ public class Camp extends CampInformation {
 		this.remainSlot = remainSlot;
 	}
 
+
 	public void printAllInformation() {
 		System.out.println(
 				"Camp name: "+this.campName+"\n"+
@@ -113,5 +123,6 @@ public class Camp extends CampInformation {
 						"Camp current number of committee members: "+this.committeeMemberList.size()+"\n"
 		);
 	}
+
 
 }
