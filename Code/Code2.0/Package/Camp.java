@@ -108,6 +108,7 @@ public class Camp extends CampInformation {
 	}
 
 
+
 	public void printAllInformation() {
 		System.out.println(
 				"Camp name: "+this.campName+"\n"+
