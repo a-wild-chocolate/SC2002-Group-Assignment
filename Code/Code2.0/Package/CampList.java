@@ -5,6 +5,10 @@ public class CampList {
 
 	protected static ArrayList<Camp> campList;
 
+	public CampList()
+	{
+		campList=new ArrayList<>();
+	}
 	public static ArrayList<Camp> getCampList() {
 	return campList;
 	}
@@ -14,7 +18,7 @@ public class CampList {
 	 * @param campList
 	 */
 	public void setCampList(ArrayList<Camp> campList) {
-
+	this.camp
 	}
 
 	public void viewCampStudent() {

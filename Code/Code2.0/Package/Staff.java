@@ -6,7 +6,8 @@ public class Staff extends Account {
 
 
 	private ArrayList<Camp> createCampList;
-
+	private CampList campList = new CampList();
+	private Displayer displayer = new NormalDisplay();
 	public Staff(String userID, String name,  String faculty) {
 		// TODO - implement Staff.Staff
 		super(userID,name,faculty);
@@ -78,7 +79,9 @@ public class Staff extends Account {
 		System.out.println("Please enter the description of the camp");
 		description=sc.nextLine();
 		newCamp = new Camp();
-		camplist.addCamp(newCamp);
+
+		campList.addCamp(newCamp);
+
 	}
 
 	public void editCamp() {
@@ -140,7 +143,7 @@ public class Staff extends Account {
 						break;
 				}
 			}while(choicePart!=6);
-			camplist.editCamp(currentCamp,choiceCamp);
+			campList.editCamp(currentCamp,choiceCamp);
 		}while(choiceCamp!=0);
 	}
 
@@ -148,22 +151,25 @@ public class Staff extends Account {
 		// TODO - implement Staff.deleteCamp
 		int choice;
 		int confirm;
+		String name;
 		System.out.println("Please which camp do you want to delete?");
 		this.viewCampCreated();
 		System.out.println("0) Quit");
 		choice=sc.nextInt();
 		if(choice==0) return;
-		System.out.println("Warning! You are delete a camp. Please Confirm! 0:YES 1:NO");
+		name=createCampList.get(choice).getCampName();
+		System.out.println("Warning! You are deleting"+name+"camp. Please Confirm! 0:YES 1:NO");
 		confirm=sc.nextInt();
 		if(confirm==1) return;
 		CampList.deleteCamp(createCampList.get(choice).getCampName());
+		System.out.println("Successfully delete "+name+" camp");
 	}
 
 	public void viewCampList() {
 		// TODO - implement Staff.viewCampList
 		int choice=0;
 		int filterChoice;
-		campDisplayer.display(getCampList());
+		campDisplayer.display(campList.getCampList());
 		do {
 
 			System.out.println("1) Quit; ");
@@ -187,6 +193,13 @@ public class Staff extends Account {
 				{
 					case 0: break;
 					case 1: break;
+					case 2: break;
+					case 3: break;
+					case 4: break;
+					case 5: break;
+					case 6: break;
+					case 7: break;
+					case 8: break;
 					default : System.out.println("Invalid Input!!!");
 				}
 			}
