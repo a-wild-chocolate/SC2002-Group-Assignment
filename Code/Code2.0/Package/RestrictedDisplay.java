@@ -12,10 +12,15 @@ public class RestrictedDisplay extends Displayer {
 		ArrayList<Camp> avaliableVisitCamps = new ArrayList<>();
 		for(Camp c:campList)
 		{
-			if(c.getVisibility()==true&&c.getUserGroup().contains(account.getFaculty()))
+			if(c.getVisibility()==true&&(c.getUserGroup().contains(account.getFaculty())))
 			{
 				avaliableVisitCamps.add(c);
 			}
+		}
+		if(account instanceof Student)
+		{
+			Student student=(Student)account;
+			Camp committee=student.getCommitteeStatus();
 		}
 		if(avaliableVisitCamps!=null){
 			for(Camp camp:avaliableVisitCamps)
