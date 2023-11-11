@@ -35,10 +35,7 @@ public class AccountInformation extends AccountManager {
 		return this.name;
 	}
 
-	/**
-	 * 
-	 * @param faculty
-	 *//*
+	
 	public void setFaculty(Faculty faculty) {
 	this.faculty=faculty;
 	}
