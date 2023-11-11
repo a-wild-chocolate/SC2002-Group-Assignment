@@ -12,7 +12,7 @@ public class AccountInformation extends AccountManager {
 	public AccountInformation(String userID, String name,  String faculty) {
 		this.userID=userID;
 		this.name=name;
-		this.faculty=faculty;
+		this.faculty=Converter.sringToFaculty(faculty);
 	}
 
 	public String getUserID() {
@@ -40,11 +40,11 @@ public class AccountInformation extends AccountManager {
 	 * @param faculty
 	 */
 	public void setFaculty(Faculty faculty) {
-
+	this.faculty=faculty;
 	}
 
 	public Faculty getFaculty() {
-
+return this.faculty;
 	}
 
 
