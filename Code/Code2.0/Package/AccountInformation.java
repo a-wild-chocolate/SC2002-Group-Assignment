@@ -26,7 +26,7 @@ public class AccountInformation extends AccountManager {
 	/**
 	 * 
 	 * @param Password
-	 */
+	 *//*
 	public void setPassword(String Password) {
 		this.password = Password;
 	}
@@ -38,7 +38,7 @@ public class AccountInformation extends AccountManager {
 	/**
 	 * 
 	 * @param faculty
-	 */
+	 *//*
 	public void setFaculty(Faculty faculty) {
 	this.faculty=faculty;
 	}
