@@ -1,16 +1,30 @@
 package Package;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+
 public class CampInformation {
 
-	private String campName;
-	private Date date;
-	private Date registrationDate;
-	private ArrayList<Faculty> userGroup;
-	private String location;
-	private int totalSlot;
-	private int committeeSlot;
-	private String description;
+	protected String campName;
+	protected LocalDate date;
+	protected LocalDate registrationDate;
+	protected ArrayList<Faculty> userGroup;
+	protected String location;
+	protected int totalSlot;
+	protected int committeeSlot;
+	protected String description;
 
+	public CampInformation(String campName, LocalDate date , LocalDate registrationDate, ArrayList<Faculty> userGroup ,String location,int totalSlot,int committeeSlot, String description)
+	{
+		this.campName=campName;
+		this.date=date;
+		this.registrationDate=registrationDate;
+		this.userGroup=userGroup;
+		this.location=location;
+		this.totalSlot=totalSlot;  //totalSlot does not contain committeeSlot. It only calculates the Attendee.
+		this.committeeSlot=committeeSlot;
+		this.description=description;
+	}
 	public String getCampName() {
 		return this.campName;
 	}
@@ -109,9 +123,6 @@ public class CampInformation {
 		throw new UnsupportedOperationException();
 	}
 
-	public void printAllInformation() {
-		// TODO - implement CampInformation.printAllInformation
-		throw new UnsupportedOperationException();
-	}
+
 
 }

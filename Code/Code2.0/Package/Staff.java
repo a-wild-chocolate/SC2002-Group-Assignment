@@ -1,6 +1,8 @@
 package Package;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Staff extends Account {
 
@@ -8,12 +10,16 @@ public class Staff extends Account {
 	private ArrayList<Camp> createCampList;
 	private CampList campList = new CampList();
 	private Displayer displayer = new NormalDisplay();
+	private Scanner sc = new Scanner(System.in);
+	//private Converter cv = new Converter();
+	//constructor
 	public Staff(String userID, String name,  String faculty) {
 		// TODO - implement Staff.Staff
 		super(userID,name,faculty);
 		createCampList = new ArrayList<>();
 	}
 
+	//get&set methods
 	public ArrayList<Camp> getCreateCampList() {
 	return this.createCampList;
 	}
@@ -32,8 +38,8 @@ public class Staff extends Account {
 		int day;
 		int month;
 		int year;
-		Date CampDate;
-		Date RegistrationDate;
+		LocalDate CampDate;
+		LocalDate RegistrationDate;
 		Faculty UserGroup;
 		String Location;
 		int TotalSlot=0;
@@ -44,11 +50,10 @@ public class Staff extends Account {
 		System.out.println("Please enter the name of camp");
 		CampName=sc.nextLine();
 
-		System.out.println("Please enter the date of Camp,format:day month year. (eg:02 03 2024)");
-		day=sc.nextInt();
-		month=sc.nextInt();
-		year=sc.nextInt();
-		CampDate= new Date(day,month,year);
+		System.out.println("Please enter the date of Camp");   //TODO: transfer single date to a range
+		System.out.println("Enter a date (yyyy-MM-dd): ");
+		String userInput = sc.nextLine();
+		LocalDate campDate = Converter.stringToLocalDate(userInput);
 
 		System.out.println("Please enter the last registrate date of Camp,format:day month year. (eg:02 03 2024)");
 		day=sc.nextInt();

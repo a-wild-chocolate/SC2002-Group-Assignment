@@ -1,19 +1,28 @@
 package Package;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Camp extends CampInformation {
 
 	private Staff staffInCharge;
 	private ArrayList<Enquiry> enquiryList;
 	private ArrayList<Suggestion> suggestionList;
-	private ArrayList<Faculty> visibility;
+	private Boolean visibility; //on/off visible to students. Different from user group.
 	private ArrayList<Student> studentList;
 	private int remainSlot;
+	private ArrayList<Student> committeeMemberList;
 
-	public Camp(String campName, LocalDate date,LocalDate registrationDate , ArrayList<Faculty> userGroup,Staff staff,ArrayList<Faculty> visibility)
+	public Camp(String campName, LocalDate date , LocalDate registrationDate, ArrayList<Faculty> userGroup , String location, int totalSlot, int committeeSlot, String description,Staff staffInCharge, Boolean visibility)
 	{
-		super()
+		super(campName,date,registrationDate,userGroup,location,totalSlot,committeeSlot,description);
+		this.staffInCharge=staffInCharge;
+		this.visibility=visibility;
+		this.enquiryList=new ArrayList<>();
+		this.suggestionList=new ArrayList<>();
+		this.studentList=new ArrayList<>();
+		this.remainSlot=totalSlot-this.studentList.size();
+		this.committeeMemberList=new ArrayList<>();
 	}
 	public Staff getStaffInCharge() {
 		return this.staffInCharge;
@@ -87,6 +96,22 @@ public class Camp extends CampInformation {
 	 */
 	public void setRemainSlot(int remainSlot) {
 		this.remainSlot = remainSlot;
+	}
+
+	public void printAllInformation() {
+		System.out.println(
+				"Camp name: "+this.campName+"\n"+
+						"Camp Date: "+this.date+"\n"+
+						"Camp Registration closure date "+this.registrationDate+"\n"+
+						"Camp open to faculties: "+this.userGroup+"\n"+
+						"Camp Location: "+this.location+"\n"+
+						"Camp total Slots: "+this.totalSlot+"\n"+
+						"Camp committeeMember slots: "+this.committeeSlot+"\n"+
+						"Camp description: "+this.description+"\n"+
+						"Camp staff in charge: "+this.staffInCharge+"\n"+
+						"Camp current number of students: "+this.studentList.size()+"\n"+
+						"Camp current number of committee members: "+this.committeeMemberList.size()+"\n"
+		);
 	}
 
 }

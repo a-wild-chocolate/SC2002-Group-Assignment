@@ -18,7 +18,7 @@ public abstract class Account extends AccountInformation {
 	public void printInformation() {
 		// TODO - implement Account.printInformation
 		System.out.println(
-				"Camp name: "+this.campName+"\n"+
+				"Student name: "+this.campName+"\n"+
 						"Camp Date: "+this.date+"\n"+
 						"Camp Registration closure date "+this.registrationDate+"\n"+
 						"Camp open to faculties: "+this.userGroup+"\n"+
