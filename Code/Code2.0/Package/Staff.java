@@ -146,7 +146,7 @@ public class Staff extends Account {
 			System.out.println("0) quit");
 			for(int i =0;i<createCampList.length;i++)
 			{
-				System.out.printf(i+1+") "+createCampList.get(i).getCampName()+"%n");
+				System.out.printf(i+1+") "+createCampList.get(i).getCampName()+"\n");
 			}
 			choiceCamp=sc.nextInt();
 			if (choiceCamp==0) break;
@@ -154,8 +154,8 @@ public class Staff extends Account {
 			do{
 				System.out.println("Current camp information:");
 				currentCamp.printAllInformation();
-				System.out.printf("Which part of camp do you want to edit?%n");
-				System.out.printf("1) Camp name%n2) Camp date%n3)Camp registration date%n4) Total Slot %n 5) Committee Slot%n6) Description%n7) Visibility%n8)Location%n9)User Group%n0) Quit");
+				System.out.printf("Which part of camp do you want to edit?\n");
+				System.out.printf("1) Camp name\n2) Camp date\n3)Camp registration date\n4) Total Slot \n 5) Committee Slot\n6) Description\n7) Visibility\n8)Location\n9)User Group\n0) Quit");
 				choicePart=sc.nextInt();
 				switch (choicePart) {
 					//Camp name
@@ -240,7 +240,7 @@ public class Staff extends Account {
 						{
 							System.out.print(fa+" ");
 						}
-						System.out.print("%n");
+						System.out.print("\n");
 						System.out.println("Available Faculties:");
 						int i =0;
 						for(Faculty f:Faculty.values())
@@ -333,9 +333,9 @@ public class Staff extends Account {
 				System.out.println("7) Remain Slot Number;");
 				System.out.println("8) User Group (faculty);");
 				System.out.println("0) Quit;");
-				fliterChoice=sc.nextInt();
+				filterChoice=sc.nextInt();
 				// TODO - implement Staff.fliter after finish fliter
-				switch (fliterChoice)
+				switch (filterChoice)
 				{
 					case 0: break;
 					case 1: break;
@@ -354,6 +354,8 @@ public class Staff extends Account {
 	}
 
 	public void viewCampCreated() {
+		int choice=0;
+		int filterChoice;
 		displayer.display(this.createCampList,this);
 		do {
 
@@ -373,9 +375,9 @@ public class Staff extends Account {
 				System.out.println("7) Remain Slot Number;");
 				System.out.println("8) User Group (faculty);");
 				System.out.println("0) Quit;");
-				fliterChoice=sc.nextInt();
+				filterChoice=sc.nextInt();
 				// TODO - implement Staff.fliter after finish fliter
-				switch (fliterChoice)
+				switch (filterChoice)
 				{
 					case 0: break;
 					case 1: break;

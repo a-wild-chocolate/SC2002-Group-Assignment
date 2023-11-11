@@ -12,7 +12,7 @@ public class Student extends Account {
 	public Student(String userID, String name, Faculty faculty, String password, String securityQuestion, String secureAnswer) {
 		super(userID,name,faculty,password,securityQuestion,secureAnswer);
 		this.point=0;
-		this.daysOccupied=new ArrayList<LocalDate>();
+		//this.daysOccupied=new ArrayList<LocalDate>();
 		committeeStatus=null;
 
 	}
@@ -41,21 +41,21 @@ public class Student extends Account {
 		this.committeeStatus = committeeStatus;
 	}
 
-	public ArrayList<LocalDate> getDaysOccupied() {
+	/*public ArrayList<LocalDate> getDaysOccupied() {
 		return this.daysOccupied;
-	}
+	}*/
 
 	/**
 	 * 
 	 * @param daysOccupied
 	 */
-	public void setDaysOccupied(ArrayList<LocalDate> daysOccupied) {
+	/*public void setDaysOccupied(ArrayList<LocalDate> daysOccupied) {
 		this.daysOccupied = daysOccupied;
 	}
 
 	public void start() {
 		// TODO - implement Student.start
 		throw new UnsupportedOperationException();
-	}
+	}*/
 
 }
