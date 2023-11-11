@@ -1,14 +1,20 @@
 package Package;
 
+import java.time.LocalDate;
+
 public class Camp extends CampInformation {
 
 	private Staff staffInCharge;
 	private ArrayList<Enquiry> enquiryList;
 	private ArrayList<Suggestion> suggestionList;
-	private boolean visibility;
+	private ArrayList<Faculty> visibility;
 	private ArrayList<Student> studentList;
 	private int remainSlot;
 
+	public Camp(String campName, LocalDate date,LocalDate registrationDate , ArrayList<Faculty> userGroup,Staff staff,ArrayList<Faculty> visibility)
+	{
+		super()
+	}
 	public Staff getStaffInCharge() {
 		return this.staffInCharge;
 	}
