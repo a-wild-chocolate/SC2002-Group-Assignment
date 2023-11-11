@@ -1,10 +1,13 @@
 package Package;
 
-public class Report {
+public abstract class Report {
 
 	private Camp camp;
-	private Sorter sorter;
 
+	public Report(Camp camp)
+	{
+		this.camp=camp;
+	}
 	public Camp getCamp() {
 		return this.camp;
 	}
@@ -21,9 +24,6 @@ public class Report {
 	 * 
 	 * @param camp
 	 */
-	public void Report(Camp camp) {
-		// TODO - implement Report.Report
-		throw new UnsupportedOperationException();
-	}
+	public abstract void GenerateReport();
 
 }
