@@ -189,6 +189,7 @@ public class Staff extends Account {
 				System.out.println("8) User Group (faculty);");
 				System.out.println("0) Quit;");
 				fliterChoice=sc.nextInt();
+				// TODO - implement Staff.fliter after finish fliter
 				switch (fliterChoice)
 				{
 					case 0: break;
@@ -208,8 +209,42 @@ public class Staff extends Account {
 	}
 
 	public void viewCampCreated() {
-		// TODO - implement Staff.viewCampCreated
-		throw new UnsupportedOperationException();
+		displayer.display(this.createCampList);
+		do {
+
+			System.out.println("1) Quit; ");
+			System.out.println("2) Filter; ");
+			choice = sc.nextInt();
+			if(choice!=1 && choice !=2) System.out.println("Invalid input! Please input again!");
+			else if (choice ==2)
+			{
+				System.out.println("Please choose the parameter you want to filte:");
+				System.out.println("1) Name;");
+				System.out.println("2) Date;");
+				System.out.println("3) Location;");
+				System.out.println("4) RegistrationDate;");
+				System.out.println("5) Total Slot Number;");
+				System.out.println("6) Committee Slot Number;");
+				System.out.println("7) Remain Slot Number;");
+				System.out.println("8) User Group (faculty);");
+				System.out.println("0) Quit;");
+				fliterChoice=sc.nextInt();
+				// TODO - implement Staff.fliter after finish fliter
+				switch (fliterChoice)
+				{
+					case 0: break;
+					case 1: break;
+					case 2: break;
+					case 3: break;
+					case 4: break;
+					case 5: break;
+					case 6: break;
+					case 7: break;
+					case 8: break;
+					default : System.out.println("Invalid Input!!!");
+				}
+			}
+		}while(choice!=1);
 	}
 
 	/**
