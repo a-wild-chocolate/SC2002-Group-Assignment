@@ -1,5 +1,5 @@
-/*package Package;
-import java.util.ArrayList;
+package Package;
+/*import java.util.ArrayList;
 import java.util.List;
 
 public class AccountInformation extends AccountManager {
