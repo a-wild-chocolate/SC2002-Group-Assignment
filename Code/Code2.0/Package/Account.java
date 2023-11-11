@@ -11,5 +11,4 @@ public abstract class Account extends AccountInformation {
 		// TODO - implement Account.Account
 		super(userID,name,faculty);
 	}
-
 }
