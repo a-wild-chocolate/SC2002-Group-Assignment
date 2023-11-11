@@ -146,7 +146,7 @@ public class Staff extends Account {
 			System.out.println("0) quit");
 			for(int i =0;i<createCampList.length;i++)
 			{
-				System.out.printf(i+1+") "+createCampList.get(i).getCampName()+"\n");
+				System.out.printf(i+1+") "+createCampList.get(i).getCampName()+"%n");
 			}
 			choiceCamp=sc.nextInt();
 			if (choiceCamp==0) break;
@@ -154,8 +154,8 @@ public class Staff extends Account {
 			do{
 				System.out.println("Current camp information:");
 				currentCamp.printAllInformation();
-				System.out.printf("Which part of camp do you want to edit?\n");
-				System.out.printf("1) Camp name\n2) Camp date\n3)Camp registration date\n4) Total Slot\n5) Committee Slot\n6) Description\n7) Visibility\n8)Location\n9)User Group\n0) Quit");
+				System.out.printf("Which part of camp do you want to edit?%n");
+				System.out.printf("1) Camp name%n2) Camp date%n3)Camp registration date%n4) Total Slot %n 5) Committee Slot%n6) Description%n7) Visibility%n8)Location%n9)User Group%n0) Quit");
 				choicePart=sc.nextInt();
 				switch (choicePart) {
 					//Camp name
@@ -225,32 +225,88 @@ public class Staff extends Account {
 							}
 						}
 						currentCamp.setVisibility(visibility);
+					//Camp Location
+					case 8:
+						String location;
+						System.out.println("The current location is: "+currentCamp.getLocation());
+						System.out.println("Please enter new location:");
+						location = sc.nextLine();
+						currentCamp.setDescription(location);
+					//Camp user group
+					case 9:
+						ArrayList<Faculty> userGroup=new ArrayList<>();
+						System.out.println("The current location is: ");
+						for(Faculty fa:currentCamp.getUserGroup())
+						{
+							System.out.print(fa+" ");
+						}
+						System.out.print("%n");
+						System.out.println("Available Faculties:");
+						int i =0;
+						for(Faculty f:Faculty.values())
+						{
+							System.out.println(i+1+") "+f);
+							i++;
+						}
+						System.out.println("Please enter the number of the faculty to select the user group of the camp (0 to finish)");
+						while(true){
+							int userChioce = sc.nextInt();
+							//quit
+							if (userChioce==0) break;
+							//input check
+							if(userChioce<1||userChioce>Faculty.values().length)
+							{
+								System.out.println("Invalid selection, please  enter a valid number.");
+								continue;
+							}
+							//add into selected faculty list
+							Faculty selectedFaculty = Faculty.values()[userChioce-1];
+							userGroup.add(selectedFaculty);
+						}
+						currentCamp.setUserGroup(userGroup);
+					// Quit
 					case 0: break;
-
+					// Input check
 					default:System.out.println("Invalid Input!!! Please try again");
 						break;
 				}
 			}while(choicePart!=6);
 			campList.editCamp(currentCamp,choiceCamp);
 		}while(choiceCamp!=0);
+		//Return to Start;
 	}
 
 	public void deleteCamp() {
-		// TODO - implement Staff.deleteCamp
+		int i=1;
 		int choice;
 		int confirm;
-		String name;
-		System.out.println("Please which camp do you want to delete?");
-		this.viewCampCreated();
+		String name="NULL";
+		System.out.println("Please choose which camp do you want to delete?");
+		for(Camp c : this.createCampList)
+		{
+			System.out.println(i+")"+c.getCampName());
+			i++;
+		}
 		System.out.println("0) Quit");
-		choice=sc.nextInt();
-		if(choice==0) return;
-		name=createCampList.get(choice).getCampName();
-		System.out.println("Warning! You are deleting"+name+"camp. Please Confirm! 0:YES 1:NO");
-		confirm=sc.nextInt();
-		if(confirm==1) return;
-		CampList.deleteCamp(createCampList.get(choice).getCampName());
-		System.out.println("Successfully delete "+name+" camp");
+		while (true)
+		{
+			choice=sc.nextInt();
+			if(choice==0) return;
+			if(choice<0 || choice>this.createCampList.size())
+			{
+				System.out.println("Invalid Input!!! Please try again");
+				continue;
+			}
+			name=createCampList.get(choice-1).getCampName();
+			System.out.println("Warning! You are deleting"+name+"camp. Please Confirm! 0:YES 1:NO");
+			confirm=sc.nextInt();
+			if(confirm==1) return;
+			CampList.deleteCamp(createCampList.get(choice-1).getCampName());
+			System.out.println("Successfully delete "+name+" camp");
+			break;
+		}
+
+
 	}
 
 	public void viewCampList() {
