@@ -8,11 +8,15 @@ public class NormalDisplay extends Displayer {
 	 * 
 	 * @param campList
 	 */
-	public void display(ArrayList<Camp> campList) {
-		// TODO - implement NormalDisplay.display
-		for(Camp camp:campList)
-		{
-			camp.printAllInformation();
+	public void display(ArrayList<Camp> campList,Account account) {
+		if(account instanceof Staff){
+			for(Camp camp:campList)
+			{
+				camp.printAllInformation();
+			}
+		}
+		else{
+			System.out.println("Invalid visit!!!");
 		}
 	}
 

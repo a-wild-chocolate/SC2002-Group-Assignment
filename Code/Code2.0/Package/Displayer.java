@@ -7,6 +7,6 @@ public abstract class Displayer {
 	 * 
 	 * @param campList
 	 */
-	public abstract void display(ArrayList<Camp> campList);
+	public abstract void display(ArrayList<Camp> campList,Account account);
 
 }

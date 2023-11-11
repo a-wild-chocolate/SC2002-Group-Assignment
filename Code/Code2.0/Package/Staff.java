@@ -313,7 +313,8 @@ public class Staff extends Account {
 		// TODO - implement Staff.viewCampList
 		int choice=0;
 		int filterChoice;
-		campDisplayer.display(campList.getCampList());
+		campDisplayer=new NormalDisplay();
+		campDisplayer.display(campList.getCampList(),this);
 		do {
 
 			System.out.println("1) Quit; ");
