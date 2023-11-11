@@ -144,7 +144,7 @@ public class Staff extends Account {
 		{
 			System.out.println("Please choose the camp you want to edit:");
 			System.out.println("0) quit");
-			for(int i =0;i<createCampList.length;i++)
+			for(int i =0;i<createCampList.size();i++)
 			{
 				System.out.printf(i+1+") "+createCampList.get(i).getCampName()+"\n");
 			}
@@ -167,6 +167,7 @@ public class Staff extends Account {
 						break;
 					// Camp date
 					case 2:
+
 						System.out.println("The current camp date is: "+currentCamp.getDate());
 						System.out.println("please enter new camp date:");//TODO: transfer single date to a range
 						System.out.println("Enter a date in format(yyyy-MM-dd): ");
@@ -234,6 +235,11 @@ public class Staff extends Account {
 						currentCamp.setDescription(location);
 					//Camp user group
 					case 9:
+						if(currentCamp.getStudentList().size()!=0||currentCamp.getCommitteeMemberList().size()!=0)
+						{
+							System.out.println("You can not edit this camp user group since there are students in this camp.");
+							break;
+						}
 						ArrayList<Faculty> userGroup=new ArrayList<>();
 						System.out.println("The current location is: ");
 						for(Faculty fa:currentCamp.getUserGroup())
@@ -291,17 +297,20 @@ public class Staff extends Account {
 		while (true)
 		{
 			choice=sc.nextInt();
+			//input check
 			if(choice==0) return;
 			if(choice<0 || choice>this.createCampList.size())
 			{
 				System.out.println("Invalid Input!!! Please try again");
 				continue;
 			}
+			//cannot delete if there are students in the camp
 			if(createCampList.get(choice-1).getStudentList().size()!=0||createCampList.get(choice-1).getCommitteeMemberList().size()!=0)
 			{
 				System.out.println("You can not delete this camp since there are students in this camp.");
 				break;
 			}
+			//delete camp
 			name=createCampList.get(choice-1).getCampName();
 			System.out.println("Warning! You are deleting"+name+"camp. Please Confirm! 0:YES 1:NO");
 			confirm=sc.nextInt();
