@@ -147,8 +147,8 @@ public class AccountInformation {
         System.out.println("The cryptographic algorithm is not available in the current environment.");
         e.printStackTrace();
     }
-    }
-}*/
+    }*/
+}
 
 ////////////////////////////////////////////////account information 1.0///////////////////////////////////////
 /*import java.util.ArrayList;
