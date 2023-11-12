@@ -10,10 +10,10 @@ public class Student extends Account {
 	private ArrayList<LocalDate> daysOccupied;
 
 	public Student(String userID, String name, Faculty faculty, String password, String securityQuestion, String secureAnswer) {
-		super(userID,name,faculty,password,securityQuestion,secureAnswer);
-		this.point=0;
+		super(userID, name, faculty, password, securityQuestion, secureAnswer);
+		this.point = 0;
 		//this.daysOccupied=new ArrayList<LocalDate>();
-		committeeStatus=null;
+		committeeStatus = null;
 
 	}
 
@@ -22,7 +22,6 @@ public class Student extends Account {
 	}
 
 	/**
-	 * 
 	 * @param point
 	 */
 	public void setPoint(int point) {
@@ -34,7 +33,6 @@ public class Student extends Account {
 	}
 
 	/**
-	 * 
 	 * @param committeeStatus
 	 */
 	public void setCommitteeStatus(Camp committeeStatus) {
@@ -46,16 +44,15 @@ public class Student extends Account {
 	}*/
 
 	/**
-	 * 
 	 * @param daysOccupied
 	 */
 	/*public void setDaysOccupied(ArrayList<LocalDate> daysOccupied) {
 		this.daysOccupied = daysOccupied;
-	}
+	}/*
 
+	 */
 	public void start() {
 		// TODO - implement Student.start
 		throw new UnsupportedOperationException();
-	}*/
-
+	}
 }
