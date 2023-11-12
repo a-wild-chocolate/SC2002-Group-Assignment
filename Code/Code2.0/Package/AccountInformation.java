@@ -95,7 +95,7 @@ public class AccountInformation {
     public boolean createNewAccount() throws IOException, NoSuchAlgorithmException {
         String header = "userID,name,faculty,password,securityQuestion,secureAnswer\n";
         CSVReadWriter csvModifier = new CSVReadWriter(FILE_NAME,header);
-        return csvModifier.createNewAccount(this.userID, this.createCSVDataLine());
+        return csvModifier.createNewRecord(this.userID, this.createCSVDataLine());
     }
 
     public String createCSVDataLine() throws IOException, NoSuchAlgorithmException {

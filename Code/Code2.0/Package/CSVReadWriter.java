@@ -52,7 +52,7 @@ public class CSVReadWriter {
     return users;
 }
 
-public boolean createNewAccount(String onlyID,String csvData) throws IOException, NoSuchAlgorithmException {
+public boolean createNewRecord(String onlyID,String csvData) throws IOException, NoSuchAlgorithmException {
     // First, read the existing accounts to check if userID already exists
     Map<String, String[]> ID = readUsersFromCSV(); // Reuse the method you have for reading the CSV into a map
     if (ID.containsKey(onlyID)) {
