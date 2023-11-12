@@ -52,11 +52,41 @@ public class Attendee extends Student {
 
 
 	public void registerAsAttendee() {
-		// TODO - implement Student.registerAsAttendee
-		throw new UnsupportedOperationException();
+		Camp registerCamp=null;
+		String campName;
+		int choice=0;
 		//check this camp is it in the withdrawList
-		System.out.println("The list of camp name show ");
-		System.out.println("Please enter the name of the camp you want to join in:");
+		System.out.println("The list of camp shows below");
+		campDisplayer.display(CampList.getCampList(),this);
+		do
+		{
+			System.out.println("Please enter the name of the camp you want to join in, 0 exist");
+			campName=sc.nextLine();
+			if(campName.equals("0")) return;
+			registerCamp=Converter.stringToCamp(campName);
+			if(registerCamp==null)
+			{
+				System.out.println("This camp does not exist.");
+				continue;
+			}
+			if(!(registerCamp.getUserGroup().contains(this.getFaculty()))||this.getWithdrawStatus().contains(registerCamp))
+			{
+				System.out.println("Sorry, you cannot register this camp");
+				System.out.println("0) Quit");
+				System.out.println("1) Register other camp");
+				if(choice==0) return;
+			}
+			if(this.getCommitteeStatus()!=null&&this.getCommitteeStatus()==registerCamp)
+			{
+				System.out.println("Sorry, you cannot register this camp since you are the committee member of it ");
+				System.out.println("0) Quit");
+				System.out.println("1) Register other camp");
+				if(choice==0) return;
+			}
+
+		}while(registerCamp==null);
+		this.attendeeStatus.add(registerCamp);
+		registerCamp.getStudentList().add(this);
 
 	}
 
@@ -92,8 +122,41 @@ public class Attendee extends Student {
 
 	public void registerAsCommittee() {
 		//check this camp is it in the withdrawList
+		Camp registerCamp=null;
+		String campName;
+		int choice=0;
+		//check this camp is it in the withdrawList
+		System.out.println("The list of camp shows below");
+		campDisplayer.display(CampList.getCampList(),this);
+		do
+		{
+			System.out.println("Please enter the name of the camp you want to join in, 0 exist");
+			campName=sc.nextLine();
+			if(campName.equals("0")) return;
+			registerCamp=Converter.stringToCamp(campName);
+			if(registerCamp==null)
+			{
+				System.out.println("This camp does not exist.");
+				continue;
+			}
+			if(!(registerCamp.getUserGroup().contains(this.getFaculty()))||this.getWithdrawStatus().contains(registerCamp))
+			{
+				System.out.println("Sorry, you cannot register this camp");
+				System.out.println("0) Quit");
+				System.out.println("1) Register other camp");
+				if(choice==0) return;
+			}
+			if(this.getCommitteeStatus()!=null&&this.getCommitteeStatus()==registerCamp)
+			{
+				System.out.println("Sorry, you cannot register this camp since you are the committee member of it ");
+				System.out.println("0) Quit");
+				System.out.println("1) Register other camp");
+				if(choice==0) return;
+			}
 
+		}while(registerCamp==null);
 	}
+
 
 	/**
 	 * 

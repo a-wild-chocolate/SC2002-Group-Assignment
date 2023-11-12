@@ -31,4 +31,12 @@ public class Converter {
             return null;
         }
     }
+    public static Camp stringToCamp(String userInput)
+    {
+        //Camp camp = null;
+        for(Camp camp:CampList.getCampList()) {
+            if(camp.getCampName().equals(userInput)) return camp;
+        }
+        return null;
+    }
 }
