@@ -24,6 +24,6 @@ public abstract class Report {
 	 * 
 	 * @param camp
 	 */
-	public abstract void GenerateReport();
+	public abstract void GenerateReport(Camp camp);
 
 }

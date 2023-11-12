@@ -5,5 +5,6 @@ public enum Faculty {
 	ASE,
 	CCEB,
 	CEE,
-	EEE
+	EEE,
+	DEFAULT
 }
