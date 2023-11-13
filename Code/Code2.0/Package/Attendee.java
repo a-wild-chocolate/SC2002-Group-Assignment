@@ -235,7 +235,17 @@ public class Attendee extends Student {
 	}
 
 	public void viewOwnCamp() {
+		System.out.println("----- Camps Attended as Attendee-----");
 		campDisplayer.display(this.attendeeStatus,this);
+		if(this.getCommitteeStatus()!=null)
+		{
+			System.out.println("----- Camps Attended as Committee Member -----");
+			ArrayList committeeCampList = new ArrayList<Camp>();
+			committeeCampList.add(this.getCommitteeStatus());
+			campDisplayer.display(committeeCampList,this);
+		}
+		//TODO - implement filter
+
 	}
 
 	public void withdrawCamp() {
