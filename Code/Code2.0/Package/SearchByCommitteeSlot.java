@@ -48,7 +48,7 @@ public class SearchByCommitteeSlot extends Searcher {
 				{
 					if(camp.getCommitteeSlot()==choice)
 					{
-						returnList.add(camp.getCommitteeSlot());
+						returnList.add(camp);
 					}
 				}
 				// filter can filter more than one number

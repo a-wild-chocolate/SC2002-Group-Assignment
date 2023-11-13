@@ -49,7 +49,7 @@ public class SearchByRemainSlot extends Searcher {
 				{
 					if(camp.getRemainSlot()==choice)
 					{
-						returnList.add(camp.getRemainSlot());
+						returnList.add(camp);
 					}
 				}
 				// filter can filter more than one number

@@ -10,7 +10,6 @@ public class SearchByTotalSlot extends Searcher {
 	 * @param campList
 	 */
 	public ArrayList<Camp> searching(ArrayList<Camp> campList) {
-		// TODO - implement SearchByTotalSlot.searching
 
 		ArrayList slotList=new ArrayList<>();
 		ArrayList returnList = new ArrayList<Camp>();
@@ -49,7 +48,7 @@ public class SearchByTotalSlot extends Searcher {
 				{
 					if(camp.getTotalSlot()==choice)
 					{
-						returnList.add(camp.getTotalSlot());
+						returnList.add(camp);
 					}
 				}
 				// filter can filter more than one number
