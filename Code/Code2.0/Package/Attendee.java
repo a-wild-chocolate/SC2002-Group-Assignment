@@ -70,6 +70,16 @@ public class Attendee extends Student {
 				System.out.println("This camp does not exist.");
 				continue;
 			}
+			//check whether this camp is due
+			if(registerCamp.getRegistrationDate().compareTo(LocalDate.now())<0)
+			{
+				System.out.println("Sorry, this camp is due. You cannot register this camp");
+				System.out.println("0) Quit");
+				System.out.println("1) Register other camp");
+				if(choice==0) return;
+				registerCamp=null;
+				continue;
+			}
 			//check whether this camp is full
 			if(registerCamp.getTotalSlot()==registerCamp.getStudentList().size())
 			{
@@ -133,6 +143,16 @@ public class Attendee extends Student {
 			if(registerCamp==null||!registerCamp.getVisibility())
 			{
 				System.out.println("This camp does not exist.");
+				registerCamp=null;
+				continue;
+			}
+			//check whether this camp is due
+			if(registerCamp.getRegistrationDate().compareTo(LocalDate.now())<0)
+			{
+				System.out.println("Sorry, this camp is due. You cannot register this camp");
+				System.out.println("0) Quit");
+				System.out.println("1) Register other camp");
+				if(choice==0) return;
 				registerCamp=null;
 				continue;
 			}
