@@ -8,6 +8,6 @@ public abstract class Searcher {
 	 * 
 	 * @param campList
 	 */
-	public abstract CampList searching(ArrayList<Camp> campList);
+	public abstract ArrayList<Camp> searching(ArrayList<Camp> campList);
 
 }
