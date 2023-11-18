@@ -1,5 +1,7 @@
 package Package;
 
+import java.util.ArrayList;
+
 public class CommitteeMember extends Student {
 
 	private int point;
@@ -37,6 +39,12 @@ public class CommitteeMember extends Student {
 		throw new UnsupportedOperationException();
 	}
 
+	public void viewSuggestion()
+	{
+		System.out.println("You submitted "+this.suggestionList.size()+" suggestions:");
+		for
+	}
+
 	public void replyEnquiry() {
 		// TODO - implement CommitteeMember.replyEnquiry
 		throw new UnsupportedOperationException();
@@ -52,9 +60,9 @@ public class CommitteeMember extends Student {
 		throw new UnsupportedOperationException();
 	}
 
-	public CommitteeMember() {
-		// TODO - implement CommitteeMember.CommitteeMember
-		throw new UnsupportedOperationException();
+	public CommitteeMember(String userID, String name, Faculty faculty, String password, String securityQuestion, String secureAnswer) {
+		super(userID,name,faculty,password,securityQuestion,secureAnswer);
+		suggestionList= new ArrayList<Suggestion>();
 	}
 
 	public void start() {
