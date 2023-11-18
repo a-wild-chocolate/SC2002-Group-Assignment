@@ -14,7 +14,7 @@ public class Suggestion //extends Message
 
 
 // constructor
-	private Suggestion(String content,CommitteeMember sender,Camp camp)
+	public Suggestion(String content,CommitteeMember sender,Camp camp)
 	{
 		this.content=content;
 		this.sender=sender;
