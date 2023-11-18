@@ -95,7 +95,7 @@ public class CommitteeMember extends Student {
 		System.out.println("Please enter the content you want to suggest: (empty space)");
 		content=sc.nextLine();
 		System.out.println("Thank you for your suggestion , the staff will deal with it soon.");
-		Suggestion newSuggestion = new Suggestion(content,this,this.getCommitteeStatus());
+		Suggestion newSuggestion = new Suggestion(content,this,this.getCommitteeStatus(),SuggestionStatus.pending);
 		suggestionList.add(newSuggestion);
 		this.setSuggestionList(suggestionList);
 		ArrayList campSuggestionList=this.getCommitteeStatus().getSuggestionList();

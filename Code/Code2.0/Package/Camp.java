@@ -28,7 +28,7 @@ public class Camp extends CampInformation {
 		this.staffInCharge=staffInCharge;
 		this.visibility=visibility;
 		this.enquiryList=new ArrayList<>();
-		this.suggestionList=new ArrayList<>();
+		this.suggestionList=new ArrayList<Suggestion>();
 		this.studentList=new ArrayList<>();
 		this.remainSlot=totalSlot-this.studentList.size();
 		this.committeeMemberList=new ArrayList<>();

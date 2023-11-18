@@ -2,6 +2,7 @@ package Package;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Staff extends Account {
@@ -277,7 +278,7 @@ public class Staff extends Account {
 						break;
 				}
 			}while(choicePart!=6);
-			campList.editCamp(currentCamp,choiceCamp);
+			campList.editCamp(currentCamp,choiceCamp-1);
 		}while(choiceCamp!=0);
 		//Return to Start;
 	}
@@ -327,6 +328,7 @@ public class Staff extends Account {
 		// TODO - implement Staff.viewCampList
 		int choice=0;
 		int filterChoice;
+
 		campDisplayer=new NormalDisplay();
 		campDisplayer.display(campList.getCampList(),this);
 		do {
@@ -335,33 +337,8 @@ public class Staff extends Account {
 			System.out.println("2) Filter; ");
 			choice = sc.nextInt();
 			if(choice!=1 && choice !=2) System.out.println("Invalid input! Please input again!");
-			else if (choice ==2)
-			{
-				System.out.println("Please choose the parameter you want to filte:");
-				System.out.println("1) Name;");
-				System.out.println("2) Date;");
-				System.out.println("3) Location;");
-				System.out.println("4) RegistrationDate;");
-				System.out.println("5) Total Slot Number;");
-				System.out.println("6) Committee Slot Number;");
-				System.out.println("7) Remain Slot Number;");
-				System.out.println("8) User Group (faculty);");
-				System.out.println("0) Quit;");
-				filterChoice=sc.nextInt();
-				// TODO - implement Staff.fliter after finish fliter
-				switch (filterChoice)
-				{
-					case 0: break;
-					case 1: break;
-					case 2: break;
-					case 3: break;
-					case 4: break;
-					case 5: break;
-					case 6: break;
-					case 7: break;
-					case 8: break;
-					default : System.out.println("Invalid Input!!!");
-				}
+			else if (choice ==2) {
+				campDisplayer.display(SearchApp.searchApp(CampList.getCampList()),this);
 			}
 		}while(choice!=1);
 
@@ -379,31 +356,7 @@ public class Staff extends Account {
 			if(choice!=1 && choice !=2) System.out.println("Invalid input! Please input again!");
 			else if (choice ==2)
 			{
-				System.out.println("Please choose the parameter you want to filte:");
-				System.out.println("1) Name;");
-				System.out.println("2) Date;");
-				System.out.println("3) Location;");
-				System.out.println("4) RegistrationDate;");
-				System.out.println("5) Total Slot Number;");
-				System.out.println("6) Committee Slot Number;");
-				System.out.println("7) Remain Slot Number;");
-				System.out.println("8) User Group (faculty);");
-				System.out.println("0) Quit;");
-				filterChoice=sc.nextInt();
-				// TODO - implement Staff.fliter after finish fliter
-				switch (filterChoice)
-				{
-					case 0: break;
-					case 1: break;
-					case 2: break;
-					case 3: break;
-					case 4: break;
-					case 5: break;
-					case 6: break;
-					case 7: break;
-					case 8: break;
-					default : System.out.println("Invalid Input!!!");
-				}
+				campDisplayer.display(SearchApp.searchApp(this.getCreateCampList()),this);
 			}
 		}while(choice!=1);
 	}
@@ -436,8 +389,61 @@ public class Staff extends Account {
 	 * @param camp
 	 */
 	public void approveSuggestion(Camp camp) {
-		// TODO - implement Staff.approveSuggestion
-		throw new UnsupportedOperationException();
+		ArrayList<Suggestion> suggestionList = camp.getSuggestionList();
+		ArrayList<Suggestion> pendingSuggestionList = new ArrayList<Suggestion>();
+		Suggestion currentSuggestion;
+		int choice=0;
+		int approve=0;
+		int continueChoice=0;
+		if(suggestionList.isEmpty())
+		{
+			System.out.println("there is no suggestion");
+			return;
+		}
+		for(Suggestion suggestion:suggestionList)
+		{
+			if(suggestion.getStatus()==SuggestionStatus.pending) pendingSuggestionList.add(suggestion);
+		}
+		if(pendingSuggestionList.isEmpty())
+		{
+			System.out.println("There is no more suggestion to be processed");
+
+		}
+		else {
+			System.out.println("There are "+pendingSuggestionList.size()+" suggestions need to be processed.");
+			int i=1;
+			for(Suggestion suggestion:pendingSuggestionList)
+			{
+				System.out.println(i+ ".");
+				i++;
+				suggestion.viewSuggestion();
+			}
+			do{
+				System.out.println("Please enter you the number of suggestion you want to process: (0 Quit)");
+				choice=sc.nextInt();
+				currentSuggestion=pendingSuggestionList.get(choice-1);
+				if(choice==0) return;
+				else {
+					System.out.println("You want to approve or reject it? (1 for approve, 0 for reject)");
+					approve=sc.nextInt();
+					if(approve==0)
+					{
+						currentSuggestion.setStatus(SuggestionStatus.rejected);
+					}
+					else if(approve==1)
+					{
+						currentSuggestion.setStatus(SuggestionStatus.appoved);
+					}
+					else System.out.println("Invalid input");
+					suggestionList.set()
+					camp.setSuggestionList();currentSuggestion
+				}
+				System.out.println("Do you want to process more suggestion?");
+			}while(continueChoice==1)
+
+
+		}
+
 	}
 
 	/**

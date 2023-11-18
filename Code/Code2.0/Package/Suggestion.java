@@ -11,16 +11,21 @@ public class Suggestion //extends Message
 	private Camp camp;
 	private SuggestionStatus status;
 	private Staff dealer;
+	private static int suggestionNum=0;
+	private int suggestionId;
 
 
 // constructor
-	public Suggestion(String content,CommitteeMember sender,Camp camp)
+	public Suggestion(String content,CommitteeMember sender,Camp camp,SuggestionStatus status)
 	{
 		this.content=content;
 		this.sender=sender;
 		this.camp=camp;
 		this.dealer=null;
-		this.status=SuggestionStatus.pending;
+		this.status=status;
+		this.suggestionId=suggestionNum;
+		suggestionNum++;
+
 	}
 
 //get and set methods
