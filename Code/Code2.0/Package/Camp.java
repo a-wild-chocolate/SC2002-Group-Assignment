@@ -46,11 +46,11 @@ public class Camp extends CampInformation {
 	}
 
 	public ArrayList<Enquiry> getEnquiryList() {
-
+	return this.enquiryList;
 	}
 
 	public ArrayList<Suggestion> getSuggestionList() {
-
+		return this.suggestionList;
 	}
 
 	public boolean getVisibility() {
@@ -70,8 +70,7 @@ public class Camp extends CampInformation {
 	 * @param enquiryList
 	 */
 	public void setEnquiryList(ArrayList<Enquiry> enquiryList) {
-		// TODO - implement Camp.setEnquiryList
-		throw new UnsupportedOperationException();
+		this.enquiryList=enquiryList;
 	}
 
 	/**
@@ -79,8 +78,7 @@ public class Camp extends CampInformation {
 	 * @param suggestionList
 	 */
 	public void setSuggestionList(ArrayList<Suggestion> suggestionList) {
-		// TODO - implement Camp.setSuggestionList
-		throw new UnsupportedOperationException();
+		this.suggestionList=suggestionList;
 	}
 
 	public ArrayList<Student> getStudentList() {
