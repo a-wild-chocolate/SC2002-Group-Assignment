@@ -1,12 +1,14 @@
 package Package;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class CommitteeMember extends Student {
 
 //attributes
 	private int point;
 	private ArrayList<Suggestion> suggestionList;
+	Scanner sc = new Scanner();
 
 	public int getPoint() {
 		return this.point;
@@ -83,8 +85,22 @@ public class CommitteeMember extends Student {
 	}
 
 	public void submitSuggestion() {
-		// TODO - implement CommitteeMember.submitSuggestion
-		throw new UnsupportedOperationException();
+		if(this.getCommitteeStatus()==null)
+		{
+			System.out.println("Sorry, you are not in any camp's committee");
+			return;
+		}
+		String content;
+		ArrayList suggestionList=this.getSuggestionList();
+		System.out.println("Please enter the content you want to suggest: (empty space)");
+		content=sc.nextLine();
+		System.out.println("Thank you for your suggestion , the staff will deal with it soon.");
+		Suggestion newSuggestion = new Suggestion(content,this,this.getCommitteeStatus());
+		suggestionList.add(newSuggestion);
+		this.setSuggestionList(suggestionList);
+		ArrayList campSuggestionList=this.getCommitteeStatus().getSuggestionList();
+		campSuggestionList.add(newSuggestion);
+		this.getCommitteeStatus().setSuggestionList(campSuggestionList);
 	}
 
 	public void editSuggestion() {
