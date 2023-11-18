@@ -8,7 +8,7 @@ public class CommitteeMember extends Student {
 //attributes
 	private int point;
 	private ArrayList<Suggestion> suggestionList;
-	Scanner sc = new Scanner();
+	Scanner sc = new Scanner(System.in);
 
 	public int getPoint() {
 		return this.point;
