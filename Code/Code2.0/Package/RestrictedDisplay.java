@@ -10,6 +10,12 @@ public class RestrictedDisplay extends Displayer {
 	 */
 	public void display(ArrayList<Camp> campList,Account account) {
 		ArrayList<Camp> avaliableVisitCamps = new ArrayList<>();
+		if(account instanceof Student)
+		{
+			Student student=(Student)account;
+			Camp committee=student.getCommitteeStatus();
+		}
+
 		for(Camp c:campList)
 		{
 			if(c.getVisibility()==true&&(c.getUserGroup().contains(account.getFaculty())))
@@ -17,12 +23,8 @@ public class RestrictedDisplay extends Displayer {
 				avaliableVisitCamps.add(c);
 			}
 		}
-		if(account instanceof Student)
-		{
-			Student student=(Student)account;
-			Camp committee=student.getCommitteeStatus();
-		}
-		if(avaliableVisitCamps!=null){
+
+		if(avaliableVisitCamps.size()!=0){
 			for(Camp camp:avaliableVisitCamps)
 			{
 				camp.printAllInformation();
