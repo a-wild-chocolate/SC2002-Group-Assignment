@@ -58,8 +58,7 @@ public class CampList {
 	 * @param oldCamp
 	 */
 	public void editCamp(Camp newCamp, int oldCamp) {
-		// TODO - implement CampList.editCamp
-		throw new UnsupportedOperationException();
+		campList.set(oldCamp,newCamp);
 	}
 
 	public void search() {
@@ -72,8 +71,18 @@ public class CampList {
 	 * @param name
 	 */
 	public Camp nameMatch(String name) {
-		// TODO - implement CampList.nameMatch
-		throw new UnsupportedOperationException();
+		if (campList.isEmpty())
+		{
+			System.out.println("There is no camp");
+			return null;
+		}
+		else {
+			for(Camp camp:campList)
+			{
+				if(camp.getCampName().equals(name)) return camp;
+			}
+		}
+		return null;
 	}
 
 }
