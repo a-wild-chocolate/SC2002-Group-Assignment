@@ -4,12 +4,21 @@ import java.util.ArrayList;
 
 public class CommitteeMember extends Student {
 
+//attributes
 	private int point;
 	private ArrayList<Suggestion> suggestionList;
 
 	public int getPoint() {
 		return this.point;
 	}
+
+//constructor
+	public CommitteeMember(String userID, String name, Faculty faculty, String password, String securityQuestion, String secureAnswer) {
+		super(userID,name,faculty,password,securityQuestion,secureAnswer);
+		suggestionList= new ArrayList<Suggestion>();
+	}
+
+//get and set
 
 	/**
 	 * 
@@ -19,9 +28,58 @@ public class CommitteeMember extends Student {
 		this.point = point;
 	}
 
+
+
+
+
+
+
+
+
+	public ArrayList<Suggestion> getSuggestionList() {
+		return this.suggestionList;
+	}
+
+	/**
+	 * 
+	 * @param suggestionList
+	 */
+	public void setSuggestionList(ArrayList<Suggestion> suggestionList) {
+		this.suggestionList = suggestionList;
+	}
+
+//methods
 	public void viewCampManagedDetail() {
-		// TODO - implement CommitteeMember.viewCampManagedDetail
+		if (this.getCommitteeStatus() != null) {
+			ArrayList camp = new ArrayList<>();
+			camp.add(this.getCommitteeStatus());
+			Displayer displayer = new RestrictedDisplay();
+			displayer.display(camp, this);
+		} else {
+			System.out.println("Sorry, you are not in any camp's committee");
+		}
+	}
+
+	public void replyEnquiry() {
+		// TODO - implement CommitteeMember.replyEnquiry
 		throw new UnsupportedOperationException();
+	}
+
+	public void viewEnquiry() {
+		// TODO - implement CommitteeMember.viewEnquiry
+		throw new UnsupportedOperationException();
+	}
+
+	public void viewSuggestion()
+	{
+		System.out.println("You submitted "+this.suggestionList.size()+" suggestions:");
+		int i=1;
+		for(Suggestion suggestion:this.getSuggestionList())
+		{
+			System.out.println(i++ +".");
+			suggestion.viewSuggestion();
+			System.out.println();
+		}
 	}
 
 	public void submitSuggestion() {
@@ -39,47 +97,16 @@ public class CommitteeMember extends Student {
 		throw new UnsupportedOperationException();
 	}
 
-	public void viewSuggestion()
-	{
-		System.out.println("You submitted "+this.suggestionList.size()+" suggestions:");
-		for
-	}
-
-	public void replyEnquiry() {
-		// TODO - implement CommitteeMember.replyEnquiry
-		throw new UnsupportedOperationException();
-	}
-
-	public void viewEnquiry() {
-		// TODO - implement CommitteeMember.viewEnquiry
-		throw new UnsupportedOperationException();
-	}
-
 	public void generateReport() {
 		// TODO - implement CommitteeMember.generateReport
 		throw new UnsupportedOperationException();
 	}
 
-	public CommitteeMember(String userID, String name, Faculty faculty, String password, String securityQuestion, String secureAnswer) {
-		super(userID,name,faculty,password,securityQuestion,secureAnswer);
-		suggestionList= new ArrayList<Suggestion>();
-	}
+
 
 	public void start() {
 		// TODO - implement CommitteeMember.start
 		throw new UnsupportedOperationException();
-	}
-
-	public ArrayList<Suggestion> getSuggestionList() {
-		return this.suggestionList;
-	}
-
-	/**
-	 * 
-	 * @param suggestionList
-	 */
-	public void setSuggestionList(ArrayList<Suggestion> suggestionList) {
-		this.suggestionList = suggestionList;
 	}
 
 }
