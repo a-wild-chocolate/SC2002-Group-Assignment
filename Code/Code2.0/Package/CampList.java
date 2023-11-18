@@ -13,13 +13,7 @@ public class CampList {
 	return campList;
 	}
 
-	/**
-	 * 
-	 * @param campList
-	 */
-	public void setCampList(ArrayList<Camp> campList) {
-	this.camp
-	}
+
 
 	public void viewCampStudent() {
 		// TODO - implement CampList.viewCampStudent
@@ -36,8 +30,7 @@ public class CampList {
 	 * @param camp
 	 */
 	public void addCamp(Camp camp) {
-		// TODO - implement CampList.addCamp
-		throw new UnsupportedOperationException();
+		campList.add(camp);
 	}
 
 	/**
