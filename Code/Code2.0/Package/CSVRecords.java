@@ -21,8 +21,11 @@ public class CSVRecords<T> {
 
     public List<T> readRecordFromCSV(String fileName) throws IOException {
         List<T> records = new ArrayList<>();
-        Path filePath = Paths.get("./" + fileName + ".csv");
+        //Path filePath = Paths.get("E:\\javacodes\\SC2002-Group-Assignment-main\\SC2002-Group-Assignment-main\\accounts.csv");
+        Path filePath = Paths.get("./"+fileName+".csv");
 
+        System.out.println("read file path : "+filePath.toAbsolutePath());
+        //int a=1;
         if (Files.exists(filePath)) {
             try (BufferedReader br = Files.newBufferedReader(filePath)) {
                 String line;
@@ -35,13 +38,20 @@ public class CSVRecords<T> {
                     }
                     String[] userDetails = line.split(",");
                     T record = recordParser.apply(userDetails);
+                    System.out.println("Record: " + record.toString());
                     records.add(record);
                 }
             }
         }
+        else
+        {
+                System.out.println("file not found : " + filePath.toAbsolutePath());
+        }
         return records;
     }
 }
+
+
 
 //usage:
 /*

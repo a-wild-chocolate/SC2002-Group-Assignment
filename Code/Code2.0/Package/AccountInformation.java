@@ -16,6 +16,7 @@ public class AccountInformation {
 
     public AccountInformation(String userID, String name, Faculty faculty, String password, String securityQuestion, String secureAnswer) {
             System.out.println("UserID: " + userID);
+                System.out.println("write file path : "+System.getProperty("user.dir"));
 
         this.userID = userID;
             System.out.println("this UserID: " + this.userID);
@@ -44,6 +45,7 @@ public class AccountInformation {
         this.faculty = faculty;
         //updateAccountInCSV();
         CSVReadWriter csvModifier = new CSVReadWriter(FILE_NAME);
+
         csvModifier.updateInformationInCSV(this.userID,this.createCSVDataLine());
     }
 
@@ -146,10 +148,6 @@ public class AccountInformation {
         System.out.println("The cryptographic algorithm is not available in the current environment.");
         e.printStackTrace();
     }
-<<<<<<< HEAD
-    }*/
-=======
     }
->>>>>>> 2351a1cca15378835e3a411556f459a60b3de756
 }
 

@@ -101,6 +101,8 @@ public void updateInformationInCSV(String onlyID,String csvData) throws IOExcept
         // Read all accounts into a list
         int a=1;
         List<String> accountLines = Files.readAllLines(Paths.get(CSV_FILE));
+        System.out.println("write file path : "+System.getProperty("user.dir"));
+
         int indexToUpdate = -1;
         for (int i = 0; i < accountLines.size(); i++) {
             String[] values = accountLines.get(i).split(",");
@@ -119,5 +121,15 @@ public void updateInformationInCSV(String onlyID,String csvData) throws IOExcept
             Files.write(Paths.get(CSV_FILE), accountLines);
         }
     }
+    
+    public void checkCreateOrUpdate(String onlyID,String csvData) throws IOException, NoSuchAlgorithmException {
+
+        if(!createNewRecord(onlyID,csvData))
+        {
+            updateInformationInCSV(onlyID,csvData);
+        }
+    }
 
 }
+
+
