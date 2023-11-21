@@ -136,8 +136,9 @@ public class Suggestion //extends Message
 			contentStr);
 	}
 //methods
-//print the conntent of the suggestion
-	public void viewSuggestion()
+//print the content of the suggestion
+	//move to new class SuggestionPrinter -single responsibility principle
+	/*public void viewSuggestion()
 	{
 		System.out.println("Suggestion content: "+this.getContent());
 		System.out.println("Suggestion sender: "+this.sender.getName());
@@ -150,7 +151,7 @@ public class Suggestion //extends Message
 		}
 
 
-	}
+	}*/
 
 	
 

@@ -79,7 +79,8 @@ public class CommitteeMember extends Student {
 		for(Suggestion suggestion:this.getSuggestionList())
 		{
 			System.out.println(i++ +".");
-			suggestion.viewSuggestion();
+			SuggestionPrinter suggestionPrinter= new SuggestionPrinter(suggestion);
+			suggestionPrinter.print();
 			System.out.println();
 		}
 	}

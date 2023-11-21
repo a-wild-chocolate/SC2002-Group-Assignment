@@ -416,7 +416,9 @@ public class Staff extends Account {
 			{
 				System.out.println(i+ ".");
 				i++;
-				suggestion.viewSuggestion();
+				SuggestionPrinter suggestionPrinter= new SuggestionPrinter(suggestion);
+				suggestionPrinter.print();
+				System.out.println();
 			}
 			do{
 				System.out.println("Please enter you the number of suggestion you want to process: (0 Quit)");
