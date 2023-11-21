@@ -3,7 +3,7 @@ package Package;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Student extends Account {
+public abstract class Student extends Account {
 
 	private int point;
 	private Camp committeeStatus;
@@ -38,6 +38,7 @@ public class Student extends Account {
 	public void setCommitteeStatus(Camp committeeStatus) {
 		this.committeeStatus = committeeStatus;
 	}
+
 
 	/*public ArrayList<LocalDate> getDaysOccupied() {
 		return this.daysOccupied;
