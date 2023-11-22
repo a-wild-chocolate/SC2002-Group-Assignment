@@ -18,7 +18,7 @@ public class Suggestion //extends Message
 	private SuggestionStatus status;
 	private Staff dealer;
 	private static int suggestionNum=0;
-	private int suggestionId;
+	private final int suggestionId;
 
 
 
