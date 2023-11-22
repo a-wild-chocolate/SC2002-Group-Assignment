@@ -211,22 +211,26 @@ public class Attendee extends Student {
 		System.out.println("Current time: "+ LocalDate.now());
 		campDisplayer.display(CampList.getCampList(),this);
 		System.out.println();
-		System.out.println("1) Filter");
-		System.out.println("2) Register Camp as Attendee");
-		System.out.println("3) Register Camp as Committee Member");
+		System.out.println("1) View in camp name alphabet order (Default)");
+		System.out.println("2) Filter");
+		System.out.println("3) Register Camp as Attendee");
+		System.out.println("4) Register Camp as Committee Member");
 		System.out.println("0) Quit");
 		int choice;
 		choice=sc.nextInt();
 		switch (choice)
 		{
 			case 1:
+				campDisplayer.display(SortCampByName.sortCamp(CampList.getCampList()),this);
+				break;
+			case 2:
 				Displayer campDisplayer= new RestrictedDisplay();
 				campDisplayer.display(SearchApp.searchApp(CampList.getCampList()),this);
 				break;
-			case 2:
+			case 3:
 				this.registerAsAttendee();
 				break;
-			case 3:
+			case 4:
 				this.registerAsCommittee();
 				break;
 			case 0:
