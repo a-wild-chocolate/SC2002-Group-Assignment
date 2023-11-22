@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
-//searchAPP contains combination of searching-by methods, use searchapp directly instead of modify the searcher used. It returns a arraylist which can be directly used in display.
+//searchAPP contains combination of searching-by methods, use searchApp directly instead of modify the searcher used. It returns an arraylist which can be directly used in display.
 public class SearchApp {
 
     public static ArrayList searchApp(ArrayList<Camp> camp)
@@ -13,8 +13,8 @@ public class SearchApp {
         Searcher searcher;
         ArrayList filteredCampList = new ArrayList<>();
         Set<Camp> unique = new HashSet<>(filteredCampList);
-        int filterChoice=0;
-        int choice=0;
+        int filterChoice;
+        int choice;
         System.out.println("Filter can use AND or OR option to filter camps through multiple parameters");
         System.out.println("eg: AND for camp have multiple attributes chose, OR for all camp have at least one attributes chose");
         while(true)
@@ -22,7 +22,8 @@ public class SearchApp {
             System.out.println("Please enter the number of option you want to use AND or OR today:");
             System.out.println("1) AND");
             System.out.println("2) OR");
-            if(choice!=1 || choice!=2)
+            choice=sc.nextInt();
+            if(choice!=1 && choice!=2)
             {
                 System.out.println("Invalid Input!!! Please enter again:");
                 continue;
@@ -103,41 +104,41 @@ public class SearchApp {
                     {
                         case 1:
                             searcher=new SearchByName();
-                            if(filteredCampList.size()==0)  filteredCampList.addAll(searcher.searching(camp));
+                            if(filteredCampList.isEmpty())  filteredCampList.addAll(searcher.searching(camp));
                             else  filteredCampList.retainAll(searcher.searching(camp));
                             break;
                         case 2:
                             searcher=new SearchByDate();
-                            if(filteredCampList.size()==0)  filteredCampList.addAll(searcher.searching(camp));
+                            if(filteredCampList.isEmpty())  filteredCampList.addAll(searcher.searching(camp));
                             else  filteredCampList.retainAll(searcher.searching(camp));
                         case 3:
                             searcher=new SearchByLocation();
-                            if(filteredCampList.size()==0)  filteredCampList.addAll(searcher.searching(camp));
+                            if(filteredCampList.isEmpty())  filteredCampList.addAll(searcher.searching(camp));
                             else  filteredCampList.retainAll(searcher.searching(camp));
                             break;
                         case 4:
                             searcher=new SearchByRegistrationDate();
-                            if(filteredCampList.size()==0)  filteredCampList.addAll(searcher.searching(camp));
+                            if(filteredCampList.isEmpty())  filteredCampList.addAll(searcher.searching(camp));
                             else  filteredCampList.retainAll(searcher.searching(camp));
                             break;
                         case 5:
                             searcher=new SearchByTotalSlot();
-                            if(filteredCampList.size()==0)  filteredCampList.addAll(searcher.searching(camp));
+                            if(filteredCampList.isEmpty())  filteredCampList.addAll(searcher.searching(camp));
                             else  filteredCampList.retainAll(searcher.searching(camp));
                             break;
                         case 6:
                             searcher=new SearchByCommitteeSlot();
-                            if(filteredCampList.size()==0)  filteredCampList.addAll(searcher.searching(camp));
+                            if(filteredCampList.isEmpty())  filteredCampList.addAll(searcher.searching(camp));
                             else  filteredCampList.retainAll(searcher.searching(camp));
                             break;
                         case 7:
                             searcher=new SearchByRemainSlot();
-                            if(filteredCampList.size()==0)  filteredCampList.addAll(searcher.searching(camp));
+                            if(filteredCampList.isEmpty())  filteredCampList.addAll(searcher.searching(camp));
                             else  filteredCampList.retainAll(searcher.searching(camp));
                             break;
                         case 8:
                             searcher=new SearchByUserGroup();
-                            if(filteredCampList.size()==0)  filteredCampList.addAll(searcher.searching(camp));
+                            if(filteredCampList.isEmpty())  filteredCampList.addAll(searcher.searching(camp));
                             else  filteredCampList.retainAll(searcher.searching(camp));
                             break;
                         case 0:
