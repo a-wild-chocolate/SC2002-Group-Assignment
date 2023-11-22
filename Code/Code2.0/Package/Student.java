@@ -40,20 +40,19 @@ public abstract class Student extends Account {
 	}
 
 
-	/*public ArrayList<LocalDate> getDaysOccupied() {
+	public ArrayList<LocalDate> getDaysOccupied() {
 		return this.daysOccupied;
-	}*/
+	}
 
-	/**
-	 * @param daysOccupied
-	 */
-	/*public void setDaysOccupied(ArrayList<LocalDate> daysOccupied) {
+
+	public void setDaysOccupied(ArrayList<LocalDate> daysOccupied) {
 		this.daysOccupied = daysOccupied;
-	}/*
+	}
 
-	 */
+
 	public void start() {
 		// TODO - implement Student.start
 		throw new UnsupportedOperationException();
 	}
+
 }
