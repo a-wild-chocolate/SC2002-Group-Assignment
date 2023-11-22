@@ -91,7 +91,16 @@ public class Attendee extends Student {
 				registerCamp=null;
 				continue;
 			}
-
+			//check student's available date
+			if(getDaysOccupied().contains(registerCamp.getDate()))
+			{
+				System.out.println("Sorry, you cannot register this camp since you have agenda on "+registerCamp.getDate()+". It clashes.");
+				System.out.println("0) Quit");
+				System.out.println("1) Register other camp");
+				if(choice==0) return;
+				registerCamp=null;
+				continue;
+			}
 			//check this camp is it in the withdrawList
 			if(!(registerCamp.getUserGroup().contains(this.getFaculty()))||this.getWithdrawStatus().contains(registerCamp))
 			{
