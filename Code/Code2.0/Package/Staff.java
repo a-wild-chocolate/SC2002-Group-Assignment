@@ -395,22 +395,26 @@ public class Staff extends Account {
 		int choice=0;
 		int approve=0;
 		int continueChoice=0;
+		//check is there any suggestion.
 		if(suggestionList.isEmpty())
 		{
-			System.out.println("there is no suggestion");
+			System.out.println("There is no suggestion.");
 			return;
 		}
+		//get all the pending suggestion
 		for(Suggestion suggestion:suggestionList)
 		{
 			if(suggestion.getStatus()==SuggestionStatus.pending) pendingSuggestionList.add(suggestion);
 		}
+		//check is there any suggestion need to be processed
 		if(pendingSuggestionList.isEmpty())
 		{
 			System.out.println("There is no more suggestion to be processed");
-
 		}
+		//count the number of suggestion need to be processed
 		else {
 			System.out.println("There are "+pendingSuggestionList.size()+" suggestions need to be processed.");
+			// print out all the pending suggestions
 			int i=1;
 			for(Suggestion suggestion:pendingSuggestionList)
 			{
@@ -420,11 +424,15 @@ public class Staff extends Account {
 				suggestionPrinter.print();
 				System.out.println();
 			}
+			//
 			do{
-				System.out.println("Please enter you the number of suggestion you want to process: (0 Quit)");
+				System.out.println("Please enter the number of suggestion you want to process: (0 Quit)");
 				choice=sc.nextInt();
+				//TODO: Error check
 				currentSuggestion=pendingSuggestionList.get(choice-1);
+				//Quit
 				if(choice==0) return;
+				//approve or reject
 				else {
 					System.out.println("You want to approve or reject it? (1 for approve, 0 for reject)");
 					approve=sc.nextInt();
@@ -436,12 +444,31 @@ public class Staff extends Account {
 					{
 						currentSuggestion.setStatus(SuggestionStatus.appoved);
 					}
-					else System.out.println("Invalid input");
-					suggestionList.set()
-					camp.setSuggestionList();currentSuggestion
+					else System.out.println("Invalid input");//TODO: Reinput ?
+					//prepare for change suggestion
+					int id,location=0;
+					ArrayList<Suggestion> temp;
+					camp.getSuggestionList();
+					id=currentSuggestion.getSuggestionId();
+					temp=camp.getSuggestionList();
+					//find the location of the changing suggestion inside the camp suggestion list;
+					//Question: do we need to change in the csv file also?
+					for(Suggestion suggestion:temp)
+					{
+						if(id==suggestion.getSuggestionId())
+						{
+							break;
+						}
+						location++;
+					}
+					//set updated suggestion in the temp array;
+					temp.set(location,currentSuggestion);
+					//set temp array as formal array;
+					camp.setSuggestionList(temp);
+
 				}
 				System.out.println("Do you want to process more suggestion?");
-			}while(continueChoice==1)
+			}while(continueChoice==1);
 
 
 		}
