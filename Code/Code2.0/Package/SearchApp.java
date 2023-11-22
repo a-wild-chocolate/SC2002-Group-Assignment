@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
-
+//searchAPP contains combination of searching-by methods, use searchapp directly instead of modify the searcher used. It returns a arraylist which can be directly used in display.
 public class SearchApp {
 
     public static ArrayList searchApp(ArrayList<Camp> camp)
