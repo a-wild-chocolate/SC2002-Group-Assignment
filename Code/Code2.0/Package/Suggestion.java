@@ -19,6 +19,9 @@ public class Suggestion //extends Message
 	private Staff dealer;
 	private static int suggestionNum=0;
 	private int suggestionId;
+
+
+
 	private final String FILE_NAME = "suggestions";
 
 
@@ -80,7 +83,13 @@ public class Suggestion //extends Message
 	public void setStatus(SuggestionStatus status) {
 		this.status=status;
 	}
+//suggestionId
+	public int getSuggestionId() {
+		return suggestionId;
+	}
 
+
+//CSV method
 	public void writeToSuggestionCSV()
 	{
 		String header = "Suggstion ID,name,faculty,password,securityQuestion,secureAnswer\n";
