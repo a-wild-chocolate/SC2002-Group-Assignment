@@ -1,5 +1,6 @@
 package Package;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -60,6 +61,34 @@ public class CommitteeMember extends Student {
 		} else {
 			System.out.println("Sorry, you are not in any camp's committee");
 		}
+	}
+
+	public void viewCampList() {
+		Displayer campDisplayer= new RestrictedDisplay();
+		System.out.println("----- Camp List -----");
+		System.out.println("Current time: "+ LocalDate.now());
+		campDisplayer.display(CampList.getCampList(),this);
+		System.out.println();
+		System.out.println("1) View in camp name alphabet order (Default)");
+		System.out.println("2) Filter");
+		System.out.println("0) Quit");
+		int choice;
+		choice=sc.nextInt();
+		switch (choice)
+		{
+			case 2:
+				campDisplayer.display(SearchApp.searchApp(CampList.getCampList()),this);
+				break;
+			case 1:
+				campDisplayer.display(SortCampByName.sortCamp(CampList.getCampList()),this);
+				break;
+
+			case 0:
+				break;
+			default:System.out.println("Invalid Input!!!");
+		}
+
+
 	}
 
 	public void replyEnquiry() {
