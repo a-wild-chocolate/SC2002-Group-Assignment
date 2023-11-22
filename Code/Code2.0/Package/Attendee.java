@@ -52,7 +52,7 @@ public class Attendee extends Student {
 
 
 	public void registerAsAttendee() {
-		Camp registerCamp=null;
+		Camp registerCamp;
 		String campName;
 		int choice=0;
 		//check whether this camp is in the withdrawList
@@ -76,6 +76,7 @@ public class Attendee extends Student {
 				System.out.println("Sorry, this camp is due. You cannot register this camp");
 				System.out.println("0) Quit");
 				System.out.println("1) Register other camp");
+				choice=sc.nextInt();
 				if(choice==0) return;
 				registerCamp=null;
 				continue;
@@ -124,7 +125,7 @@ public class Attendee extends Student {
 			System.out.println("Sorry, you are the committee member of "+this.getCommitteeStatus().getCampName()+". You can only be committee member in one committee.");
 			return;
 		}
-		Camp registerCamp=null;
+		Camp registerCamp;
 		String campName;
 		int choice=0;
 		//display the camp list and details
@@ -152,6 +153,7 @@ public class Attendee extends Student {
 				System.out.println("Sorry, this camp is due. You cannot register this camp");
 				System.out.println("0) Quit");
 				System.out.println("1) Register other camp");
+				choice=sc.nextInt();
 				if(choice==0) return;
 				registerCamp=null;
 				continue;
@@ -204,13 +206,14 @@ public class Attendee extends Student {
 		System.out.println("2) Register Camp as Attendee");
 		System.out.println("3) Register Camp as Committee Member");
 		System.out.println("0) Quit");
-		int choice=0;
+		int choice;
 		choice=sc.nextInt();
 		switch (choice)
 		{
 			case 1:
+				Displayer campDisplayer= new RestrictedDisplay();
+				campDisplayer.display(SearchApp.searchApp(CampList.getCampList()),this);
 				break;
-				//TODO Filter
 			case 2:
 				this.registerAsAttendee();
 				break;
@@ -271,7 +274,7 @@ public class Attendee extends Student {
 	public void withdrawCamp() {
 		System.out.println("Please enter the number of Camp you want to withdraw:");
 		int i=1;
-		int choice =0;
+		int choice;
 		for (Camp c : this.attendeeStatus)
 		{
 			System.out.println(i+") "+c.getCampName());
@@ -282,17 +285,27 @@ public class Attendee extends Student {
 		{
 			choice=sc.nextInt();
 			if(choice==0) break;
+			//check input error
 			if(choice <0 || choice>this.attendeeStatus.size())
 			{
 				System.out.println("Invalid Input!!!Please try again");
-				continue;
 			}
+
 			else {
+				//get removed camp
 				Camp removedCamp = this.attendeeStatus.get(choice-1);
+				//check current time and camp time
+				if(removedCamp.getDate().compareTo(LocalDate.now())<0)
+				{
+					System.out.println("Sorry, this camp is over time. You cannot withdraw it.");
+					return;
+				}
+				// remind user about dangerous operation
 				System.out.println("Warning! You are withdrawing "+ removedCamp.getCampName()+ ". \n Please confirm to continue: 1) Yes 2) No");
-				int confirm=0;
+				int confirm;
 				confirm=sc.nextInt();
 				if(confirm==0) return;
+
 				this.attendeeStatus.remove(removedCamp);
 				removedCamp.getStudentList().remove(this);
 				this.withdrawStatus.add(removedCamp);
