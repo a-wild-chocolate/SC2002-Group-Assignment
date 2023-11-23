@@ -206,8 +206,61 @@ public class CommitteeMember extends Student {
 	}
 
 	public void deleteSuggestion() {
-		// TODO - implement CommitteeMember.deleteSuggestion
-		throw new UnsupportedOperationException();
+		//check his suggestion list
+		if(this.suggestionList.isEmpty())
+		{
+			System.out.println("Sorry, you did not submit any suggestions.");
+			return;
+		}
+		//check any suggestion can be deleted
+		ArrayList<Suggestion> avaliableSuggestions= new ArrayList<Suggestion>();
+		for(Suggestion suggestion:this.suggestionList)
+		{
+			if(suggestion.getStatus()==SuggestionStatus.pending)
+				avaliableSuggestions.add(suggestion);
+		}
+		if(avaliableSuggestions.isEmpty())
+		{
+			System.out.println("Sorry, there is no suggestion you can delete.");
+			return;
+		}
+		System.out.println("Above is the availiable suggestion list:");
+		int i=1;//number of suggestion
+		for (Suggestion suggestion:avaliableSuggestions)
+		{
+			System.out.println(i+") :");
+			SuggestionPrinter suggestionPrinter=new SuggestionPrinter(suggestion);
+			suggestionPrinter.print();
+			System.out.println();
+		}
+		int choice;
+		//let user enter the suggestion he wants to choose
+		while (true)
+		{
+			System.out.println("Which suggestion do you want to delete? Please enter the number (0:Quit)");
+			choice=sc.nextInt();
+			if(choice==0) return;
+			if(choice>=avaliableSuggestions.size())
+			{
+				System.out.println("Invalid input please input again!");
+				continue;
+			}
+			Suggestion editSuggestion;
+			editSuggestion=avaliableSuggestions.get(choice-1);
+
+			//set suggestion into committeeMember suggestion List
+			ArrayList<Suggestion> temp;
+
+			temp=this.suggestionList;
+			temp.remove(editSuggestion);
+			this.setSuggestionList(temp);
+			//set suggestion into Camp suggestion List
+			temp=editSuggestion.getCamp().getSuggestionList();
+			temp.remove(editSuggestion);
+			editSuggestion.getCamp().setSuggestionList(temp);
+			System.out.println("Successfully remove!");
+			return;
+		}
 	}
 
 	public void generateReport() {
