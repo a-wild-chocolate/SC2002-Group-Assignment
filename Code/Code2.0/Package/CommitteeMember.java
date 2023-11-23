@@ -134,8 +134,74 @@ public class CommitteeMember extends Student {
 	}
 
 	public void editSuggestion() {
-		// TODO - implement CommitteeMember.editSuggestion
-		throw new UnsupportedOperationException();
+		//check his suggestion list
+		if(this.suggestionList.isEmpty())
+		{
+			System.out.println("Sorry, you did not submit any suggestions.");
+			return;
+		}
+		//check any suggestion can be edited
+		ArrayList<Suggestion> avaliableSuggestions= new ArrayList<Suggestion>();
+		for(Suggestion suggestion:this.suggestionList)
+		{
+			if(suggestion.getStatus()==SuggestionStatus.pending)
+				avaliableSuggestions.add(suggestion);
+		}
+		if(avaliableSuggestions.isEmpty())
+		{
+			System.out.println("Sorry, there is no suggestion you can edit.");
+			return;
+		}
+		System.out.println("Above is the availiable suggestion list:");
+		int i=1;//number of suggestion
+		for (Suggestion suggestion:avaliableSuggestions)
+		{
+			System.out.println(i+") :");
+			SuggestionPrinter suggestionPrinter=new SuggestionPrinter(suggestion);
+			suggestionPrinter.print();
+			System.out.println();
+		}
+		int choice;
+		while (true)
+		{
+			System.out.println("Which suggestion do you want to edit? Please enter the number (0:Quit)");
+			choice=sc.nextInt();
+			if(choice==0) return;
+			if(choice>=avaliableSuggestions.size())
+			{
+				System.out.println("Invalid input please input again!");
+				continue;
+			}
+			Suggestion editSuggestion;
+			editSuggestion=avaliableSuggestions.get(choice-1);
+			System.out.println("Please enter the update content: ");
+			String newContent;
+			newContent=sc.nextLine();
+			editSuggestion.setContent(newContent);
+			//set suggestion into committeeMember suggestion List
+			int location=0;
+			ArrayList<Suggestion> temp;
+			for(Suggestion suggestion:this.suggestionList)
+			{
+				if(suggestion.getSuggestionId()==editSuggestion.getSuggestionId()) break;
+				location++;
+			}
+			temp=this.suggestionList;
+			temp.set(location,editSuggestion);
+			this.setSuggestionList(temp);
+			//set suggestion into Camp suggestion List
+			location=0;
+			for(Suggestion suggestion:editSuggestion.getCamp().getSuggestionList())
+			{
+				if(suggestion.getSuggestionId()==editSuggestion.getSuggestionId()) break;
+				location++;
+			}
+			temp=editSuggestion.getCamp().getSuggestionList();
+			temp.set(location,editSuggestion);
+			editSuggestion.getCamp().setSuggestionList(temp);
+			System.out.println("Successfully edit!");
+			return;
+		}
 	}
 
 	public void deleteSuggestion() {
