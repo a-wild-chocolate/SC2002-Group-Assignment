@@ -162,6 +162,7 @@ public class CommitteeMember extends Student {
 			System.out.println();
 		}
 		int choice;
+		//let user enter the suggestion he wants to choose
 		while (true)
 		{
 			System.out.println("Which suggestion do you want to edit? Please enter the number (0:Quit)");
