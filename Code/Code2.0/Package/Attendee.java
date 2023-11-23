@@ -318,9 +318,19 @@ public class Attendee extends Student {
 				int confirm;
 				confirm=sc.nextInt();
 				if(confirm==0) return;
-
+				//remove camp date from days occupied
+				LocalDate removedDate;
+				ArrayList<LocalDate> temp;
+				removedDate=removedCamp.getDate();
+				temp=this.getDaysOccupied();
+				temp.remove(removedDate);
+				this.setDaysOccupied(temp);
+				//remove camp from camp student list.
 				this.attendeeStatus.remove(removedCamp);
-				removedCamp.getStudentList().remove(this);
+				ArrayList<Student> Stemp;
+				Stemp=removedCamp.getStudentList();
+				Stemp.remove(this);
+				removedCamp.setStudentList(Stemp);
 				this.withdrawStatus.add(removedCamp);
 				System.out.println("Successfully delete "+removedCamp.getCampName()+" camp");
 			}
