@@ -33,12 +33,6 @@ public class CommitteeMember extends Student {
 
 
 
-
-
-
-
-
-
 	public ArrayList<Suggestion> getSuggestionList() {
 		return this.suggestionList;
 	}
@@ -233,20 +227,20 @@ public class CommitteeMember extends Student {
 			return;
 		}
 		//check any suggestion can be edited
-		ArrayList<Suggestion> avaliableSuggestions= new ArrayList<Suggestion>();
+		ArrayList<Suggestion> availableSuggestions= new ArrayList<Suggestion>();
 		for(Suggestion suggestion:this.suggestionList)
 		{
 			if(suggestion.getStatus()==SuggestionStatus.pending)
-				avaliableSuggestions.add(suggestion);
+				availableSuggestions.add(suggestion);
 		}
-		if(avaliableSuggestions.isEmpty())
+		if(availableSuggestions.isEmpty())
 		{
 			System.out.println("Sorry, there is no suggestion you can edit.");
 			return;
 		}
-		System.out.println("Above is the availiable suggestion list:");
+		System.out.println("Below is the available suggestion list:");
 		int i=1;//number of suggestion
-		for (Suggestion suggestion:avaliableSuggestions)
+		for (Suggestion suggestion:availableSuggestions)
 		{
 			System.out.println(i+") :");
 			SuggestionPrinter suggestionPrinter=new SuggestionPrinter(suggestion);
@@ -260,13 +254,13 @@ public class CommitteeMember extends Student {
 			System.out.println("Which suggestion do you want to edit? Please enter the number (0:Quit)");
 			choice=sc.nextInt();
 			if(choice==0) return;
-			if(choice>=avaliableSuggestions.size())
+			if(choice>=availableSuggestions.size())
 			{
 				System.out.println("Invalid input please input again!");
 				continue;
 			}
 			Suggestion editSuggestion;
-			editSuggestion=avaliableSuggestions.get(choice-1);
+			editSuggestion=availableSuggestions.get(choice-1);
 			System.out.println("Please enter the update content: ");
 			String newContent;
 			newContent=sc.nextLine();
@@ -305,20 +299,20 @@ public class CommitteeMember extends Student {
 			return;
 		}
 		//check any suggestion can be deleted
-		ArrayList<Suggestion> avaliableSuggestions= new ArrayList<Suggestion>();
+		ArrayList<Suggestion> availableSuggestions= new ArrayList<Suggestion>();
 		for(Suggestion suggestion:this.suggestionList)
 		{
 			if(suggestion.getStatus()==SuggestionStatus.pending)
-				avaliableSuggestions.add(suggestion);
+				availableSuggestions.add(suggestion);
 		}
-		if(avaliableSuggestions.isEmpty())
+		if(availableSuggestions.isEmpty())
 		{
 			System.out.println("Sorry, there is no suggestion you can delete.");
 			return;
 		}
-		System.out.println("Above is the availiable suggestion list:");
+		System.out.println("Below is the available suggestion list:");
 		int i=1;//number of suggestion
-		for (Suggestion suggestion:avaliableSuggestions)
+		for (Suggestion suggestion:availableSuggestions)
 		{
 			System.out.println(i+") :");
 			SuggestionPrinter suggestionPrinter=new SuggestionPrinter(suggestion);
@@ -332,13 +326,13 @@ public class CommitteeMember extends Student {
 			System.out.println("Which suggestion do you want to delete? Please enter the number (0:Quit)");
 			choice=sc.nextInt();
 			if(choice==0) return;
-			if(choice>=avaliableSuggestions.size())
+			if(choice>=availableSuggestions.size())
 			{
 				System.out.println("Invalid input please input again!");
 				continue;
 			}
 			Suggestion editSuggestion;
-			editSuggestion=avaliableSuggestions.get(choice-1);
+			editSuggestion=availableSuggestions.get(choice-1);
 
 			//set suggestion into committeeMember suggestion List
 			ArrayList<Suggestion> temp;
