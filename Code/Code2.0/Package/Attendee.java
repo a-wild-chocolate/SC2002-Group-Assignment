@@ -123,7 +123,14 @@ public class Attendee extends Student {
 
 		}while(registerCamp==null);
 		this.attendeeStatus.add(registerCamp);
-		registerCamp.getStudentList().add(this);
+		//update days occupied
+		ArrayList<LocalDate>tempD=this.getDaysOccupied();
+		tempD.add(registerCamp.getDate());
+		this.setDaysOccupied(tempD);
+		//update camp student list
+		ArrayList<Student> temp=registerCamp.getStudentList();
+		temp.add(this);
+		registerCamp.setStudentList(temp);
 
 	}
 
@@ -159,7 +166,18 @@ public class Attendee extends Student {
 			//check whether this camp is due
 			if(registerCamp.getRegistrationDate().compareTo(LocalDate.now())<0)
 			{
-				System.out.println("Sorry, this camp is due. You cannot register this camp");
+				System.out.println("Sorry, this camp is due. You cannot register this camp.");
+				System.out.println("0) Quit");
+				System.out.println("1) Register other camp");
+				choice=sc.nextInt();
+				if(choice==0) return;
+				registerCamp=null;
+				continue;
+			}
+			//check whether this camp date is occupied
+			if(this.getDaysOccupied().contains(registerCamp.getDate()))
+			{
+				System.out.println("Sorry, the camp date clash with your schedule. You cannot register this camp.");
 				System.out.println("0) Quit");
 				System.out.println("1) Register other camp");
 				choice=sc.nextInt();
@@ -203,7 +221,14 @@ public class Attendee extends Student {
 		// update student's committee member status;
 		this.setCommitteeStatus(registerCamp);
 		// update camp's committee member status
-		registerCamp.getCommitteeMemberList().add(this);
+		ArrayList<Student> temp=registerCamp.getCommitteeMemberList();
+		temp.add(this);
+		registerCamp.setCommitteeMemberList(temp);
+		//update days occupied
+		ArrayList<LocalDate>tempD=this.getDaysOccupied();
+		tempD.add(registerCamp.getDate());
+		this.setDaysOccupied(tempD);
+
 	}
 
 	public void viewCampList() {
@@ -391,11 +416,8 @@ public class Attendee extends Student {
 
 	}
 
-	/**
-	 * 
-	 * @param camp
-	 */
-	public void deleteEnquiry(Camp camp) {
+
+	public void deleteEnquiry() {
 		ArrayList<Enquiry> temp1;
 		ArrayList<Enquiry> temp2;
 		ArrayList<Enquiry> availableEnquiry= new ArrayList<Enquiry>();
@@ -527,6 +549,7 @@ public class Attendee extends Student {
 				Stemp=removedCamp.getStudentList();
 				Stemp.remove(this);
 				removedCamp.setStudentList(Stemp);
+				//add this camp to withdraw list
 				this.withdrawStatus.add(removedCamp);
 				System.out.println("Successfully withdraw "+removedCamp.getCampName()+" camp");
 			}
