@@ -20,6 +20,12 @@ public class Sorter {
 		return newList;
 	}
 
+	public static ArrayList<Student> sortByRole(ArrayList<Student> studentList) {
+		ArrayList<Student> newList=new ArrayList<>(studentList);
+		Collections.sort(newList, Comparator.comparing(Student::committeeStatus));
+		return newList;
+	}
+
 	//Searcher
 	//For Camp Report staff can choose what kind of student they want to see.
 	public static ArrayList<Student> sortByStudentType(Camp camp, StudentStatus userType) {

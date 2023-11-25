@@ -1,9 +1,11 @@
 package Package;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
+import java.util.Scanner;
 
 public class CampReport extends Report {
 	//private String 
@@ -16,14 +18,15 @@ public class CampReport extends Report {
 	 */
 	public ArrayList<Student> report(Camp camp) {
         ArrayList<Student> studentList = camp.getStudentList(); // Get the list of students
-        ArrayList<Student> sortedStudentList = Sorter.sortByName(studentList); // Sort the list
+        System.out.println("The list of aorting methods shows below: ");
+		ArrayList<Student> sortedStudentList = SorterDisplay.displaySortingMethod(studentList, this); // Sort the list
         return sortedStudentList; // Return the sorted list
     }
 	
 
 	public void GenerateReport(Camp camp){
 		ArrayList<Student> sortedstudentList = this.report(camp);
-		String fileName = "generalReport.csv";
+		String fileName = camp.getCampName()+"Report";
         String header = "Camp Name, Dates, Registration closing date, User group, Location, Total Slots, Camp Committee Slots, Description, Staff in charge";
         
         // Create CSVReadWriter object
@@ -63,6 +66,8 @@ public class CampReport extends Report {
 			e.printStackTrace();
 		}
     }
+
+	
 	
 
 
