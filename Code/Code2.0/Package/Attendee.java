@@ -491,6 +491,7 @@ public class Attendee extends Student {
 		if(this.getEnquiryList().isEmpty())
 		{
 			System.out.println("Sorry, you did not send any enquiry.");
+			return;
 		}
 		for(Enquiry enquiry:this.getEnquiryList())
 		{
