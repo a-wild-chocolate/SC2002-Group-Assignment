@@ -4,7 +4,7 @@ public class Enquiry {
 
 	private Camp camp;
 
-
+	private final Attendee sender;
 	private String content;
 
 	private EnquiryStatus status;
@@ -14,7 +14,7 @@ public class Enquiry {
 
 	private EnquiryReply reply;
 //for user
-	public Enquiry(String content,Camp camp)
+	public Enquiry(String content,Camp camp,Attendee sender)
 	{
 		this.camp=camp;
 		this.content=content;
@@ -22,16 +22,23 @@ public class Enquiry {
 		enquiryNumber++;
 		this.reply=null;
 		this.status=EnquiryStatus.pending;
+		this.sender=sender;
 	}
 //for csv writer
-	public Enquiry(int enquiryId, String content,Camp camp, EnquiryReply reply, EnquiryStatus status)
+	public Enquiry(int enquiryId, String content,Camp camp, EnquiryReply reply, EnquiryStatus status,Attendee sender)
 	{
 		this.camp=camp;
 		this.enquiryId=enquiryId;
 		this.content=content;
 		this.reply=reply;
 		this.status=status;
+		this.sender=sender;
 	}
+
+	public Attendee getSender() {
+		return sender;
+	}
+
 	public Camp getCamp() {
 		return camp;
 	}
