@@ -361,23 +361,75 @@ public class Staff extends Account {
 		}while(choice!=1);
 	}
 
-	/**
-	 * 
-	 * @param camp
-	 */
-	public void viewEnquiry(Camp camp) {
-		// TODO - implement Staff.viewEnquiry
-		throw new UnsupportedOperationException();
+
+	public void viewEnquiry() {
+		//no camp created
+		if(this.getCreateCampList().isEmpty())
+		{
+			System.out.println("Sorry, you did not create any camp.");
+		}
+		//exist camp created
+		int index=1;
+		int choiceC;
+		int choice;
+		Camp currentCamp;
+		while (true)
+		{
+			//get camp user want to view
+			System.out.println("Please enter the index of camp you want to view enquiry: (0 Quit)");
+			for(Camp camp:this.getCreateCampList())
+			{
+				System.out.println(index+") "+camp.getCampName());
+				index++;
+			}
+			while (true)
+			{
+				choiceC=sc.nextInt();
+				//quit check
+				if(choiceC==0)return;
+				//iput check
+				if(choiceC<0 || choiceC>this.getCreateCampList().size())
+				{
+					System.out.println("Invalid input! Please enter again:");
+					continue;
+					//back to loop start
+				}
+				//get camp
+				currentCamp=this.getCreateCampList().get(choiceC-1);
+				//camp no enquiry
+				if(currentCamp.getEnquiryList().isEmpty())
+				{
+					System.out.println("There is no enquiry in this camp");
+				}
+				//print enquiries
+				else
+				{
+					for(Enquiry enquiry:currentCamp.getEnquiryList())
+					{
+						enquiry.printWithReply();
+						System.out.println();
+					}
+				}
+				while (true)
+				{
+					//continue check
+					System.out.println("Do you want to view other camp?");
+					System.out.println("1) Yes");
+					System.out.println("0) Quit");
+					choice=sc.nextInt();
+					//back to start
+					if(choice==0 )return;
+					//back to loop start
+					if(choice==1) break;
+					System.out.println("Invalid input! Please enter again");
+				}
+				break;
+			}
+
+		}
 	}
 
-	/**
-	 * 
-	 * @param camp
-	 */
-	public void replyEnquiry(Camp camp) {
-		// TODO - implement Staff.replyEnquiry
-		throw new UnsupportedOperationException();
-	}
+
 
 	public void viewSuggestion() {
 		// TODO - implement Staff.viewSuggestion
