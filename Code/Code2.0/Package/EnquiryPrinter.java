@@ -6,6 +6,15 @@ public class EnquiryPrinter {
     {
         this.enquiry=enquiry;
     }
+
+    public Enquiry getEnquiry() {
+        return enquiry;
+    }
+
+    public void setEnquiry(Enquiry enquiry) {
+        this.enquiry = enquiry;
+    }
+
     public void printEnquiryWithReply()
     {
         System.out.println("Enquiry Id: "+this.enquiry.getEnquiryId());
@@ -24,4 +33,5 @@ public class EnquiryPrinter {
         System.out.println("Enquiry Content: "+this.enquiry.getContent());
         System.out.println("Enquiry Status: "+this.enquiry.getStatus().toString());
     }
+
 }
