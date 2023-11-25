@@ -482,10 +482,16 @@ public class Attendee extends Student {
 				System.out.println("Invalid input. Please enter again!");
 			}
 
-
-
 		}
 
+	}
+
+	public void viewEnquiry()
+	{
+		for(Enquiry enquiry:this.getEnquiryList())
+		{
+			enquiry.printWithReply();
+		}
 	}
 
 	public void viewOwnCamp() {
