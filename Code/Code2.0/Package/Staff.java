@@ -421,7 +421,7 @@ public class Staff extends Account {
 					if(choice==0 )return;
 					//back to loop start
 					if(choice==1) break;
-					System.out.println("Invalid input! Please enter again");
+					System.out.println("Invalid input! Please enter again.");
 				}
 				break;
 			}
@@ -432,8 +432,68 @@ public class Staff extends Account {
 
 
 	public void viewSuggestion() {
-		// TODO - implement Staff.viewSuggestion
-		throw new UnsupportedOperationException();
+		//no camp created
+		if(this.getCreateCampList().isEmpty())
+		{
+			System.out.println("Sorry, you did not create any camp.");
+		}
+		//exist camp created
+		int index=1;
+		int choiceC;
+		int choice;
+		Camp currentCamp;
+		SuggestionPrinter suggestionPrinter;
+		while(true)
+		{
+			System.out.println("Please enter the index of camp you want to view suggestion: (0 Quit)");
+			for(Camp camp:this.getCreateCampList())
+			{
+				System.out.println(index+") "+camp.getCampName());
+				index++;
+			}
+			while (true)
+			{
+				choiceC=sc.nextInt();
+				//quit check
+				if(choiceC==0)return;
+				//iput check
+				if(choiceC<0 || choiceC>this.getCreateCampList().size())
+				{
+					System.out.println("Invalid input! Please enter again:");
+					continue;
+					//back to loop start
+				}
+				//get camp
+				currentCamp=this.getCreateCampList().get(choiceC-1);
+				if(currentCamp.getSuggestionList().isEmpty())
+				{
+					System.out.println("There is no suggestion in this camp");
+				}
+				else
+				{
+					for(Suggestion suggestion:currentCamp.getSuggestionList())
+					{
+						suggestionPrinter=new SuggestionPrinter(suggestion);
+						suggestionPrinter.print();
+					}
+				}
+				while (true)
+				{
+					//continue check
+					System.out.println("Do you want to view other camp?");
+					System.out.println("1) Yes");
+					System.out.println("0) Quit");
+					choice=sc.nextInt();
+					//back to start
+					if(choice==0 )return;
+					//back to loop start
+					if(choice==1) break;
+					System.out.println("Invalid input! Please enter again.");
+				}
+				break;
+			}
+
+		}
 	}
 
 	/**
