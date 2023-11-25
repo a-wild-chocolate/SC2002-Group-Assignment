@@ -15,7 +15,7 @@ public class Staff extends Account {
 	//private Converter cv = new Converter();
 	//constructor
 	public Staff(String userID, String name, Faculty faculty, String password, String securityQuestion, String secureAnswer) {
-		// TODO - implement Staff.Staff
+
 		super(userID,name,faculty,password,securityQuestion,secureAnswer);
 		createCampList = new ArrayList<>();
 	}
@@ -136,7 +136,7 @@ public class Staff extends Account {
 	}
 
 	public void editCamp() {
-		// TODO - implement Staff.editCamp
+
 		Camp currentCamp;
 		int choiceCamp=-1;
 		int choicePart=-1;
@@ -325,20 +325,20 @@ public class Staff extends Account {
 	}
 
 	public void viewCampList() {
-		// TODO - implement Staff.viewCampList
+
 		int choice=0;
 		int filterChoice;
 
 		campDisplayer=new NormalDisplay();
 		campDisplayer.display(campList.getCampList(),this);
 		do {
-
 			System.out.println("1) Quit; ");
 			System.out.println("2) Filter; ");
 			choice = sc.nextInt();
 			if(choice!=1 && choice !=2) System.out.println("Invalid input! Please input again!");
 			else if (choice ==2) {
 				campDisplayer.display(SearchApp.searchApp(CampList.getCampList()),this);
+				return;
 			}
 		}while(choice!=1);
 
