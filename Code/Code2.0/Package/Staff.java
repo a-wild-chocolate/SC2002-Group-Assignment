@@ -40,10 +40,10 @@ public class Staff extends Account {
 		LocalDate registrationDate;
 		ArrayList<Faculty> userGroup=new ArrayList<Faculty>();
 		String location;
-		int totalSlot=0;
-		int committeeSlot=0;
-		String description="NA";
-		boolean visibility=false;
+		int totalSlot;
+		int committeeSlot;
+		String description;
+		boolean visibility;
 		Camp newCamp;
 
 
@@ -58,7 +58,7 @@ public class Staff extends Account {
 		campDate = Converter.stringToLocalDate(userInput);
 
 //get camp registration date
-		System.out.println("Please enter the last registrate date of Camp");
+		System.out.println("Please enter the last registration date of Camp");
 		System.out.println("Please enter the date of Camp");   //TODO: transfer single date to a range
 		System.out.println("Enter a date (yyyy-MM-dd): ");
 		userInput = sc.nextLine();
@@ -74,17 +74,17 @@ public class Staff extends Account {
 		}
 		System.out.println("Please enter the number of the faculty to select the user group of the camp (0 to finish)");
 		while(true){
-			int userChioce = sc.nextInt();
+			int userChoice = sc.nextInt();
 			//quit
-			if (userChioce==0) break;
+			if (userChoice==0) break;
 			//input check
-			if(userChioce<1||userChioce>Faculty.values().length)
+			if(userChoice<1||userChoice>Faculty.values().length)
 			{
 				System.out.println("Invalid selection, please  enter a valid number.");
 				continue;
 			}
 			//add into selected faculty list
-			Faculty selectedFaculty = Faculty.values()[userChioce-1];
+			Faculty selectedFaculty = Faculty.values()[userChoice-1];
 			userGroup.add(selectedFaculty);
 		}
 
@@ -104,7 +104,7 @@ public class Staff extends Account {
 			committeeSlot=sc.nextInt();
 			if(committeeSlot>10||committeeSlot<0) System.out.println("Invalid Input! Please input again");
 		}while(committeeSlot>10||committeeSlot<0);
-//get descriptio
+//get description
 		System.out.println("Please enter the description of the camp");
 		description=sc.nextLine();
 //get visibility
@@ -114,15 +114,13 @@ public class Staff extends Account {
 			System.out.println("1) Yes");
 			int v = sc.nextInt();
 			//input check
-			if (v != 0 || v != 1) {
-				System.out.println("Invalid input!!! Please enter agian!");
-				continue;
-			}
+			if (v != 0 && v != 1) System.out.println("Invalid input!!! Please enter again!");
+
 			//get visibility
 			else
 			{
 				if (v==0) visibility=false;
-				else if(v==1) visibility=true;
+				else visibility=true;
 				break;
 			}
 		}
@@ -138,38 +136,36 @@ public class Staff extends Account {
 	public void editCamp() {
 
 		Camp currentCamp;
-		int choiceCamp=-1;
-		int choicePart=-1;
+		int choiceCamp;
+		int choicePart;
 		String userInput;
-		do
-		{
+		while (true) {
 			System.out.println("Please choose the camp you want to edit:");
 			System.out.println("0) quit");
-			for(int i =0;i<createCampList.size();i++)
-			{
-				System.out.printf(i+1+") "+createCampList.get(i).getCampName()+"\n");
+			for (int i = 0; i < createCampList.size(); i++) {
+				System.out.printf(i + 1 + ") " + createCampList.get(i).getCampName() + "\n");
 			}
-			choiceCamp=sc.nextInt();
-			if (choiceCamp==0) break;
-			currentCamp=createCampList.get(choiceCamp-1);
-			do{
+			choiceCamp = sc.nextInt();
+			if (choiceCamp == 0) return;
+			currentCamp = createCampList.get(choiceCamp - 1);
+			while(true) {
 				System.out.println("Current camp information:");
 				currentCamp.printAllInformation();
-				System.out.printf("Which part of camp do you want to edit?\n");
+				System.out.println("Which part of camp do you want to edit?");
 				System.out.printf("1) Camp name\n2) Camp date\n3)Camp registration date\n4) Total Slot \n 5) Committee Slot\n6) Description\n7) Visibility\n8)Location\n9)User Group\n0) Quit");
-				choicePart=sc.nextInt();
+				choicePart = sc.nextInt();
 				switch (choicePart) {
 					//Camp name
 					case 1:
-						System.out.println("The current camp name is: "+currentCamp.getCampName());
+						System.out.println("The current camp name is: " + currentCamp.getCampName());
 						System.out.println("please enter new name:");
-						String name= sc.nextLine();
+						String name = sc.nextLine();
 						currentCamp.setCampName(name);
 						break;
 					// Camp date
 					case 2:
 
-						System.out.println("The current camp date is: "+currentCamp.getDate());
+						System.out.println("The current camp date is: " + currentCamp.getDate());
 						System.out.println("please enter new camp date:");//TODO: transfer single date to a range
 						System.out.println("Enter a date in format(yyyy-MM-dd): ");
 						userInput = sc.nextLine();
@@ -178,8 +174,8 @@ public class Staff extends Account {
 						break;
 					//Camp registration date
 					case 3:
-						System.out.println("The current camp registration date is: "+currentCamp.getRegistrationDate());
-						System.out.println("Please enter the last registrate date of Camp");//TODO: transfer single date to a range
+						System.out.println("The current camp registration date is: " + currentCamp.getRegistrationDate());
+						System.out.println("Please enter the last registration date of Camp");
 						System.out.println("Enter a date in format(yyyy-MM-dd): ");
 						userInput = sc.nextLine();
 						LocalDate registrationDate = Converter.stringToLocalDate(userInput);
@@ -188,98 +184,95 @@ public class Staff extends Account {
 					//Camp Total Slot
 					case 4:
 						System.out.println("Please enter new camp slot:");
-						int Tslot= sc.nextInt();
+						int Tslot = sc.nextInt();
 						currentCamp.setTotalSlot(Tslot);
 						break;
 					//Camp Registration Slot
 					case 5:
 						System.out.println("Please enter new committee slot:");
-						int Cslot= sc.nextInt();
+						int Cslot = sc.nextInt();
 						currentCamp.setCommitteeSlot(Cslot);
 						break;
 					//Camp Description
 					case 6:
-						System.out.println("The current description is: "+currentCamp.getDescription());
+						System.out.println("The current description is: " + currentCamp.getDescription());
 						System.out.println("Please enter new description:");
 						String description = sc.nextLine();
 						currentCamp.setDescription(description);
 						break;
 					//Camp visibility
 					case 7:
-						boolean visibility=currentCamp.getVisibility();
-						System.out.println("The current visibility is: "+currentCamp.getVisibility());
-						while(true) {
+						boolean visibility = currentCamp.getVisibility();
+						System.out.println("The current visibility is: " + visibility);
+						while (true) {
 							System.out.println("Do u want to make this camp visible to students now?");
 							System.out.println("0) No");
 							System.out.println("1) Yes");
 							int v = sc.nextInt();
 							//input check
-							if (v != 0 || v != 1) {
-								System.out.println("Invalid input!!! Please enter agian!");
-								continue;
+							if (v != 0 && v != 1) {
+								System.out.println("Invalid input!!! Please enter again!");
 							}
 							//get visibility
-							else
-							{
-								if (v==0) visibility=false;
-								else if(v==1) visibility=true;
+							else {
+								if (v == 0) visibility = false;
+								else visibility = true;
 								break;
 							}
 						}
 						currentCamp.setVisibility(visibility);
-					//Camp Location
+						//Camp Location
 					case 8:
 						String location;
-						System.out.println("The current location is: "+currentCamp.getLocation());
+						System.out.println("The current location is: " + currentCamp.getLocation());
 						System.out.println("Please enter new location:");
 						location = sc.nextLine();
 						currentCamp.setDescription(location);
-					//Camp user group
+						//Camp user group
 					case 9:
-						if(currentCamp.getStudentList().size()!=0||currentCamp.getCommitteeMemberList().size()!=0)
-						{
+						if (!currentCamp.getStudentList().isEmpty() || !currentCamp.getCommitteeMemberList().isEmpty()) {
 							System.out.println("You can not edit this camp user group since there are students in this camp.");
 							break;
 						}
-						ArrayList<Faculty> userGroup=new ArrayList<>();
+						ArrayList<Faculty> userGroup = new ArrayList<>();
 						System.out.println("The current location is: ");
-						for(Faculty fa:currentCamp.getUserGroup())
-						{
-							System.out.print(fa+" ");
+						for (Faculty fa : currentCamp.getUserGroup()) {
+							System.out.print(fa + " ");
 						}
 						System.out.print("\n");
 						System.out.println("Available Faculties:");
-						int i =0;
-						for(Faculty f:Faculty.values())
-						{
-							System.out.println(i+1+") "+f);
+						int i = 0;
+						for (Faculty f : Faculty.values()) {
+							System.out.println(i + 1 + ") " + f);
 							i++;
 						}
 						System.out.println("Please enter the number of the faculty to select the user group of the camp (0 to finish)");
-						while(true){
-							int userChioce = sc.nextInt();
+						while (true) {
+							int userChoice = sc.nextInt();
 							//quit
-							if (userChioce==0) break;
+							if (userChoice == 0) break;
 							//input check
-							if(userChioce<1||userChioce>Faculty.values().length)
-							{
+							if (userChoice < 1 || userChoice > Faculty.values().length) {
 								System.out.println("Invalid selection, please  enter a valid number.");
 								continue;
 							}
 							//add into selected faculty list
-							Faculty selectedFaculty = Faculty.values()[userChioce-1];
+							Faculty selectedFaculty = Faculty.values()[userChoice - 1];
 							userGroup.add(selectedFaculty);
 						}
 						currentCamp.setUserGroup(userGroup);
-					// Quit
-					case 0: break;
+						// Quit
+					case 0:
+						break;
 					// Input check
-					default:System.out.println("Invalid Input!!! Please try again");
+					default:
+						System.out.println("Invalid Input!!! Please try again");
 						break;
 				}
-			}while(choicePart!=6);
-			campList.editCamp(currentCamp,choiceCamp-1);
-		}while(choiceCamp!=0);
+				if(choicePart==0) break;
+			}
+			campList.editCamp(currentCamp, choiceCamp - 1);
+		}
 		//Return to Start;
 	}
 
@@ -287,7 +280,7 @@ public class Staff extends Account {
 		int i=1;
 		int choice;
 		int confirm;
-		String name="NULL";
+		String name;
 		System.out.println("Please choose which camp do you want to delete?");
 		for(Camp c : this.createCampList)
 		{
@@ -326,7 +319,7 @@ public class Staff extends Account {
 
 	public void viewCampList() {
 
-		int choice=0;
+		int choice;
 		int filterChoice;
 
 		campDisplayer=new NormalDisplay();
@@ -345,7 +338,7 @@ public class Staff extends Account {
 	}
 
 	public void viewCampCreated() {
-		int choice=0;
+		int choice;
 		int filterChoice;
 		displayer.display(this.createCampList,this);
 		do {
@@ -387,7 +380,7 @@ public class Staff extends Account {
 				choiceC=sc.nextInt();
 				//quit check
 				if(choiceC==0)return;
-				//iput check
+				//input check
 				if(choiceC<0 || choiceC>this.getCreateCampList().size())
 				{
 					System.out.println("Invalid input! Please enter again:");
@@ -456,7 +449,7 @@ public class Staff extends Account {
 				choiceC=sc.nextInt();
 				//quit check
 				if(choiceC==0)return;
-				//iput check
+				//input check
 				if(choiceC<0 || choiceC>this.getCreateCampList().size())
 				{
 					System.out.println("Invalid input! Please enter again:");
@@ -504,9 +497,9 @@ public class Staff extends Account {
 		ArrayList<Suggestion> suggestionList = camp.getSuggestionList();
 		ArrayList<Suggestion> pendingSuggestionList = new ArrayList<Suggestion>();
 		Suggestion currentSuggestion;
-		int choice=0;
-		int approve=0;
-		int continueChoice=0;
+		int choice;
+		int approve;
+		int continueChoice;
 		//check is there any suggestion.
 		if(suggestionList.isEmpty())
 		{
@@ -560,7 +553,6 @@ public class Staff extends Account {
 					//prepare for change suggestion
 					int id,location=0;
 					ArrayList<Suggestion> temp;
-					camp.getSuggestionList();
 					id=currentSuggestion.getSuggestionId();
 					temp=camp.getSuggestionList();
 					//find the location of the changing suggestion inside the camp suggestion list;
