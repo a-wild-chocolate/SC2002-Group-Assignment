@@ -283,7 +283,7 @@ public class Attendee extends Student {
 					if(choice==0)
 					{
 						//create new enquiry
-						Enquiry enquiry = new Enquiry(content,currentCamp);
+						Enquiry enquiry = new Enquiry(content,currentCamp,this);
 						//add enquiry to current camp enquiry list
 						ArrayList<Enquiry> temp=currentCamp.getEnquiryList();
 						temp.add(enquiry);
