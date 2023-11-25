@@ -243,22 +243,152 @@ public class Attendee extends Student {
 
 
 
-	/**
-	 * 
-	 * @param camp
-	 */
-	public void sendEnquiry(Camp camp) {
-		// TODO - implement Student.sendEnquiry
-		throw new UnsupportedOperationException();
+	public void sendEnquiry() {
+		int i=0;
+		int index=1;
+		String userEnter;
+		Camp currentCamp;
+		String content;
+		int choice;
+		System.out.println("Which camp do you want to enquiry?");
+		for(i=0;i<CampList.getCampList().size();i++)
+		{
+			if(CampList.getCampList().get(i).getVisibility()==true)
+			{
+				System.out.println(index + ". "+CampList.getCampList().get(i).getCampName()+";");
+			}
+		}
+		while (true)
+		{
+			//let user enter the camp name
+			System.out.println("Please enter the name of camp: (0 for quit)");
+			userEnter=sc.nextLine();
+			//quit check
+			if(userEnter.equals("0")) return;
+			currentCamp=Converter.stringToCamp(userEnter);
+			//name check back if null
+			if(currentCamp==null)
+			{
+				System.out.println("Invalid put! Please enter again.");
+				continue;
+			}
+			while(true){
+				System.out.println("Please enter the enquiry:");
+				content=sc.nextLine();
+				while(true)
+				{
+					System.out.println("0) Confirm");
+					System.out.println("1) Enter again");
+					choice=sc.nextInt();
+					if(choice==0)
+					{
+						//create new enquiry
+						Enquiry enquiry = new Enquiry(content,currentCamp,this);
+						//add enquiry to current camp enquiry list
+						ArrayList<Enquiry> temp=currentCamp.getEnquiryList();
+						temp.add(enquiry);
+						currentCamp.setEnquiryList(temp);
+						//add enquiry to user enquiry list
+						temp = this.getEnquiryList();
+						temp.add(enquiry);
+						this.setEnquiryList(temp);
+						System.out.println("The enquiry is sent successfully!");
+						//back to main
+						return;
+					}
+					if(choice==1) break;
+					else System.out.println("Invalid input. Please enter again!");
+				}
+
+
+			}
+
+		}
+
 	}
 
-	/**
-	 * 
-	 * @param camp
-	 */
-	public void editEnquiry(Camp camp) {
-		// TODO - implement Student.editEnquiry
-		throw new UnsupportedOperationException();
+
+	public void editEnquiry() {
+		ArrayList<Enquiry> temp1;
+		ArrayList<Enquiry> temp2;
+		ArrayList<Enquiry> availableEnquiry= new ArrayList<Enquiry>();
+		int enquiryChoice;
+		Enquiry currentEnquiry;
+		String content;
+		int choice;
+		int index;
+		if(this.getEnquiryList().isEmpty())
+		{
+			System.out.println("Sorry, you did not submit any enquiry.");
+			return;
+		}
+		//filter available enquiry(not replied)
+
+		for(Enquiry enquiry:getEnquiryList())
+		{
+			if(enquiry.getStatus()==EnquiryStatus.pending) availableEnquiry.add(enquiry);
+		}
+		//no available enquiry back
+		if(availableEnquiry.isEmpty())
+		{
+			System.out.println("Sorry, there is no available enquiry you can edit.");
+			return;
+		}
+		//print out all available enquiries
+		for(index=0;index<availableEnquiry.size();index++)
+		{
+
+			System.out.println(index+1 +") " +availableEnquiry.get(index));
+		}
+
+		while (true)
+		{
+			System.out.println("Please enter the index of the enquiry you want to edit:(0 Quit)");
+			enquiryChoice=sc.nextInt();
+			//quit check
+			if (enquiryChoice==0) return;
+			//invalid input check
+			if(enquiryChoice<0 || enquiryChoice>availableEnquiry.size())
+			{
+				System.out.println("Invalid input! Please enter again.");
+				continue;
+			}
+			//transform choice to enquiry form
+			currentEnquiry=availableEnquiry.get(enquiryChoice-1);
+			while(true){
+				//enter the new content
+				System.out.println("Please enter the new enquiry content:");
+				content=sc.nextLine();
+				while(true)
+				{
+					System.out.println("0) Confirm");
+					System.out.println("1) Enter again");
+					choice=sc.nextInt();
+					if(choice==0)
+					{
+						//update camp enquiry list and user's enquiry list
+						temp1=currentEnquiry.getCamp().getEnquiryList();
+						temp2=this.getEnquiryList();
+						temp1.remove(currentEnquiry);
+						temp2.remove(currentEnquiry);
+						currentEnquiry.setContent(content);
+						temp1.add(currentEnquiry);
+						temp2.add(currentEnquiry);
+						//set temp back to camp enquiry list and user's enquiry list
+						currentEnquiry.getCamp().setEnquiryList(temp1);
+						this.setEnquiryList(temp2);
+						System.out.println("The enquiry is edit successfully!");
+						//back to main
+						return;
+					}
+					if(choice==1) break;
+					else System.out.println("Invalid input. Please enter again!");
+				}
+			}
+
+
+		}
+
 	}
 
 	/**
@@ -266,8 +396,74 @@ public class Attendee extends Student {
 	 * @param camp
 	 */
 	public void deleteEnquiry(Camp camp) {
-		// TODO - implement Student.deleteEnquiry
-		throw new UnsupportedOperationException();
+		ArrayList<Enquiry> temp1;
+		ArrayList<Enquiry> temp2;
+		ArrayList<Enquiry> availableEnquiry= new ArrayList<Enquiry>();
+		int enquiryChoice;
+		Enquiry currentEnquiry;
+		int choice;
+		int index;
+		if(this.getEnquiryList().isEmpty())
+		{
+			System.out.println("Sorry, you did not submit any enquiry.");
+			return;
+		}
+		//filter available enquiry(not replied)
+
+		for(Enquiry enquiry:getEnquiryList())
+		{
+			if(enquiry.getStatus()==EnquiryStatus.pending) availableEnquiry.add(enquiry);
+		}
+		//no available enquiry back
+		if(availableEnquiry.isEmpty())
+		{
+			System.out.println("Sorry, there is no available enquiry you can delete.");
+			return;
+		}
+		//print out all available enquiries
+		for(index=0;index<availableEnquiry.size();index++)
+		{
+
+			System.out.println(index+1 +") " +availableEnquiry.get(index));
+		}
+		while (true)
+		{
+			System.out.println("Please enter the index of the enquiry you want to edit:(0 Quit)");
+			enquiryChoice=sc.nextInt();
+			//quit check
+			if (enquiryChoice==0) return;
+			//invalid input check
+			if(enquiryChoice<0 || enquiryChoice>availableEnquiry.size())
+			{
+				System.out.println("Invalid input! Please enter again.");
+				continue;
+			}
+			//transform choice to enquiry form
+			currentEnquiry=availableEnquiry.get(enquiryChoice-1);
+			while(true){
+				System.out.println("1) Confirm");
+				System.out.println("0) Quit");
+				choice=sc.nextInt();
+
+				if(choice==0) return;
+				if(choice==1)
+				{
+					temp1=currentEnquiry.getCamp().getEnquiryList();
+					temp2=this.getEnquiryList();
+					temp1.remove(currentEnquiry);
+					temp2.remove(currentEnquiry);
+					currentEnquiry.getCamp().setEnquiryList(temp1);
+					this.setEnquiryList(temp2);
+					System.out.println("Successfully delete!");
+					return;
+				}
+				System.out.println("Invalid input. Please enter again!");
+			}
+
+
+
+		}
+
 	}
 
 	public void viewOwnCamp() {
@@ -332,7 +528,7 @@ public class Attendee extends Student {
 				Stemp.remove(this);
 				removedCamp.setStudentList(Stemp);
 				this.withdrawStatus.add(removedCamp);
-				System.out.println("Successfully delete "+removedCamp.getCampName()+" camp");
+				System.out.println("Successfully withdraw "+removedCamp.getCampName()+" camp");
 			}
 		}
 	}
