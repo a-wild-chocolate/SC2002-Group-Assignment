@@ -488,6 +488,10 @@ public class Attendee extends Student {
 
 	public void viewEnquiry()
 	{
+		if(this.getEnquiryList().isEmpty())
+		{
+			System.out.println("Sorry, you did not send any enquiry.");
+		}
 		for(Enquiry enquiry:this.getEnquiryList())
 		{
 			enquiry.printWithReply();
