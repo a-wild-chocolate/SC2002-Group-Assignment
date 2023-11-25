@@ -538,7 +538,7 @@ public class Staff extends Account {
 			}
 			//
 			do{
-				System.out.println("Please enter the number of suggestion you want to process: (0 Quit)");
+				System.out.println("Please enter the index of suggestion you want to process: (0 Quit)");
 				choice=sc.nextInt();
 				//TODO: Error check
 				currentSuggestion=pendingSuggestionList.get(choice-1);
@@ -579,7 +579,14 @@ public class Staff extends Account {
 					camp.setSuggestionList(temp);
 
 				}
-				System.out.println("Do you want to process more suggestion?");
+				while(true)
+				{
+					System.out.println("Do you want to process more suggestion? 1) Yes 0) Quit");
+					continueChoice=sc.nextInt();
+					if(continueChoice!=1 && continueChoice!=0) System.out.println("Invalid input. Please enter again.");
+					else break;
+				}
+
 			}while(continueChoice==1);
 
 
