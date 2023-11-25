@@ -69,6 +69,18 @@ public class Enquiry {
 	public void setStatus(EnquiryStatus status) {
 		this.status = status;
 	}
+
+	public void printWithoutReply()
+	{
+		EnquiryPrinter ep=new EnquiryPrinter(this);
+		ep.printEnquiryWithoutReply();
+	}
+
+	public void printWithReply()
+	{
+		EnquiryPrinter ep=new EnquiryPrinter(this);
+		ep.printEnquiryWithReply();
+	}
 }
 
 

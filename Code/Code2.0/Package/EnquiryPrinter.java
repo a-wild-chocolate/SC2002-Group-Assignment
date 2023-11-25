@@ -7,13 +7,6 @@ public class EnquiryPrinter {
         this.enquiry=enquiry;
     }
 
-    public Enquiry getEnquiry() {
-        return enquiry;
-    }
-
-    public void setEnquiry(Enquiry enquiry) {
-        this.enquiry = enquiry;
-    }
 
     public void printEnquiryWithReply()
     {
