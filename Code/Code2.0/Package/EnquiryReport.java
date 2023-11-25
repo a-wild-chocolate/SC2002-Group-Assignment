@@ -1,32 +1,40 @@
 package Package;
+
 import java.io.IOException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.NoSuchAlgorithmException;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
-import java.util.Scanner;
 
-public class CampReport extends Report {
-	//private String 
-	public CampReport(Camp camp){
+import Package.Camp;
+import Package.Sorter;
+import Package.Student;
+import Package.StudentStatus;
+
+public class Enquiry extends Report {
+	public Enquiry(Camp camp){
 		super(camp);
 	}
 	/**
 	 * 
 	 * @param camp
 	 */
-	public ArrayList<Student> report(Camp camp) {
-        ArrayList<Student> studentList = camp.getStudentList(); // Get the list of students
+	public ArrayList<Enquiry> report(Camp camp) {
+		ArrayList<Enquiry> enquiryList = Sorter.sortByStudentType(camp,StudentStatus.CommitteeMember); // select the list
         System.out.println("The list of sorting methods shows below: ");
-		ArrayList<Student> sortedStudentList = SorterDisplay.displaySortingMethod(studentList, this); // Sort the list
-        return sortedStudentList; // Return the sorted list
+		ArrayList<Enquiry> sortedenquiryList = SorterDisplay.displaySortingMethod(enquiryList, this); // Sort the list
+        return sortedenquiryList; // Return the sorted list
     }
-	
 
-	public void GenerateReport(Camp camp){
-		ArrayList<Student> sortedstudentList = this.report(camp);
-		String fileName = camp.getCampName()+"_CampReport";
+    public void GenerateReport(Camp camp){
+        //gai
+		ArrayList<Enquiry> sortedenquiryList = this.report(camp);
+		String fileName = camp.getCampName()+"EnquiryReport";
         String header = "Camp Name, Dates, Registration closing date, User group, Location, Total Slots, Camp Committee Slots, Description, Staff in charge";
         
         // Create CSVReadWriter object
@@ -44,18 +52,19 @@ public class CampReport extends Report {
         
 		try {
 			reportModifier.checkCreateOrUpdate(camp.getCampName(), campCsvData);
-			// Write students header
-			String studentsHeader = "UserID, Name, Faculty, Committee Status, Point";
-			reportModifier.checkCreateOrUpdate("-1", studentsHeader);
+			// Write enquiries header
+			String enquiriesHeader = "UserID, Name, Faculty, Committee Status, Point";
+			reportModifier.checkCreateOrUpdate("-1", enquiriesHeader);
 
-			// Loop through the sorted student list and write each student's data
-			for (Student student : sortedstudentList) {
+			// Loop through the sorted enquiry list and write each enquiry's data
+			for (Student enquiry : sortedenquiryList) {
+                //gai
 				String committeeStatus = "NULL";
 				if (student.getCommitteeStatus()==camp){
 					committeeStatus = "Committee";
 				}
-				String studentCsvData = String.join(",", student.getUserID(), student.getName(), student.getFaculty().name(), committeeStatus, String.valueOf(student.getPoint()));
-				reportModifier.checkCreateOrUpdate(student.getUserID(), studentCsvData);
+				String enquiryCsvData = String.join(",", enquiry.getUserID(), enquiry.getName(), enquiry.getFaculty().name(), committeeStatus, String.valueOf(student.getPoint()));
+				reportModifier.checkCreateOrUpdate(student.getUserID(), enquiryCsvData);
 			}
 
 		} catch (IOException e) {
@@ -67,13 +76,4 @@ public class CampReport extends Report {
 		}
     }
 
-	
-	
-
-
 }
-
-
-
-
-

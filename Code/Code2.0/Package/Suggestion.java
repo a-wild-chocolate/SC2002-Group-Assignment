@@ -92,7 +92,7 @@ public class Suggestion //extends Message
 //CSV method
 	public void writeToSuggestionCSV()
 	{
-		String header = "Suggstion ID,name,faculty,password,securityQuestion,secureAnswer\n";
+		String header = "Suggstion ID,Sender Name,Camp Name,Status,Dealer Name,Content\n";
         CSVReadWriter csvModifier = new CSVReadWriter(FILE_NAME,header);
 		//String csvData = String.join(",", this.suggestionId, this.sender, this.camp, this.status, this.dealer.getName(), this.content);
         String csvData=toCsvString();		

@@ -1,5 +1,13 @@
 package Package;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.security.NoSuchAlgorithmException;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class Enquiry {
 
 	private Camp camp;
@@ -13,6 +21,8 @@ public class Enquiry {
 	private final int enquiryId;
 
 	private EnquiryReply reply;
+
+	private final String FILE_NAME = "enquiry";
 //for user
 	public Enquiry(String content,Camp camp,Attendee sender)
 	{
@@ -87,6 +97,63 @@ public class Enquiry {
 	{
 		EnquiryPrinter ep=new EnquiryPrinter(this);
 		ep.printEnquiryWithReply();
+	}
+
+	//CSV method
+	public void writeToEnquiryCSV()
+	{
+		String header = "Enquiry ID,Sender Name,Camp Name,Status,Content,Reply\n";
+        CSVReadWriter csvModifier = new CSVReadWriter(FILE_NAME,header);
+		//String csvData = String.join(",", this.enquiryId, this.sender, this.camp, this.status, this.dealer.getName(), this.content);
+        String csvData=toCsvString();		
+		try {
+		csvModifier.checkCreateOrUpdate(Integer.toString(enquiryId), csvData);
+		} catch (IOException e) {
+        System.out.println("An I/O error occurred while creating the new account.");
+        e.printStackTrace();
+		} catch (NoSuchAlgorithmException e) {
+			System.out.println("The cryptographic algorithm is not available in the current environment.");
+			e.printStackTrace();
+		}	
+	}
+
+	public boolean deleteAccount(String onlyID) throws IOException {
+		Path filePath = Paths.get(FILE_NAME);
+		if (Files.notExists(filePath)) {
+			// If the file does not exist, there is no account to delete
+			return false;
+		}
+
+		// Read all lines except the one with the matching userID
+		List<String> outLines = Files.lines(filePath)
+				.filter(line -> !line.startsWith(onlyID + ","))
+				.collect(Collectors.toList());
+
+		// Check if the account was found and removed
+		boolean accountRemoved = outLines.size() < Files.readAllLines(filePath).size();
+		
+		if (accountRemoved) {
+			// Write the remaining lines back to the CSV file
+			Files.write(filePath, outLines);
+		}
+		return accountRemoved;
+	}
+
+	public String toCsvString() {
+		String senderStr = (sender == null) ? "" : sender.toString();
+		String campStr = (camp == null) ? "" : camp.toString();
+		String statusStr = (status == null) ? "" : status.toString();
+		String contentStr = (content == null) ? "" : content;
+		String replyStr = (reply == null) ? "" : reply;
+
+
+		return String.join(",", 
+			Integer.toString(enquiryId), 
+			senderStr, 
+			campStr, 
+			statusStr, 
+			contentStr,
+			replyStr);
 	}
 }
 
