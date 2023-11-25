@@ -269,7 +269,7 @@ public class Attendee extends Student {
 			//name check back if null
 			if(currentCamp==null)
 			{
-				System.out.println("Invalid put! Please enter agian.");
+				System.out.println("Invalid put! Please enter again.");
 				continue;
 			}
 			while(true){
@@ -278,7 +278,7 @@ public class Attendee extends Student {
 				while(true)
 				{
 					System.out.println("0) Confirm");
-					System.out.println("1) Enter agian");
+					System.out.println("1) Enter again");
 					choice=sc.nextInt();
 					if(choice==0)
 					{
@@ -311,8 +311,8 @@ public class Attendee extends Student {
 	public void editEnquiry() {
 		ArrayList<Enquiry> temp1;
 		ArrayList<Enquiry> temp2;
-		ArrayList<Enquiry> avaliableEnquiry= new ArrayList<Enquiry>();
-		int Enquirychoice;
+		ArrayList<Enquiry> availableEnquiry= new ArrayList<Enquiry>();
+		int enquiryChoice;
 		Enquiry currentEnquiry;
 		String content;
 		int choice;
@@ -326,35 +326,35 @@ public class Attendee extends Student {
 
 		for(Enquiry enquiry:getEnquiryList())
 		{
-			if(enquiry.getStatus()==EnquiryStatus.pending) avaliableEnquiry.add(enquiry);
+			if(enquiry.getStatus()==EnquiryStatus.pending) availableEnquiry.add(enquiry);
 		}
 		//no available enquiry back
-		if(avaliableEnquiry.isEmpty())
+		if(availableEnquiry.isEmpty())
 		{
 			System.out.println("Sorry, there is no available enquiry you can edit.");
 			return;
 		}
 		//print out all available enquiries
-		for(index=0;index<avaliableEnquiry.size();index++)
+		for(index=0;index<availableEnquiry.size();index++)
 		{
 
-			System.out.println(index+1 +") " +avaliableEnquiry.get(index));
+			System.out.println(index+1 +") " +availableEnquiry.get(index));
 		}
 
 		while (true)
 		{
 			System.out.println("Please enter the index of the enquiry you want to edit:(0 Quit)");
-			Enquirychoice=sc.nextInt();
+			enquiryChoice=sc.nextInt();
 			//quit check
-			if (Enquirychoice==0) return;
+			if (enquiryChoice==0) return;
 			//invalid input check
-			if(Enquirychoice<0 || Enquirychoice>avaliableEnquiry.size())
+			if(enquiryChoice<0 || enquiryChoice>availableEnquiry.size())
 			{
 				System.out.println("Invalid input! Please enter again.");
 				continue;
 			}
 			//transform choice to enquiry form
-			currentEnquiry=avaliableEnquiry.get(Enquirychoice-1);
+			currentEnquiry=availableEnquiry.get(enquiryChoice-1);
 			while(true){
 				//enter the new content
 				System.out.println("Please enter the new enquiry content:");
@@ -398,10 +398,9 @@ public class Attendee extends Student {
 	public void deleteEnquiry(Camp camp) {
 		ArrayList<Enquiry> temp1;
 		ArrayList<Enquiry> temp2;
-		ArrayList<Enquiry> avaliableEnquiry= new ArrayList<Enquiry>();
-		int Enquirychoice;
+		ArrayList<Enquiry> availableEnquiry= new ArrayList<Enquiry>();
+		int enquiryChoice;
 		Enquiry currentEnquiry;
-		String content;
 		int choice;
 		int index;
 		if(this.getEnquiryList().isEmpty())
@@ -413,41 +412,40 @@ public class Attendee extends Student {
 
 		for(Enquiry enquiry:getEnquiryList())
 		{
-			if(enquiry.getStatus()==EnquiryStatus.pending) avaliableEnquiry.add(enquiry);
+			if(enquiry.getStatus()==EnquiryStatus.pending) availableEnquiry.add(enquiry);
 		}
 		//no available enquiry back
-		if(avaliableEnquiry.isEmpty())
+		if(availableEnquiry.isEmpty())
 		{
 			System.out.println("Sorry, there is no available enquiry you can delete.");
 			return;
 		}
 		//print out all available enquiries
-		for(index=0;index<avaliableEnquiry.size();index++)
+		for(index=0;index<availableEnquiry.size();index++)
 		{
 
-			System.out.println(index+1 +") " +avaliableEnquiry.get(index));
+			System.out.println(index+1 +") " +availableEnquiry.get(index));
 		}
 		while (true)
 		{
 			System.out.println("Please enter the index of the enquiry you want to edit:(0 Quit)");
-			Enquirychoice=sc.nextInt();
+			enquiryChoice=sc.nextInt();
 			//quit check
-			if (Enquirychoice==0) return;
+			if (enquiryChoice==0) return;
 			//invalid input check
-			if(Enquirychoice<0 || Enquirychoice>avaliableEnquiry.size())
+			if(enquiryChoice<0 || enquiryChoice>availableEnquiry.size())
 			{
 				System.out.println("Invalid input! Please enter again.");
 				continue;
 			}
 			//transform choice to enquiry form
-			currentEnquiry=avaliableEnquiry.get(Enquirychoice-1);
+			currentEnquiry=availableEnquiry.get(enquiryChoice-1);
 			while(true){
-				System.out.println("0) Confirm");
-				System.out.println("1) Enter again");
-				System.out.println("2) Quit");
+				System.out.println("1) Confirm");
+				System.out.println("0) Quit");
 				choice=sc.nextInt();
-				if(choice==2) return;
-				if(choice==0) continue;
+
+				if(choice==0) return;
 				if(choice==1)
 				{
 					temp1=currentEnquiry.getCamp().getEnquiryList();
@@ -457,7 +455,9 @@ public class Attendee extends Student {
 					currentEnquiry.getCamp().setEnquiryList(temp1);
 					this.setEnquiryList(temp2);
 					System.out.println("Successfully delete!");
+					return;
 				}
+				System.out.println("Invalid input. Please enter again!");
 			}
 
 
@@ -528,7 +528,7 @@ public class Attendee extends Student {
 				Stemp.remove(this);
 				removedCamp.setStudentList(Stemp);
 				this.withdrawStatus.add(removedCamp);
-				System.out.println("Successfully delete "+removedCamp.getCampName()+" camp");
+				System.out.println("Successfully withdraw "+removedCamp.getCampName()+" camp");
 			}
 		}
 	}
