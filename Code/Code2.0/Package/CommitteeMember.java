@@ -92,13 +92,105 @@ public class CommitteeMember extends Student {
 	}
 
 	public void replyEnquiry() {
-		// TODO - implement CommitteeMember.replyEnquiry
-		throw new UnsupportedOperationException();
+		int id;
+		int choice;
+		Enquiry currentEnquiry = null;
+		int check=0;
+		String reply;
+		ArrayList<Enquiry> temp1;
+		ArrayList<Enquiry> temp2;
+ 		if(this.getCommitteeStatus().getEnquiryList().isEmpty())
+		{
+			System.out.println("There is no enquiry.");
+		}
+		//user can only view enquiry whose status is pending
+		for(int i =0;i<this.getCommitteeStatus().getEnquiryList().size();i++)
+		{
+			if(this.getCommitteeStatus().getEnquiryList().get(i).getStatus()==EnquiryStatus.pending)
+			{
+				this.getCommitteeStatus().getEnquiryList().get(i).printWithoutReply();
+				System.out.println();
+				check=1;
+			}
+
+		}
+		if(check==0)
+		{
+			System.out.println("There is no enquiry requires reply.");
+			return;
+		}
+		//user input the id of enquiry
+		while (true)
+		{
+			System.out.println("Please enter the id of enquiry you want to edit: (-1 Quit)");
+			id=sc.nextInt();
+			if(id==-1) return;
+			//find enquiry
+			for(int i =0;i<this.getCommitteeStatus().getEnquiryList().size();i++)
+			{
+				if(id==this.getCommitteeStatus().getEnquiryList().get(i).getEnquiryId())
+				{
+					currentEnquiry=this.getCommitteeStatus().getEnquiryList().get(i);
+					break;
+				}
+			}
+			if(currentEnquiry==null)
+			{
+				System.out.println("Invalid input. Please enter again.");
+				continue;
+			}
+			//find enquiry, print it out
+			System.out.println("Enquiry finds!");
+			currentEnquiry.printWithoutReply();
+			while (true)
+			{
+				//enter the reply
+				System.out.println("Please enter your reply:");
+				reply=sc.nextLine();
+				System.out.println("1) Confirm");
+				System.out.println("2) Enter again");
+				System.out.println("0) Quit");
+				choice=sc.nextInt();
+				if(choice==0) return;
+				if(choice==2) continue;
+				if(choice==1)
+				{
+					EnquiryReply enquiryReply=new EnquiryReply(this,reply);
+					temp1=currentEnquiry.getCamp().getEnquiryList();
+					temp2=currentEnquiry.getSender().getEnquiryList();
+					temp1.remove(currentEnquiry);
+					temp2.remove(currentEnquiry);
+					currentEnquiry.setStatus(EnquiryStatus.replied);
+					currentEnquiry.setReply(enquiryReply);
+					temp2.add(currentEnquiry);
+					temp1.add(currentEnquiry);
+					currentEnquiry.getCamp().setEnquiryList(temp1);
+					currentEnquiry.getSender().setEnquiryList(temp2);
+					this.setPoint(this.point++);
+					System.out.println("Successfully reply");
+					return;
+				}
+				else {
+					System.out.println("Invalid input. Please enter again.");
+				}
+			}
+		}
+
+
+
 	}
 
 	public void viewEnquiry() {
-		// TODO - implement CommitteeMember.viewEnquiry
-		throw new UnsupportedOperationException();
+		if(this.getCommitteeStatus().getEnquiryList().isEmpty())
+		{
+			System.out.println("There is no enquiry.");
+		}
+		for(int i =0;i<this.getCommitteeStatus().getEnquiryList().size();i++)
+		{
+			System.out.println(i+1+") ");
+			this.getCommitteeStatus().getEnquiryList().get(i).printWithReply();
+		}
+
 	}
 
 	public void viewSuggestion()
