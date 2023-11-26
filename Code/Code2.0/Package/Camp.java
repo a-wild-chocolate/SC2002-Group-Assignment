@@ -44,6 +44,19 @@ public class Camp extends CampInformation {
 		this.committeeMemberList=new ArrayList<>();
 		writeToCampListCSV();
 	}
+
+	public Camp(String campName, LocalDate date , LocalDate registrationDate, ArrayList<Faculty> userGroup , String location, int totalSlot, int committeeSlot, String description,Staff staffInCharge,ArrayList<Enquiry> enquiryList,ArrayList<Suggestion> suggestionList, Boolean visibility,ArrayList<Student> studentList)
+	{
+		super(campName,date,registrationDate,userGroup,location,totalSlot,committeeSlot,description);
+		this.staffInCharge=staffInCharge;
+		this.visibility=visibility;
+		this.enquiryList=enquiryList;
+		this.suggestionList=suggestionList;
+		this.studentList=studentList;
+		this.remainSlot=totalSlot-this.studentList.size();
+		this.committeeMemberList=new ArrayList<>();
+
+	}
 	public Staff getStaffInCharge() {
 		return this.staffInCharge;
 	}
