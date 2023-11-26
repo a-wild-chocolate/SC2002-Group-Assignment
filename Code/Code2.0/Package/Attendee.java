@@ -1,14 +1,22 @@
 package Package;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Attendee extends Student {
 
 	private ArrayList<Camp> attendeeStatus;
 	private ArrayList<Camp> withdrawStatus;
 	private ArrayList<Enquiry> enquiryList;
+	private final String FILE_NAME = "attendeeList";
 	Scanner sc = new Scanner(System.in);
 	Displayer campDisplayer= new RestrictedDisplay();
 	public Attendee(String userID, String name,AccountStatus accountStatus, Faculty faculty, String password, String securityQuestion, String secureAnswer) {
@@ -568,10 +576,59 @@ public class Attendee extends Student {
 	}
 
 
-
-	public void start() {
-		// TODO - implement Student.start
-		throw new UnsupportedOperationException();
+	//csv modifier
+	public void writeToAttendeeCSV()
+	{
+		String header = "User ID,Attendee Status,withdraw Status\n";
+		CSVReadWriter csvModifier = new CSVReadWriter(FILE_NAME,header);
+		//String csvData = String.join(",", this.enquiryId, this.sender, this.camp, this.status, this.dealer.getName(), this.content);
+		String csvData=toCsvString();
+		try {
+			csvModifier.checkCreateOrUpdate(this.getUserID(), csvData);
+		} catch (IOException e) {
+			System.out.println("An I/O error occurred while creating the new account.");
+			e.printStackTrace();
+		} catch (NoSuchAlgorithmException e) {
+			System.out.println("The cryptographic algorithm is not available in the current environment.");
+			e.printStackTrace();
+		}
 	}
 
+	public boolean deleteAttendee(String onlyID) throws IOException {
+		Path filePath = Paths.get(FILE_NAME);
+		if (Files.notExists(filePath)) {
+			// If the file does not exist, there is no account to delete
+			return false;
+		}
+
+		// Read all lines except the one with the matching userID
+		List<String> outLines = Files.lines(filePath)
+				.filter(line -> !line.startsWith(onlyID + ","))
+				.collect(Collectors.toList());
+
+		// Check if the account was found and removed
+		boolean accountRemoved = outLines.size() < Files.readAllLines(filePath).size();
+
+		if (accountRemoved) {
+			// Write the remaining lines back to the CSV file
+			Files.write(filePath, outLines);
+		}
+		return accountRemoved;
+	}
+
+	public String toCsvString() {
+		String senderStr = (this.getUserID() == null) ? "" : this.getUserID();
+		String attendedCamps = attendeeStatus.stream()
+				.map(Camp::getCampName)
+				.collect(Collectors.joining("+"));
+		String withdrawCamps = withdrawStatus.stream()
+				.map(Camp::getCampName)
+				.collect(Collectors.joining("+"));
+
+
+		return String.join(",",
+				senderStr,
+				attendedCamps,
+				withdrawCamps);
+	}
 }
