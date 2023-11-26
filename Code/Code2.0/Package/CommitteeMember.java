@@ -16,7 +16,7 @@ public class CommitteeMember extends Student {
 //attributes
 	//private int point;
 	private ArrayList<Suggestion> suggestionList;
-	private final String FILE_NAME = "CommitteeMemberList";
+	//private final String FILE_NAME = "CommitteeMemberList";
 	Scanner sc = new Scanner(System.in);
 
 	public int getPoint() {
@@ -41,7 +41,7 @@ public class CommitteeMember extends Student {
 	 * @param point
 	 */
 	public void setPoint(int point) {
-		writeToCommitteeMemberCSV();
+		//writeToCommitteeMemberCSV();
 		this.setPoint(point);
 	}
 
@@ -428,7 +428,7 @@ public class CommitteeMember extends Student {
 	}
 
 	//CSV modifier
-	public void writeToCommitteeMemberCSV()
+	/*public void writeToCommitteeMemberCSV()
 	{
 		String header = "User ID,suggestion List\n";
 		CSVReadWriter csvModifier = new CSVReadWriter(FILE_NAME,header);
@@ -476,6 +476,6 @@ public class CommitteeMember extends Student {
 		return String.join(",",
 				senderStr,
 				listOfSuggestions);
-	}
+	}*/
 
 }
