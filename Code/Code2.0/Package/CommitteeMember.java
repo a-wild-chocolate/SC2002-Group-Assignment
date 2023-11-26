@@ -1,14 +1,22 @@
 package Package;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class CommitteeMember extends Student {
 
 //attributes
 	//private int point;
 	private ArrayList<Suggestion> suggestionList;
+	private final String FILE_NAME = "CommitteeMemberList";
 	Scanner sc = new Scanner(System.in);
 
 	public int getPoint() {
@@ -361,6 +369,57 @@ public class CommitteeMember extends Student {
 	public void start() {
 		// TODO - implement CommitteeMember.start
 		throw new UnsupportedOperationException();
+	}
+
+	//CSV modifier
+	public void writeToCommitteeMemberCSV()
+	{
+		String header = "User ID,suggestion List\n";
+		CSVReadWriter csvModifier = new CSVReadWriter(FILE_NAME,header);
+		//String csvData = String.join(",", this.enquiryId, this.sender, this.camp, this.status, this.dealer.getName(), this.content);
+		String csvData=toCsvString();
+		try {
+			csvModifier.checkCreateOrUpdate(this.getUserID(), csvData);
+		} catch (IOException e) {
+			System.out.println("An I/O error occurred while creating the new account.");
+			e.printStackTrace();
+		} catch (NoSuchAlgorithmException e) {
+			System.out.println("The cryptographic algorithm is not available in the current environment.");
+			e.printStackTrace();
+		}
+	}
+
+	public boolean deleteCommitteeMember(String onlyID) throws IOException {
+		Path filePath = Paths.get(FILE_NAME);
+		if (Files.notExists(filePath)) {
+			// If the file does not exist, there is no account to delete
+			return false;
+		}
+
+		// Read all lines except the one with the matching userID
+		List<String> outLines = Files.lines(filePath)
+				.filter(line -> !line.startsWith(onlyID + ","))
+				.collect(Collectors.toList());
+
+		// Check if the account was found and removed
+		boolean accountRemoved = outLines.size() < Files.readAllLines(filePath).size();
+
+		if (accountRemoved) {
+			// Write the remaining lines back to the CSV file
+			Files.write(filePath, outLines);
+		}
+		return accountRemoved;
+	}
+
+	public String toCsvString() {
+		String senderStr = (this.getUserID() == null) ? "" : this.getUserID();
+		String listOfSuggestions = suggestionList.stream()
+				.map(suggestion -> Integer.toString(suggestion.getSuggestionId()))
+				.collect(Collectors.joining("+"));
+
+		return String.join(",",
+				senderStr,
+				listOfSuggestions);
 	}
 
 }
