@@ -27,7 +27,7 @@ public class CampReport extends Report {
 	public void GenerateReport(Camp camp){
 		ArrayList<Student> sortedstudentList = this.report(camp);
 		String fileName = camp.getCampName()+"_CampReport";
-        String header = "Camp Name, Dates, Registration closing date, User group, Location, Total Slots, Camp Committee Slots, Description, Staff in charge";
+        String header = "Camp Name, Dates, Registration closing date, User group, Location, Total Slots, Camp Committee Slots, Description, Staff in charge\n";
         
         // Create CSVReadWriter object
         CSVReadWriter reportModifier = new CSVReadWriter(fileName, header);

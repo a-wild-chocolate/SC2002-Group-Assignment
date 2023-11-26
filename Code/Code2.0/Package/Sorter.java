@@ -22,7 +22,19 @@ public class Sorter {
 
 	public static ArrayList<Student> sortByRole(ArrayList<Student> studentList) {
 		ArrayList<Student> newList=new ArrayList<>(studentList);
-		Collections.sort(newList, Comparator.comparing(Student::committeeStatus));
+		Collections.sort(newList, Comparator.comparing(Student::getCommitteeStatus));
+		return newList;
+	}
+
+	public static ArrayList<Enquiry> sortByStatus(ArrayList<Enquiry> enquiriesList) {
+		ArrayList<Enquiry> newList=new ArrayList<>(enquiriesList);
+		Collections.sort(newList, Comparator.comparing(Enquiry::getStatus));
+		return newList;
+	}
+
+	public static ArrayList<Enquiry> sortByID(ArrayList<Enquiry> enquiriesList) {
+		ArrayList<Enquiry> newList=new ArrayList<>(enquiriesList);
+		Collections.sort(newList, Comparator.comparing(Enquiry::getEnquiryId));
 		return newList;
 	}
 

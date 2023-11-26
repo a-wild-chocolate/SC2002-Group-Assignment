@@ -25,9 +25,11 @@ public class Enquiry extends Report {
 	 * @param camp
 	 */
 	public ArrayList<Enquiry> report(Camp camp) {
-		ArrayList<Enquiry> enquiryList = Sorter.sortByStudentType(camp,StudentStatus.CommitteeMember); // select the list
+		ArrayList<Enquiry> enquiryList = camp.getEnquiryList();// Get the list of enquiry
+		
+		//Sorter.sortByStatus(camp,StudentStatus.CommitteeMember); // select the list
         System.out.println("The list of sorting methods shows below: ");
-		ArrayList<Enquiry> sortedenquiryList = SorterDisplay.displaySortingMethod(enquiryList, this); // Sort the list
+		ArrayList<Enquiry> sortedenquiryList = SorterDisplay.displaySortingEnquiryList(enquiryList); // Sort the list
         return sortedenquiryList; // Return the sorted list
     }
 
@@ -35,7 +37,7 @@ public class Enquiry extends Report {
         //gai
 		ArrayList<Enquiry> sortedenquiryList = this.report(camp);
 		String fileName = camp.getCampName()+"EnquiryReport";
-        String header = "Camp Name, Dates, Registration closing date, User group, Location, Total Slots, Camp Committee Slots, Description, Staff in charge";
+        String header = "Camp Name, Dates, Registration closing date, User group, Location, Total Slots, Camp Committee Slots, Description, Staff in charge\n";
         
         // Create CSVReadWriter object
         CSVReadWriter reportModifier = new CSVReadWriter(fileName, header);
@@ -53,18 +55,14 @@ public class Enquiry extends Report {
 		try {
 			reportModifier.checkCreateOrUpdate(camp.getCampName(), campCsvData);
 			// Write enquiries header
-			String enquiriesHeader = "UserID, Name, Faculty, Committee Status, Point";
+			String enquiriesHeader = "Enquiry ID,Sender Name,Camp Name,Status,Content,Reply";
 			reportModifier.checkCreateOrUpdate("-1", enquiriesHeader);
 
 			// Loop through the sorted enquiry list and write each enquiry's data
 			for (Student enquiry : sortedenquiryList) {
                 //gai
-				String committeeStatus = "NULL";
-				if (student.getCommitteeStatus()==camp){
-					committeeStatus = "Committee";
-				}
-				String enquiryCsvData = String.join(",", enquiry.getUserID(), enquiry.getName(), enquiry.getFaculty().name(), committeeStatus, String.valueOf(student.getPoint()));
-				reportModifier.checkCreateOrUpdate(student.getUserID(), enquiryCsvData);
+				String enquiryCsvData = this.toCsvString();
+				reportModifier.checkCreateOrUpdate(enquiry.getEnquiryId(), enquiryCsvData);
 			}
 
 		} catch (IOException e) {
@@ -75,5 +73,22 @@ public class Enquiry extends Report {
 			e.printStackTrace();
 		}
     }
+
+	public String toCsvString() {
+		String senderStr = (enquiry.getSender() == null) ? "" : enquiry.getsender().toString();
+		String campStr = (enquiry.getCamp() == null) ? "" : camp.getCampName().toString();
+		String statusStr = (enquiry.getStatus() == null) ? "" : enquiry.getstatus().toString();
+		String contentStr = (enquiry.getContent() == null) ? "" : enquiry.getContent();
+		String replyStr = (enquiry.getReply() == null) ? "" : enquiry.getReply();
+
+
+		return String.join(",", 
+			Integer.toString(enquiry.getEnquiryId), 
+			senderStr, 
+			campStr, 
+			statusStr, 
+			contentStr,
+			replyStr);
+	}
 
 }

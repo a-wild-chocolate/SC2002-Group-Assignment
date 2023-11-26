@@ -42,7 +42,7 @@ public abstract class Message {
 		this.status = status;
 	}
 
-	public void sendMessage() {
+	public void sendMessage(Camp ca) {
 		// TODO - implement Message.sendMessage
 		throw new UnsupportedOperationException();
 	}
