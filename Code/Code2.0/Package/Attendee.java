@@ -642,17 +642,49 @@ public class Attendee extends Student {
 
     public void start()
     {
-        System.out.println("Welcome "+this.getUserID()+"! What do you want to do today?");
-        System.out.println("---Camp---");
-        System.out.println("1) View Camp List");
-        System.out.println("2) View Camp Joined");
-        System.out.println("3) Register Camp as Attendee");
-        System.out.println("4) Register Camp as Committee Member");
-        System.out.println("5) Withdraw Camp");
-        System.out.println("6) Send Enquiry");
-        System.out.println("7) View Enquiry");
-        System.out.println("8) Edit Enquiry");
-		System.out.println("9) Delete Enquiry");
-		System.out.println("10) ");
+		int choice;
+		while(true)
+		{
+			System.out.println("Welcome "+this.getUserID()+"! What do you want to do today?");
+			System.out.println("---Camp---");
+			System.out.println("1) View Camp List");
+			System.out.println("2) View Camp Joined");
+			System.out.println("3) Register Camp as Attendee");
+			System.out.println("4) Register Camp as Committee Member");
+			System.out.println("5) Withdraw Camp");
+			System.out.println("---Enquiry---");
+			System.out.println("6) Send Enquiry");
+			System.out.println("7) View Enquiry");
+			System.out.println("8) Edit Enquiry");
+			System.out.println("9) Delete Enquiry");
+			System.out.println("=======================================");
+			System.out.println("0) QUIT");
+			choice=sc.nextInt();
+			switch (choice)
+			{
+				case 1: viewCampList();
+				break;
+				case 2: viewOwnCamp();
+					break;
+				case 3: registerAsAttendee();
+					break;
+				case 4: registerAsCommittee();
+					break;
+				case 5: withdrawCamp();
+					break;
+				case 6: sendEnquiry();
+					break;
+				case 7: viewEnquiry();
+					break;
+				case 8: editEnquiry();
+					break;
+				case 9: deleteEnquiry();
+					break;
+				case 0: return;
+				default:System.out.println("Invalid input. Please enter again.");
+			}
+		}
+
+
     }
 }
