@@ -729,22 +729,137 @@ public class Staff extends Account {
 
 	}
 
-	/**
-	 * 
-	 * @param camp
-	 */
-	public void generateStudentReport(Camp camp) {
-		// TODO - implement Staff.generateStudentReport
-		throw new UnsupportedOperationException();
+
+	public void generateStudentReport() {
+		CampReport campReport;
+		if(this.getCreateCampList().isEmpty())
+		{
+			System.out.println("Sorry, there is no camp created.");
+			return;
+		}
+		int index=1;
+		int campChoice;
+		Camp camp;
+
+		for(Camp Ccamp: this.getCreateCampList())
+		{
+			System.out.println(index+") "+Ccamp.getCampName());
+			index++;
+		}
+		while (true)
+		{
+			while (true) {
+				System.out.println("Please select which camp report you want to generate : (0 Quit)");
+				campChoice = sc.nextInt();
+				if (campChoice == 0) return;
+				else {
+					camp = this.getCreateCampList().get(campChoice - 1);
+					if (camp == null) {
+						System.out.println("Invalid input! Please enter again.");
+						continue;
+					}
+					break;
+				}
+			}
+			campReport=new CampReport(camp);
+			campReport.GenerateReport(camp);
+			System.out.println("1) Quit");
+			System.out.println("0) Continue");
+			int c;
+			c= sc.nextInt();
+			if(c==1) return;
+			//else continue
+		}
+
+
 	}
 
-	/**
-	 * 
-	 * @param camp
-	 */
-	public void generatePerformanceReport(Camp camp) {
-		// TODO - implement Staff.generatePerformanceReport
-		throw new UnsupportedOperationException();
+
+	public void generatePerformanceReport() {
+		PerformanceReport campReport;
+		if(this.getCreateCampList().isEmpty())
+		{
+			System.out.println("Sorry, there is no camp created.");
+			return;
+		}
+		int index=1;
+		int campChoice;
+		Camp camp;
+
+		for(Camp Ccamp: this.getCreateCampList())
+		{
+			System.out.println(index+") "+Ccamp.getCampName());
+			index++;
+		}
+		while (true)
+		{
+			while (true) {
+				System.out.println("Please select which camp report you want to generate : (0 Quit)");
+				campChoice = sc.nextInt();
+				if (campChoice == 0) return;
+				else {
+					camp = this.getCreateCampList().get(campChoice - 1);
+					if (camp == null) {
+						System.out.println("Invalid input! Please enter again.");
+						continue;
+					}
+					break;
+				}
+			}
+			campReport=new PerformanceReport(camp);
+			campReport.GenerateReport(camp);
+			System.out.println("1) Quit");
+			System.out.println("0) Continue");
+			int c;
+			c= sc.nextInt();
+			if(c==1) return;
+			//else continue
+		}
+
+	}
+
+	public void generateEnquiryReport()
+	{
+		EnquiryReport campReport;
+		if(this.getCreateCampList().isEmpty())
+		{
+			System.out.println("Sorry, there is no camp created.");
+			return;
+		}
+		int index=1;
+		int campChoice;
+		Camp camp;
+
+		for(Camp Ccamp: this.getCreateCampList())
+		{
+			System.out.println(index+") "+Ccamp.getCampName());
+			index++;
+		}
+		while (true)
+		{
+			while (true) {
+				System.out.println("Please select which camp report you want to generate : (0 Quit)");
+				campChoice = sc.nextInt();
+				if (campChoice == 0) return;
+				else {
+					camp = this.getCreateCampList().get(campChoice - 1);
+					if (camp == null) {
+						System.out.println("Invalid input! Please enter again.");
+						continue;
+					}
+					break;
+				}
+			}
+			campReport=new EnquiryReport(camp);
+			campReport.GenerateReport(camp);
+			System.out.println("1) Quit");
+			System.out.println("0) Continue");
+			int c;
+			c= sc.nextInt();
+			if(c==1) return;
+			//else continue
+		}
+
 	}
 
 
@@ -778,13 +893,30 @@ public class Staff extends Account {
 			{
 				case 0: return;
 				case 1: viewCampList();
+				break;
 				case 2: viewCampCreated();
+				break;
 				case 3: addCamp();
+				break;
 				case 4: editCamp();
+				break;
 				case 5: deleteCamp();
+				break;
 				case 6: viewSuggestion();
+				break;
 				case 7: approveSuggestion();
-
+				break;
+				case 8: viewEnquiry();
+				break;
+				case 9: replyEnquiry();
+				break;
+				case 10: generateStudentReport();
+				break;
+				case 11: generatePerformanceReport();
+				break;
+				case 12: generateEnquiryReport();
+				break;
+				default:System.out.println("Invalid input! Please enter again.");
 			}
 		}
 
