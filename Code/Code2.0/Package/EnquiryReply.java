@@ -5,9 +5,9 @@ public class EnquiryReply {
     private String content;
     private static int replyNumber=0;
 
-    private CommitteeMember replier;
+    private Account replier;
     //for user
-    public EnquiryReply(CommitteeMember replier,String content)
+    public EnquiryReply(Account replier,String content)
     {
         this.content=content;
         this.replier=replier;
@@ -31,11 +31,11 @@ public class EnquiryReply {
         this.content = content;
     }
 
-    public CommitteeMember getReplier() {
+    public Account getReplier() {
         return replier;
     }
 
-    public void setReplier(CommitteeMember replier) {
+    public void setReplier(Account replier) {
         this.replier = replier;
     }
 
