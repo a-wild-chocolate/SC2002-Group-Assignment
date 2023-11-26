@@ -577,7 +577,10 @@ public class Attendee extends Student {
 				Stemp.remove(this);
 				removedCamp.setStudentList(Stemp);
 				//add this camp to withdraw list
-				this.withdrawStatus.add(removedCamp);
+				ArrayList<Camp> Ctemp;
+				Ctemp=this.withdrawStatus;
+				Ctemp.add(removedCamp);
+				this.setWithdrawStatus(Ctemp);
 				System.out.println("Successfully withdraw "+removedCamp.getCampName()+" camp");
 			}
 		}
