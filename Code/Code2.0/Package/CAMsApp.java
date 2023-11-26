@@ -53,12 +53,12 @@ public class CAMsApp {
         ArrayList<Suggestion> suggestionList1 = new ArrayList<>();
         CommitteeMember committeeMember1 = new CommitteeMember(
                 "committeeID1",
-                "Name1",
+                "Name3",
                 AccountStatus.STUDENT,
                 Faculty.CCEB,
                 "password",
-                "SecurityQuestion1",
-                "SecureAnswer1",
+                "SecurityQuestion3",
+                "SecureAnswer3",
                 suggestionList1
         );
 
@@ -66,12 +66,12 @@ public class CAMsApp {
         ArrayList<Suggestion> suggestionList2 = new ArrayList<>();
         CommitteeMember committeeMember2 = new CommitteeMember(
                 "committeeID2",
-                "Name2",
+                "Name4",
                 AccountStatus.STUDENT,
                 Faculty.ASE,
                 "password",
-                "SecurityQuestion2",
-                "SecureAnswer2",
+                "SecurityQuestion4",
+                "SecureAnswer4",
                 suggestionList2
         );
 
@@ -79,12 +79,12 @@ public class CAMsApp {
         ArrayList<Suggestion> suggestionList3 = new ArrayList<>();
         CommitteeMember committeeMember3 = new CommitteeMember(
                 "committeeID3",
-                "Name3",
+                "Name5",
                 AccountStatus.STUDENT,
                 Faculty.CEE,
                 "password",
-                "SecurityQuestion3",
-                "SecureAnswer3",
+                "SecurityQuestion5",
+                "SecureAnswer5",
                 suggestionList3
         );
 
@@ -95,12 +95,12 @@ public class CAMsApp {
         // Create the first Attendee object
         Attendee attendee1 = new Attendee(
                 "attendeeID1",
-                "Name1",
+                "Name6",
                 AccountStatus.STUDENT,
                 Faculty.ADM,
                 "password",
-                "SecurityQuestion1",
-                "SecureAnswer1",
+                "SecurityQuestion6",
+                "SecureAnswer6",
                 attendeeStatusList1,
                 withdrawStatusList1,
                 enquiryList1
@@ -114,12 +114,12 @@ public class CAMsApp {
         // Create the second Attendee object
         Attendee attendee2 = new Attendee(
                 "attendeeID2",
-                "Name2",
+                "Name7",
                 AccountStatus.STUDENT,
                 Faculty.ASE,
                 "password",
-                "SecurityQuestion2",
-                "SecureAnswer2",
+                "SecurityQuestion7",
+                "SecureAnswer7",
                 attendeeStatusList2,
                 withdrawStatusList2,
                 enquiryList2
@@ -133,12 +133,12 @@ public class CAMsApp {
         // Create the third Attendee object
         Attendee attendee3 = new Attendee(
                 "attendeeID3",
-                "Name3",
+                "Name8",
                 AccountStatus.STUDENT,
                 Faculty.EEE,
                 "password",
-                "SecurityQuestion3",
-                "SecureAnswer3",
+                "SecurityQuestion8",
+                "SecureAnswer8",
                 attendeeStatusList3,
                 withdrawStatusList3,
                 enquiryList3
@@ -158,6 +158,74 @@ public class CAMsApp {
         committeeMemberHashMap.put(committeeMember1.getUserID(), committeeMember2);
         committeeMemberHashMap.put(committeeMember1.getUserID(), committeeMember3);
 
+        AccountInformation a = new AccountInformation("staffID1",
+                "Name1",
+                AccountStatus.STAFF,  // Assuming you have an enum for account status
+                Faculty.EEE,    // Assuming you have an enum for faculty
+                "password",
+                "SecurityQuestion1",
+                "SecureAnswer1");
+        AccountInformation b = new AccountInformation("staffID2",
+                "Name2",
+                AccountStatus.STAFF,  // Assuming you have an enum for account status
+                Faculty.ADM,        // Assuming you have an enum for faculty
+                "password",
+                "SecurityQuestion2",
+                "SecureAnswer2");
+        AccountInformation c = new AccountInformation("committeeID1",
+                "Name3",
+                AccountStatus.STUDENT,
+                Faculty.CCEB,
+                "password",
+                "SecurityQuestion3",
+                "SecureAnswer3");
+        AccountInformation d = new AccountInformation("committeeID2",
+                "Name4",
+                AccountStatus.STUDENT,
+                Faculty.ASE,
+                "password",
+                "SecurityQuestion4",
+                "SecureAnswer4");
+        AccountInformation l = new AccountInformation("committeeID3",
+                "Name5",
+                AccountStatus.STUDENT,
+                Faculty.CEE,
+                "password",
+                "SecurityQuestion5",
+                "SecureAnswer5");
+        AccountInformation f = new AccountInformation("attendeeID1",
+                "Name6",
+                AccountStatus.STUDENT,
+                Faculty.ADM,
+                "password",
+                "SecurityQuestion6",
+                "SecureAnswer6");
+        AccountInformation g = new AccountInformation("attendeeID2",
+                "Name7",
+                AccountStatus.STUDENT,
+                Faculty.ASE,
+                "password",
+                "SecurityQuestion7",
+                "SecureAnswer7");
+        try {
+        a.createNewAccount();
+        b.createNewAccount();
+        c.createNewAccount();
+        d.createNewAccount();
+        l.createNewAccount();
+        f.createNewAccount();
+        g.createNewAccount();
+//        LoginAccount ccc = new LoginAccount("111", "111");
+//        ResetAccount ddd = new ResetAccount ("111", "111");
+//        LoginAccount ggg = new LoginAccount("111", "222");
+        } catch (IOException e) {
+            System.out.println("An I/O error occurred while creating the new account.");
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            System.out.println("The cryptographic algorithm is not available in the current environment.");
+            e.printStackTrace();
+        }
+
 
         while(true)
         {
@@ -174,7 +242,13 @@ public class CAMsApp {
             System.out.println("Enter your password:");
             password=sc.nextLine();
             loginAccountS=new LoginAccount(id,password);
-            user=loginAccountS.loginAccount(); //TODO: update loginAccount
+            try {
+            user=(Account)loginAccountS.loginAccount(); //TODO: update loginAccount
+                if (password=="password"){
+                    System.out.println("Enter reset your password:");
+                    password=sc.nextLine();
+                    user.setPassword(password);
+                }
             if(user.getAccountStatus()==AccountStatus.STAFF)
             {
                 ((Staff) user).start();
@@ -204,6 +278,13 @@ public class CAMsApp {
                     System.out.println();
                 }
 
+            }
+            } catch (IOException e) {
+                System.out.println("An I/O error occurred while creating the new account.");
+                e.printStackTrace();
+            } catch (NoSuchAlgorithmException e) {
+                System.out.println("The cryptographic algorithm is not available in the current environment.");
+                e.printStackTrace();
             }
         }
 
