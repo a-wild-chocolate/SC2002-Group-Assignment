@@ -42,7 +42,18 @@ public class CAMsApp {
                     System.out.println("0) Quit");
                     choice=sc.nextInt();
                     if(choice==0) break;
-                    else if(choice==1) (Student)user=createObject; // TODO:get attendee
+                    else if(choice==1)
+                    {
+                        (Attendee)user=createObject; // TODO:get attendee
+                        ((Attendee)user).start();//jump to attendee start
+                    }
+                    else if(choice==2)
+                    {
+                        (CommitteeMember)user = createObject; //TODO:get committeeMember
+                        ((CommitteeMember)user).start();//jump to committee member start
+                    }
+
+                    System.out.println();
                 }
 
             }
