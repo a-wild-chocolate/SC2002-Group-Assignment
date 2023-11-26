@@ -240,7 +240,7 @@ public class CAMsApp {
             password=sc.nextLine();
             loginAccountS=new LoginAccount(id,password);
             try {
-            user=(Account)loginAccountS.loginAccount(); //TODO: update loginAccount
+            user=(Account)loginAccountS.loginAccount();
                 if (password.equals("password")){
                     System.out.println("Enter reset your password:");
                     password=sc.nextLine();
@@ -248,7 +248,8 @@ public class CAMsApp {
                 }
             if(user.getAccountStatus()==AccountStatus.STAFF)
             {
-                ((Staff) user).start();
+                Staff staff=staffHashMap.get(user.getUserID());
+                staff.start();
             }
             else if(user.getAccountStatus()==AccountStatus.STUDENT)
             {
@@ -263,13 +264,13 @@ public class CAMsApp {
                     if(choice==0) break;
                     else if(choice==1)
                     {
-                        (Attendee)user=createObject; // TODO:get attendee
-                        ((Attendee)user).start();//jump to attendee start
+                        Attendee attendee = attendeeHashMap.get(user.getUserID());
+                        attendee.start();//jump to attendee start
                     }
                     else if(choice==2)
                     {
-                        (CommitteeMember)user = createObject; //TODO:get committeeMember
-                        ((CommitteeMember)user).start();//jump to committee member start
+                        CommitteeMember committeeMember = committeeMemberHashMap.get(user.getUserID());
+                        committeeMember.start();//jump to committeeMember start
                     }
 
                     System.out.println();
