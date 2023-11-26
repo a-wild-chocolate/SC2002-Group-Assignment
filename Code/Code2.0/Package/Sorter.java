@@ -14,6 +14,12 @@ public class Sorter {
 		return newList;
 	}
 
+	public static ArrayList<Enquiry> sortBySenderName(ArrayList<Enquiry> enquiryList) {
+		ArrayList<Enquiry> newList=new ArrayList<>(enquiryList);
+		Collections.sort(newList, Comparator.comparing(enquiry -> enquiry.getSender().getName()));
+		return newList;
+	}
+
 	public static ArrayList<Student> sortByScore(ArrayList<Student> studentList) {
 		ArrayList<Student> newList=new ArrayList<>(studentList);
 		Collections.sort(newList, Comparator.comparing(Student::getPoint));
@@ -22,7 +28,14 @@ public class Sorter {
 
 	public static ArrayList<Student> sortByRole(ArrayList<Student> studentList) {
 		ArrayList<Student> newList=new ArrayList<>(studentList);
-		Collections.sort(newList, Comparator.comparing(Student::getCommitteeStatus));
+		Collections.sort(newList, Comparator.comparing(student -> {
+			if (student instanceof CommitteeMember) {
+				CommitteeMember committeeMember = (CommitteeMember) student;
+				// Compare based on whether committee status is null or not
+				return committeeMember.getCommitteeStatus() == null ? 0 : 1;
+			}
+			return 0; // Default comparison for non-CommitteeMember instances
+		}));
 		return newList;
 	}
 
