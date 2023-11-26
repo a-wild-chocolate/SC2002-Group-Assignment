@@ -117,7 +117,7 @@ public class Enquiry {
 		}	
 	}
 
-	public boolean deleteAccount(String onlyID) throws IOException {
+	public boolean deleteEnquiry(String onlyID) throws IOException {
 		Path filePath = Paths.get(FILE_NAME);
 		if (Files.notExists(filePath)) {
 			// If the file does not exist, there is no account to delete
@@ -144,7 +144,7 @@ public class Enquiry {
 		String campStr = (camp == null) ? "" : camp.toString();
 		String statusStr = (status == null) ? "" : status.toString();
 		String contentStr = (content == null) ? "" : content;
-		String replyStr = (reply == null) ? "" : reply.getContent();
+		//String replyStr = (reply == null) ? "" : reply.getContent();
 
 
 		return String.join(",", 
@@ -153,7 +153,7 @@ public class Enquiry {
 			campStr, 
 			statusStr, 
 			contentStr,
-			replyStr);
+			Integer.toString(this.getReply().getReplyId()));
 	}
 }
 
