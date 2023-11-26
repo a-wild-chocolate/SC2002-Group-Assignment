@@ -695,7 +695,7 @@ public class Staff extends Account {
 					//prepare for change suggestion
 					int id,location=0;
 					ArrayList<Suggestion> temp;
-					camp.getSuggestionList();
+
 					id=currentSuggestion.getSuggestionId();
 					temp=camp.getSuggestionList();
 					//find the location of the changing suggestion inside the camp suggestion list;
