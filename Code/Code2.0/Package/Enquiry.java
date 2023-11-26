@@ -18,7 +18,7 @@ public class Enquiry {
 	private EnquiryStatus status;
 	private static int enquiryNumber = 0;
 
-	private final int enquiryId;
+	private int enquiryId;
 
 	private EnquiryReply reply;
 
@@ -144,7 +144,7 @@ public class Enquiry {
 		String campStr = (camp == null) ? "" : camp.toString();
 		String statusStr = (status == null) ? "" : status.toString();
 		String contentStr = (content == null) ? "" : content;
-		String replyStr = (reply == null) ? "" : reply;
+		String replyStr = (reply == null) ? "" : reply.getContent();
 
 
 		return String.join(",", 

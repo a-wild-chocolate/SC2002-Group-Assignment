@@ -16,8 +16,8 @@ import Package.Sorter;
 import Package.Student;
 import Package.StudentStatus;
 
-public class Enquiry extends Report {
-	public Enquiry(Camp camp){
+public class EnquiryReport extends Report {
+	public EnquiryReport(Camp camp){
 		super(camp);
 	}
 	/**
@@ -59,10 +59,10 @@ public class Enquiry extends Report {
 			reportModifier.checkCreateOrUpdate("-1", enquiriesHeader);
 
 			// Loop through the sorted enquiry list and write each enquiry's data
-			for (Student enquiry : sortedenquiryList) {
+			for (Enquiry enquiry : sortedenquiryList) {
                 //gai
-				String enquiryCsvData = this.toCsvString();
-				reportModifier.checkCreateOrUpdate(enquiry.getEnquiryId(), enquiryCsvData);
+				String enquiryCsvData = enquiry.toCsvString();
+				reportModifier.checkCreateOrUpdate(Integer.toString(enquiry.getEnquiryId()), enquiryCsvData);
 			}
 
 		} catch (IOException e) {
@@ -73,22 +73,4 @@ public class Enquiry extends Report {
 			e.printStackTrace();
 		}
     }
-
-	public String toCsvString() {
-		String senderStr = (enquiry.getSender() == null) ? "" : enquiry.getsender().toString();
-		String campStr = (enquiry.getCamp() == null) ? "" : camp.getCampName().toString();
-		String statusStr = (enquiry.getStatus() == null) ? "" : enquiry.getstatus().toString();
-		String contentStr = (enquiry.getContent() == null) ? "" : enquiry.getContent();
-		String replyStr = (enquiry.getReply() == null) ? "" : enquiry.getReply();
-
-
-		return String.join(",", 
-			Integer.toString(enquiry.getEnquiryId), 
-			senderStr, 
-			campStr, 
-			statusStr, 
-			contentStr,
-			replyStr);
-	}
-
 }
