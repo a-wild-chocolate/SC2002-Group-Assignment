@@ -164,7 +164,7 @@ public class Staff extends Account {
 		do
 		{
 			System.out.println("Please choose the camp you want to edit:");
-			System.out.println("0) quit");
+			System.out.println("0) QUIT");
 			for(int i =0;i<createCampList.size();i++)
 			{
 				System.out.printf(i+1+") "+createCampList.get(i).getCampName()+"\n");
@@ -178,7 +178,7 @@ public class Staff extends Account {
 				System.out.println("Current camp information:");
 				currentCamp.printAllInformation();
 				System.out.printf("Which part of camp do you want to edit?\n");
-				System.out.printf("1) Camp name\n2) Camp date\n3)Camp registration date\n4) Total Slot \n 5) Committee Slot\n6) Description\n7) Visibility\n8)Location\n9)User Group\n0) Quit");
+				System.out.printf("1) Camp name\n2) Camp date\n3)Camp registration date\n4) Total Slot \n5) Committee Slot\n6) Description\n7) Visibility\n8)Location\n9)User Group\n0) Quit");
 				choicePart=sc.nextInt();
 				sc.nextLine();
 				switch (choicePart) {
@@ -271,7 +271,8 @@ public class Staff extends Account {
 						System.out.println("The current location is: "+currentCamp.getLocation());
 						System.out.println("Please enter new location:");
 						location = sc.nextLine();
-						currentCamp.setDescription(location);
+						currentCamp.setLocation(location);
+						break;
 					//Camp user group
 					case 9:
 						if(currentCamp.getStudentList().size()!=0||currentCamp.getCommitteeMemberList().size()!=0)
@@ -310,13 +311,14 @@ public class Staff extends Account {
 							userGroup.add(selectedFaculty);
 						}
 						currentCamp.setUserGroup(userGroup);
+						break;
 					// Quit
 					case 0: break;
 					// Input check
 					default:System.out.println("Invalid Input!!! Please try again");
-						break;
+
 				}
-			}while(choicePart!=6);
+			}while(choicePart!=0);
 			campList.editCamp(currentCamp,choiceCamp-1);
 			ArrayList<Camp> temp=createCampList;
 			temp.remove(currentCampB);
@@ -603,6 +605,7 @@ public class Staff extends Account {
 			for(Camp camp:this.getCreateCampList())
 			{
 				System.out.println(index+") "+camp.getCampName());
+				System.out.println();
 				index++;
 			}
 			while (true)
@@ -735,10 +738,12 @@ public class Staff extends Account {
 					if(approve==0)
 					{
 						currentSuggestion.setStatus(SuggestionStatus.rejected);
+						currentSuggestion.setDealer(this);
 					}
 					else if(approve==1)
 					{
 						currentSuggestion.setStatus(SuggestionStatus.appoved);
+						currentSuggestion.setDealer(this);
 					}
 					else System.out.println("Invalid input");//TODO: Reinput ?
 					//prepare for change suggestion

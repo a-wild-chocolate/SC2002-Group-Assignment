@@ -18,6 +18,9 @@ import java.util.List;
 import java.util.Map;
 
 public class CAMsApp {
+    static HashMap<String, Staff> staffHashMap = new HashMap<>();
+    static HashMap<String, CommitteeMember> committeeMemberHashMap = new HashMap<>();
+    static HashMap<String, Attendee> attendeeHashMap = new HashMap<>();
     public static void main(String[] args)
     {
         //TODO: LoadObjects
@@ -52,7 +55,7 @@ public class CAMsApp {
 
         ArrayList<Suggestion> suggestionList1 = new ArrayList<>();
         CommitteeMember committeeMember1 = new CommitteeMember(
-                "committeeID1",
+                "studentID1",
                 "Name3",
                 AccountStatus.STUDENT,
                 Faculty.CCEB,
@@ -65,7 +68,7 @@ public class CAMsApp {
         // Create the second CommitteeMember object
         ArrayList<Suggestion> suggestionList2 = new ArrayList<>();
         CommitteeMember committeeMember2 = new CommitteeMember(
-                "committeeID2",
+                "studentID2",
                 "Name4",
                 AccountStatus.STUDENT,
                 Faculty.ASE,
@@ -78,7 +81,7 @@ public class CAMsApp {
         // Create the third CommitteeMember object
         ArrayList<Suggestion> suggestionList3 = new ArrayList<>();
         CommitteeMember committeeMember3 = new CommitteeMember(
-                "committeeID3",
+                "studentID3",
                 "Name5",
                 AccountStatus.STUDENT,
                 Faculty.CEE,
@@ -94,10 +97,10 @@ public class CAMsApp {
 
         // Create the first Attendee object
         Attendee attendee1 = new Attendee(
-                "attendeeID1",
-                "Name6",
+                "studentID1",
+                "Name3",
                 AccountStatus.STUDENT,
-                Faculty.ADM,
+                Faculty.CCEB,
                 "password",
                 "SecurityQuestion6",
                 "SecureAnswer6",
@@ -113,8 +116,8 @@ public class CAMsApp {
 
         // Create the second Attendee object
         Attendee attendee2 = new Attendee(
-                "attendeeID2",
-                "Name7",
+                "studentID2",
+                "Name4",
                 AccountStatus.STUDENT,
                 Faculty.ASE,
                 "password",
@@ -132,10 +135,10 @@ public class CAMsApp {
 
         // Create the third Attendee object
         Attendee attendee3 = new Attendee(
-                "attendeeID3",
-                "Name8",
+                "studentID3",
+                "Name5",
                 AccountStatus.STUDENT,
-                Faculty.EEE,
+                Faculty.CEE,
                 "password",
                 "SecurityQuestion8",
                 "SecureAnswer8",
@@ -143,17 +146,17 @@ public class CAMsApp {
                 withdrawStatusList3,
                 enquiryList3
         );
-        HashMap<String, Attendee> attendeeHashMap = new HashMap<>();
+
         attendeeHashMap.put(attendee1.getUserID(), attendee1);
-        attendeeHashMap.put(attendee1.getUserID(), attendee2);
-        attendeeHashMap.put(attendee1.getUserID(), attendee3);
-        HashMap<String, Staff> staffHashMap = new HashMap<>();
+        attendeeHashMap.put(attendee2.getUserID(),attendee2);
+        attendeeHashMap.put(attendee3.getUserID(), attendee3);
+
         staffHashMap.put(staff1.getUserID(), staff1);
         staffHashMap.put(staff2.getUserID(), staff2);
-        HashMap<String, CommitteeMember> committeeMemberHashMap = new HashMap<>();
+
         committeeMemberHashMap.put(committeeMember1.getUserID(), committeeMember1);
-        committeeMemberHashMap.put(committeeMember1.getUserID(), committeeMember2);
-        committeeMemberHashMap.put(committeeMember1.getUserID(), committeeMember3);
+        committeeMemberHashMap.put(committeeMember2.getUserID(), committeeMember2);
+        committeeMemberHashMap.put(committeeMember3.getUserID(), committeeMember3);
 
         AccountInformation a = new AccountInformation("staffID1",
                 "Name1",
@@ -169,49 +172,49 @@ public class CAMsApp {
                 "password",
                 "SecurityQuestion2",
                 "SecureAnswer2");
-        AccountInformation c = new AccountInformation("committeeID1",
+        AccountInformation c = new AccountInformation("studentID1",
                 "Name3",
                 AccountStatus.STUDENT,
                 Faculty.CCEB,
                 "password",
                 "SecurityQuestion3",
                 "SecureAnswer3");
-        AccountInformation d = new AccountInformation("committeeID2",
+        AccountInformation d = new AccountInformation("studentID2",
                 "Name4",
                 AccountStatus.STUDENT,
                 Faculty.ASE,
                 "password",
                 "SecurityQuestion4",
                 "SecureAnswer4");
-        AccountInformation l = new AccountInformation("committeeID3",
+        AccountInformation l = new AccountInformation("studentID3",
                 "Name5",
                 AccountStatus.STUDENT,
                 Faculty.CEE,
                 "password",
                 "SecurityQuestion5",
                 "SecureAnswer5");
-        AccountInformation f = new AccountInformation("attendeeID1",
+        /*AccountInformation f = new AccountInformation("studentID4",
                 "Name6",
                 AccountStatus.STUDENT,
                 Faculty.ADM,
                 "password",
                 "SecurityQuestion6",
                 "SecureAnswer6");
-        AccountInformation g = new AccountInformation("attendeeID2",
+        AccountInformation g = new AccountInformation("studentID5",
                 "Name7",
                 AccountStatus.STUDENT,
                 Faculty.ASE,
                 "password",
                 "SecurityQuestion7",
-                "SecureAnswer7");
+                "SecureAnswer7");*/
         try {
         a.createNewAccount();
         b.createNewAccount();
         c.createNewAccount();
         d.createNewAccount();
         l.createNewAccount();
-        f.createNewAccount();
-        g.createNewAccount();
+        //f.createNewAccount();
+        //g.createNewAccount();
 //        LoginAccount ccc = new LoginAccount("111", "111");
 //        ResetAccount ddd = new ResetAccount ("111", "111");
 //        LoginAccount ggg = new LoginAccount("111", "222");

@@ -21,14 +21,14 @@ public abstract class Student extends Account {
 	public Student(String userID, String name,AccountStatus accountStatus, Faculty faculty, String password, String securityQuestion, String secureAnswer) {
 		super(userID, name,accountStatus, faculty, password, securityQuestion, secureAnswer);
 		this.point = 0;
-		//this.daysOccupied=new ArrayList<LocalDate>();
+		this.daysOccupied=new ArrayList<LocalDate>();
 		committeeStatus = null;
 	}
 
 	public Student(String userID, String name,AccountStatus accountStatus, Faculty faculty, String password, String securityQuestion, String secureAnswer, int point) {
 		super(userID, name,accountStatus, faculty, password, securityQuestion, secureAnswer);
 		this.point = point;
-		//this.daysOccupied=new ArrayList<LocalDate>();
+		this.daysOccupied=new ArrayList<LocalDate>();
 		committeeStatus = null;
 	}
 

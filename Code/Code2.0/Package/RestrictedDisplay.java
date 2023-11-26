@@ -21,6 +21,7 @@ public class RestrictedDisplay extends Displayer {
 			if(c.getVisibility()==true&&(c.getUserGroup().contains(account.getFaculty())))
 			{
 				avaliableVisitCamps.add(c);
+				System.out.println("add one avaliable camp."); //TODO:test
 			}
 		}
 

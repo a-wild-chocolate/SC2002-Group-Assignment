@@ -83,6 +83,7 @@ public class Attendee extends Student {
 			campName=sc.nextLine();
 			if(campName.equals("0")) return;
 			registerCamp=Converter.stringToCamp(campName);
+			//System.out.println("Name:"+ registerCamp.getCampName());
 			//check whether this camp exist
 			if(registerCamp==null||!registerCamp.getVisibility())
 			{
@@ -245,11 +246,15 @@ public class Attendee extends Student {
 
 		}while(registerCamp==null);
 
-		// update student's committee member status;
+		//get corresponding committee member
+		CommitteeMember committeeMember;
+		committeeMember=CAMsApp.committeeMemberHashMap.get(this.getUserID());
+		// update student's (attendee and committee member account) committee member status;
 		this.setCommitteeStatus(registerCamp);
+		committeeMember.setCommitteeStatus(registerCamp);
 		// update camp's committee member status
 		ArrayList<Student> temp=registerCamp.getCommitteeMemberList();
-		temp.add(this);
+		temp.add(committeeMember);
 		registerCamp.setCommitteeMemberList(temp);
 		//update days occupied
 		ArrayList<LocalDate>tempD=this.getDaysOccupied();
@@ -477,7 +482,8 @@ public class Attendee extends Student {
 		for(index=0;index<availableEnquiry.size();index++)
 		{
 
-			System.out.println(index+1 +") " +availableEnquiry.get(index));
+			System.out.println(index+1 +") ID:" +availableEnquiry.get(index).getEnquiryId());
+			System.out.println(availableEnquiry.get(index).getContent());
 		}
 		while (true)
 		{
@@ -529,6 +535,7 @@ public class Attendee extends Student {
 		for(Enquiry enquiry:this.getEnquiryList())
 		{
 			enquiry.printWithReply();
+			System.out.println();
 		}
 	}
 

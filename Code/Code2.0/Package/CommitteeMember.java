@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class CommitteeMember extends Student {
+public class CommitteeMember extends Student{
 
 //attributes
 	//private int point;
@@ -19,9 +19,6 @@ public class CommitteeMember extends Student {
 	//private final String FILE_NAME = "CommitteeMemberList";
 	Scanner sc = new Scanner(System.in);
 
-	public int getPoint() {
-		return this.getPoint();
-	}
 
 //constructor
 	public CommitteeMember(String userID, String name, AccountStatus accountStatus,Faculty faculty, String password, String securityQuestion, String secureAnswer) {
@@ -36,14 +33,6 @@ public class CommitteeMember extends Student {
 
 //get and set
 
-	/**
-	 * 
-	 * @param point
-	 */
-	public void setPoint(int point) {
-		//writeToCommitteeMemberCSV();
-		this.setPoint(point);
-	}
 
 
 
@@ -262,6 +251,7 @@ public class CommitteeMember extends Student {
 		for (Suggestion suggestion:availableSuggestions)
 		{
 			System.out.println(i+") :");
+			i++;
 			SuggestionPrinter suggestionPrinter=new SuggestionPrinter(suggestion);
 			suggestionPrinter.print();
 			System.out.println();
@@ -274,7 +264,7 @@ public class CommitteeMember extends Student {
 			choice=sc.nextInt();
 			sc.nextLine();
 			if(choice==0) return;
-			if(choice>=availableSuggestions.size())
+			if(choice>availableSuggestions.size())
 			{
 				System.out.println("Invalid input please input again!");
 				continue;
@@ -335,6 +325,7 @@ public class CommitteeMember extends Student {
 		for (Suggestion suggestion:availableSuggestions)
 		{
 			System.out.println(i+") :");
+			i++;
 			SuggestionPrinter suggestionPrinter=new SuggestionPrinter(suggestion);
 			suggestionPrinter.print();
 			System.out.println();
@@ -347,7 +338,7 @@ public class CommitteeMember extends Student {
 			choice=sc.nextInt();
 			sc.nextLine();
 			if(choice==0) return;
-			if(choice>=availableSuggestions.size())
+			if(choice>availableSuggestions.size())
 			{
 				System.out.println("Invalid input please input again!");
 				continue;
