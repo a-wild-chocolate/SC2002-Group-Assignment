@@ -1,4 +1,5 @@
 package Package;
+import java.awt.image.PackedColorModel;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,9 +15,9 @@ public class Staff extends Account {
 	private Scanner sc = new Scanner(System.in);
 	//private Converter cv = new Converter();
 	//constructor
-	public Staff(String userID, String name, Faculty faculty, String password, String securityQuestion, String secureAnswer) {
+	public Staff(String userID, String name,AccountStatus accountStatus, Faculty faculty, String password, String securityQuestion, String secureAnswer) {
 
-		super(userID,name,faculty,password,securityQuestion,secureAnswer);
+		super(userID,name,accountStatus,faculty,password,securityQuestion,secureAnswer);
 		createCampList = new ArrayList<>();
 	}
 
@@ -444,7 +445,7 @@ public class Staff extends Account {
 	public void replyEnquiry()
 	{
 
-		if(this.getCreateCampList()==null)
+		if(this.getCreateCampList().isEmpty())
 		{
 			System.out.println("Sorry, there is no camp created.");
 			return;
@@ -605,11 +606,36 @@ public class Staff extends Account {
 		}
 	}
 
-	/**
-	 * 
-	 * @param camp
-	 */
-	public void approveSuggestion(Camp camp) {
+
+	public void approveSuggestion() {
+		if(this.getCreateCampList().isEmpty())
+		{
+			System.out.println("Sorry, there is no camp created.");
+			return;
+		}
+		int index=1;
+		int campChoice;
+		Camp camp;
+
+		for(Camp Ccamp: this.getCreateCampList())
+		{
+			System.out.println(index+") "+Ccamp.getCampName());
+			index++;
+		}
+		while (true) {
+			System.out.println("Please select which camp suggestion you want to view: (0 Quit)");
+			campChoice = sc.nextInt();
+			if (campChoice == 0) return;
+			else {
+				camp = this.getCreateCampList().get(campChoice - 1);
+				if (camp == null) {
+					System.out.println("Invalid input! Please enter again.");
+					continue;
+				}
+				break;
+			}
+		}
+
 		ArrayList<Suggestion> suggestionList = camp.getSuggestionList();
 		ArrayList<Suggestion> pendingSuggestionList = new ArrayList<Suggestion>();
 		Suggestion currentSuggestion;
@@ -724,19 +750,44 @@ public class Staff extends Account {
 
 
 	public void start() {
-		System.out.println("Welcome "+this.getUserID()+"! What do you want to do today?");
-		System.out.println("---Camp---");
-		System.out.println("1) View Camp List");
-		System.out.println("2) View Camp Created");
-		System.out.println("3) Create Camp");
-		System.out.println("4) Edit Camp");
-		System.out.println("5) Delete Camp");
-		System.out.println();
-		System.out.println("---Suggestion---");
-		System.out.println("6) view Suggestions");
-		System.out.println("6) ");
-		System.out.println("---Enquiry---");
-		System.out.println("---Report---");
+		int choice;
+		while (true)
+		{
+			System.out.println("Welcome "+this.getUserID()+"! What do you want to do today?");
+			System.out.println("---Camp---");
+			System.out.println("1) View Camp List");
+			System.out.println("2) View Camp Created");
+			System.out.println("3) Create Camp");
+			System.out.println("4) Edit Camp");
+			System.out.println("5) Delete Camp");
+			System.out.println("---Suggestion---");
+			System.out.println("6) View Suggestions");
+			System.out.println("7) Process Suggestions");
+			System.out.println("---Enquiry---");
+			System.out.println("8) View Enquiries");
+			System.out.println("9) Reply Enquiries");
+			System.out.println("---Report---");
+			System.out.println("10) Generate Camp Report");
+			System.out.println("11) Generate Performance Report");
+			System.out.println("12) Generate Enquiry Report");
+			System.out.println("=======================================");
+			System.out.println("0) QUIT");
+
+			choice=sc.nextInt();
+			switch (choice)
+			{
+				case 0: return;
+				case 1: viewCampList();
+				case 2: viewCampCreated();
+				case 3: addCamp();
+				case 4: editCamp();
+				case 5: deleteCamp();
+				case 6: viewSuggestion();
+				case 7: approveSuggestion();
+
+			}
+		}
+
 	}
 
 }
