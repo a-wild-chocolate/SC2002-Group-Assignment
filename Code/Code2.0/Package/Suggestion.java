@@ -22,7 +22,7 @@ public class Suggestion //extends Message
 
 
 
-	private final String FILE_NAME = "suggestions";
+	//private final String FILE_NAME = "suggestions";
 
 
 // constructor
@@ -34,7 +34,6 @@ public class Suggestion //extends Message
 		this.dealer=null;
 		this.status=status;
 		this.suggestionId=suggestionNum;
-		writeToSuggestionCSV();
 		suggestionNum++;
 
 	}
@@ -99,7 +98,7 @@ public class Suggestion //extends Message
 
 
 //CSV method
-	public void writeToSuggestionCSV()
+	/*public void writeToSuggestionCSV()
 	{
 		String header = "Suggestion ID,Sender Name,Camp Name,Status,Dealer Name,Content\n";
         CSVReadWriter csvModifier = new CSVReadWriter(FILE_NAME,header);
@@ -152,7 +151,7 @@ public class Suggestion //extends Message
 			statusStr, 
 			dealerName, 
 			contentStr);
-	}
+	}*/
 //methods
 //print the content of the suggestion
 	//move to new class SuggestionPrinter -single responsibility principle
