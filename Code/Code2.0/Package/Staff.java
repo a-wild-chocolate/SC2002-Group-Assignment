@@ -1,4 +1,5 @@
 package Package;
+import java.awt.image.PackedColorModel;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,9 +15,9 @@ public class Staff extends Account {
 	private Scanner sc = new Scanner(System.in);
 	//private Converter cv = new Converter();
 	//constructor
-	public Staff(String userID, String name, Faculty faculty, String password, String securityQuestion, String secureAnswer) {
+	public Staff(String userID, String name,AccountStatus accountStatus, Faculty faculty, String password, String securityQuestion, String secureAnswer) {
 
-		super(userID,name,faculty,password,securityQuestion,secureAnswer);
+		super(userID,name,accountStatus,faculty,password,securityQuestion,secureAnswer);
 		createCampList = new ArrayList<>();
 	}
 
