@@ -31,7 +31,7 @@ public class LoginAccount {
         CSVReadWriter csvModifier = new CSVReadWriter(FILE_NAME);
         Map<String, String[]> users = csvModifier.readUsersFromCSV();
         if (users.containsKey(inputID)) {
-            String storedPasswordHash = users.get(inputID)[3]; // Assuming the password hash is the fourth element
+            String storedPasswordHash = users.get(inputID)[4]; // Assuming the password hash is the fourth element
             return storedPasswordHash.equals(hashPassword(inputPassword));
         }
         return false;
@@ -42,7 +42,7 @@ public class LoginAccount {
             CSVReadWriter csvModifier = new CSVReadWriter(FILE_NAME);
             Map<String, String[]> users = csvModifier.readUsersFromCSV();
             String[] userDetails = users.get(inputID);
-            return new AccountInformation(inputID, userDetails[1], Faculty.valueOf(userDetails[2]), userDetails[3], userDetails[4], userDetails[5]);
+            return new AccountInformation(inputID, userDetails[1],  AccountStatus.valueOf(userDetails[2]),Faculty.valueOf(userDetails[3]),userDetails[4], userDetails[5], userDetails[6]);
         } else {
             return null; // If userID and password do not match, return null
         }

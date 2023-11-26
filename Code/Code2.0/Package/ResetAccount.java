@@ -46,7 +46,7 @@ public class ResetAccount {
             Map<String, String[]> users = csvModifier.readUsersFromCSV();
             //users.get(inputID)[3] = hashedNewPassword; // Assuming password is the fourth element
             String[] userDetails = users.get(inputID);
-            AccountInformation modifyAccount = new AccountInformation(inputID, userDetails[1], Faculty.valueOf(userDetails[2]), userDetails[3], userDetails[4], userDetails[5]);
+            AccountInformation modifyAccount = new AccountInformation(inputID, userDetails[1],  AccountStatus.valueOf(userDetails[2]),Faculty.valueOf(userDetails[3]),userDetails[4], userDetails[5], userDetails[6]);
             modifyAccount.setPassword(newPassword);
             return true;
             

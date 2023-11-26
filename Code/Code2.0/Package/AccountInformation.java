@@ -8,13 +8,14 @@ import java.security.NoSuchAlgorithmException;
 public class AccountInformation {
     private String userID;
     private String name;
+    private AccountStatus accountStatus;
     private Faculty faculty;
     private String password;
     private String securityQuestion;
     private String secureAnswer;
     private final String FILE_NAME = "accounts";
 
-    public AccountInformation(String userID, String name, Faculty faculty, String password, String securityQuestion, String secureAnswer) {
+    public AccountInformation(String userID, String name,AccountStatus accountStatus, Faculty faculty, String password, String securityQuestion, String secureAnswer) {
             System.out.println("UserID: " + userID);
                 System.out.println("write file path : "+System.getProperty("user.dir"));
 
@@ -22,6 +23,7 @@ public class AccountInformation {
             System.out.println("this UserID: " + this.userID);
 
         this.name = name;
+        this.accountStatus=accountStatus;
         this.faculty = faculty;
         this.password = password;
         this.securityQuestion = securityQuestion;
@@ -117,8 +119,8 @@ public class AccountInformation {
 
     // Main method for testing purposes
     public static void main(String[] args) {
-        AccountInformation aaa = new AccountInformation("111", "111", Faculty.ADM, "111", "111", "111");
-		AccountInformation bbb = new AccountInformation("222", "222", Faculty.CEE, "222", "222", "222");
+        AccountInformation aaa = new AccountInformation("111", "111",AccountStatus.STUDENT, Faculty.ADM, "111", "111", "111");
+		AccountInformation bbb = new AccountInformation("222", "222",AccountStatus.STUDENT,Faculty.CEE, "222", "222", "222");
         LoginAccount ccc = new LoginAccount("111", "111");
         ResetAccount ddd = new ResetAccount ("111", "111");
 		LoginAccount ggg = new LoginAccount("111", "222");

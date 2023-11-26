@@ -9,8 +9,8 @@ public abstract class Student extends Account {
 	private Camp committeeStatus;
 	private ArrayList<LocalDate> daysOccupied;
 
-	public Student(String userID, String name, Faculty faculty, String password, String securityQuestion, String secureAnswer) {
-		super(userID, name, faculty, password, securityQuestion, secureAnswer);
+	public Student(String userID, String name,AccountStatus accountStatus, Faculty faculty, String password, String securityQuestion, String secureAnswer) {
+		super(userID, name,accountStatus, faculty, password, securityQuestion, secureAnswer);
 		this.point = 0;
 		//this.daysOccupied=new ArrayList<LocalDate>();
 		committeeStatus = null;

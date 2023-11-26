@@ -16,8 +16,8 @@ public class CommitteeMember extends Student {
 	}
 
 //constructor
-	public CommitteeMember(String userID, String name, Faculty faculty, String password, String securityQuestion, String secureAnswer) {
-		super(userID,name,faculty,password,securityQuestion,secureAnswer);
+	public CommitteeMember(String userID, String name, AccountStatus accountStatus,Faculty faculty, String password, String securityQuestion, String secureAnswer) {
+		super(userID,name,accountStatus,faculty,password,securityQuestion,secureAnswer);
 		suggestionList= new ArrayList<Suggestion>();
 	}
 

@@ -11,8 +11,8 @@ public class Attendee extends Student {
 	private ArrayList<Enquiry> enquiryList;
 	Scanner sc = new Scanner(System.in);
 	Displayer campDisplayer= new RestrictedDisplay();
-	public Attendee(String userID, String name, Faculty faculty, String password, String securityQuestion, String secureAnswer) {
-		super(userID,name,faculty,password,securityQuestion,secureAnswer);
+	public Attendee(String userID, String name,AccountStatus accountStatus, Faculty faculty, String password, String securityQuestion, String secureAnswer) {
+		super(userID,name,accountStatus,faculty,password,securityQuestion,secureAnswer);
 		attendeeStatus = new ArrayList<Camp>();
 		withdrawStatus = new ArrayList<Camp>();
 		enquiryList = new ArrayList<Enquiry>();
