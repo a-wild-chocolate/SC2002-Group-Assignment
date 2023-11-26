@@ -361,15 +361,65 @@ public class CommitteeMember extends Student {
 	}
 
 	public void generateReport() {
-		// TODO - implement CommitteeMember.generateReport
-		throw new UnsupportedOperationException();
+			CampReport campReport=new CampReport(this.getCommitteeStatus());
+			campReport.GenerateReport(this.getCommitteeStatus());
+			System.out.println("Successfully generated. Return...");
+
+
 	}
 
 
 
 	public void start() {
-		// TODO - implement CommitteeMember.start
-		throw new UnsupportedOperationException();
+		if(this.getCommitteeStatus()==null)
+		{
+			System.out.println("Sorry, you did not oversee any camp. Return to last page...");
+		}
+		else
+		{
+			int choice;
+			while (true)
+			{
+				System.out.println("Welcome "+this.getUserID()+"! What do you want to do today?");
+				System.out.println("---Camp---");
+				System.out.println("1) View Camp List");
+				System.out.println("2) View Managed Camp");
+				System.out.println("---Suggestion---");
+				System.out.println("3) Submit Suggestions");
+				System.out.println("4) View Suggestions");
+				System.out.println("5) Edit Suggestions");
+				System.out.println("6) Delete Suggestions");
+				System.out.println("---Enquiry---");
+				System.out.println("7) View Enquiries");
+				System.out.println("8) Reply Enquiries");
+				System.out.println("=======================================");
+				System.out.println("0) QUIT");
+				choice=sc.nextInt();
+				switch (choice)
+				{
+					case 1: viewCampList();
+					break;
+					case 2: viewCampManagedDetail();
+					break;
+					case 3: submitSuggestion();
+					break;
+					case 4: viewSuggestion();
+					break;
+					case 5: editSuggestion();
+					break;
+					case 6: deleteSuggestion();
+					break;
+					case 7: viewEnquiry();
+					break;
+					case 8: replyEnquiry();
+					break;
+					case 0: return;
+					default: System.out.println("Invalid input. Please enter again.");
+				}
+			}
+
+
+		}
 	}
 
 	//CSV modifier
