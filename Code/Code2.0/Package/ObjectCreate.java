@@ -22,23 +22,37 @@ public class ObjectCreate {
         return new Student(onlyId,);
     }*/
 
-//    public static Staff staffObject(String onlyId) throws IOException, NoSuchAlgorithmException{
-//        CSVReadWriter accountReader =  new CSVReadWriter("accounts");
-//        Map<String, String[]> accountString = accountReader.readUsersFromCSV();
-//        String[] accountDetail = accountString.get(onlyId);
-//        CSVReadWriter staffReader =  new CSVReadWriter("staffList");
-//        Map<String, String[]> staffString = accountReader.readUsersFromCSV();
-//        String[] studentDetail = staffString.get(onlyId);
-//        CSVReadWriter camperReader =  new CSVReadWriter("campList");
-//        Map<String, String[]> campString = camperReader.readUsersFromCSV();
-//        String[] CampDetail = campString.get(accountDetail[3]);
-//        return new Staff(onlyId,accountDetail[1],AccountStatus.valueOf(accountDetail[2]),Faculty.valueOf(accountDetail[3]),accountDetail[4],accountDetail[5],accountDetail[6]);
-//    }
-//
+    public static Staff staffObject(String onlyId) throws IOException, NoSuchAlgorithmException {
+        CSVReadWriter accountReader = new CSVReadWriter("accounts");
+        Map<String, String[]> accountString = accountReader.readUsersFromCSV();
+        String[] accountDetail = accountString.get(onlyId);
+        ArrayList<Camp> createCampList = new ArrayList<>();
+        for (Camp camp : CampList.campList) {
+            if (camp.getStaffInCharge() != null && camp.getStaffInCharge().getUserID().equals(onlyId)) {
+                createCampList.add(camp);
+            }
+        }
+        return new Staff(onlyId, accountDetail[1], AccountStatus.valueOf(accountDetail[2]), Faculty.valueOf(accountDetail[3]), accountDetail[4], accountDetail[5], accountDetail[6], createCampList);
+    }
+}
+/*
+    public static Attendee attendeeObject(String onlyId) throws IOException, NoSuchAlgorithmException{
+        CSVReadWriter accountReader =  new CSVReadWriter("accounts");
+        Map<String, String[]> accountString = accountReader.readUsersFromCSV();
+        String[] accountDetail = accountString.get(onlyId);
+        ArrayList<Camp> createCampList = new ArrayList<>();
+        for(Camp camp: CampList.campList){
+            if (camp.getStaffInCharge() != null && camp.getStaffInCharge().getUserID().equals(onlyId)) {
+                createCampList.add(camp);
+            }
+        }
 
+        return new Staff(onlyId,accountDetail[1],AccountStatus.valueOf(accountDetail[2]),Faculty.valueOf(accountDetail[3]),accountDetail[4],accountDetail[5],accountDetail[6],createCampList);
+    }
 
     public Attendee readAttendeeById(String onlyId) throws IOException {
         String FILE_NAME = "attendeeList.csv"; // 文件名可以根据需要调整
+
         Path filePath = Paths.get(FILE_NAME);
         if (Files.notExists(filePath)) {
             return null; // 文件不存在
@@ -219,7 +233,7 @@ public class ObjectCreate {
     }
 
     // 辅助方法，用于解析CSV字符串中的Camp信息
-    private ArrayList<Camp> parseCamps(String data) {
+    private ArrayList<Camp> parseCamps(String data) throws IOException{
         // 解析逻辑，根据您的CSV格式来实现
         // 假设活动名称之间用分号分隔
         ArrayList<Camp> camps = new ArrayList<>();
@@ -244,4 +258,4 @@ public class ObjectCreate {
         return enquiries;
     }
 
-}
+}*/
