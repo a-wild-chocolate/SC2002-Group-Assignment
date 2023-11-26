@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class CAMsApp {
     public static void main(String[] args)
     {
+        //TODO: LoadObjects
         LoginAccount loginAccountS;
         String id;
         String password;
@@ -27,11 +28,11 @@ public class CAMsApp {
             password=sc.nextLine();
             loginAccountS=new LoginAccount(id,password);
             user=loginAccountS.loginAccount(); //TODO: update loginAccount
-            if(user instanceof Staff)
+            if(user.getAccountStatus()==AccountStatus.STAFF)
             {
                 ((Staff) user).start();
             }
-            else if(user instanceof Student)
+            else if(user.getAccountStatus()==AccountStatus.STUDENT)
             {
 
                 while (true)

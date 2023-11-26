@@ -30,6 +30,7 @@ public class AccountInformation {
         this.secureAnswer = secureAnswer;
     }
 
+    public AccountStatus getAccountStatus() {return accountStatus;}
 
     public String getUserID() {
         return userID;
