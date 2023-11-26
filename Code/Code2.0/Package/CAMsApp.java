@@ -25,7 +25,7 @@ public class CAMsApp {
         String id;
         String password;
         int choice;
-        Account user;
+        AccountInformation user;
         Scanner sc = new Scanner(System.in);
         ArrayList<Camp> campList1 = new ArrayList<>();
         Staff staff1 = new Staff(
@@ -232,7 +232,7 @@ public class CAMsApp {
             System.out.println("0) Quit");
             choice=sc.nextInt();
             if(choice==0) return;
-
+            sc.nextLine();
             System.out.println("---------Login---------");
             System.out.println("Enter your ID:");
             id=sc.nextLine();
@@ -240,7 +240,7 @@ public class CAMsApp {
             password=sc.nextLine();
             loginAccountS=new LoginAccount(id,password);
             try {
-            user=(Account)loginAccountS.loginAccount();
+            user=loginAccountS.loginAccount();
                 if (password.equals("password")){
                     System.out.println("Enter reset your password:");
                     password=sc.nextLine();

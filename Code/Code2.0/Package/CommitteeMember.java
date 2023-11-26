@@ -82,6 +82,7 @@ public class CommitteeMember extends Student {
 		System.out.println("0) Quit");
 		int choice;
 		choice=sc.nextInt();
+		sc.nextLine();
 		switch (choice)
 		{
 			case 2:
@@ -132,6 +133,7 @@ public class CommitteeMember extends Student {
 		{
 			System.out.println("Please enter the id of enquiry you want to edit: (-1 Quit)");
 			id=sc.nextInt();
+			sc.nextLine();
 			if(id==-1) return;
 			//find enquiry
 			for(int i =0;i<this.getCommitteeStatus().getEnquiryList().size();i++)
@@ -159,6 +161,7 @@ public class CommitteeMember extends Student {
 				System.out.println("2) Enter again");
 				System.out.println("0) Quit");
 				choice=sc.nextInt();
+				sc.nextLine();
 				if(choice==0) return;
 				if(choice==2) continue;
 				if(choice==1)
@@ -269,6 +272,7 @@ public class CommitteeMember extends Student {
 		{
 			System.out.println("Which suggestion do you want to edit? Please enter the number (0:Quit)");
 			choice=sc.nextInt();
+			sc.nextLine();
 			if(choice==0) return;
 			if(choice>=availableSuggestions.size())
 			{
@@ -341,6 +345,7 @@ public class CommitteeMember extends Student {
 		{
 			System.out.println("Which suggestion do you want to delete? Please enter the number (0:Quit)");
 			choice=sc.nextInt();
+			sc.nextLine();
 			if(choice==0) return;
 			if(choice>=availableSuggestions.size())
 			{
@@ -400,6 +405,7 @@ public class CommitteeMember extends Student {
 				System.out.println("=======================================");
 				System.out.println("0) QUIT");
 				choice=sc.nextInt();
+				sc.nextLine();
 				switch (choice)
 				{
 					case 1: viewCampList();

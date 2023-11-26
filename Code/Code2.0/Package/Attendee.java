@@ -96,6 +96,7 @@ public class Attendee extends Student {
 				System.out.println("0) Quit");
 				System.out.println("1) Register other camp");
 				choice=sc.nextInt();
+				sc.nextLine();
 				if(choice==0) return;
 				registerCamp=null;
 				continue;
@@ -194,6 +195,7 @@ public class Attendee extends Student {
 				System.out.println("0) Quit");
 				System.out.println("1) Register other camp");
 				choice=sc.nextInt();
+				sc.nextLine();
 				if(choice==0) return;
 				registerCamp=null;
 				continue;
@@ -205,6 +207,7 @@ public class Attendee extends Student {
 				System.out.println("0) Quit");
 				System.out.println("1) Register other camp");
 				choice=sc.nextInt();
+				sc.nextLine();
 				if(choice==0) return;
 				registerCamp=null;
 				continue;
@@ -267,6 +270,7 @@ public class Attendee extends Student {
 		System.out.println("0) Quit");
 		int choice;
 		choice=sc.nextInt();
+		sc.nextLine();
 		switch (choice)
 		{
 			case 1:
@@ -329,6 +333,7 @@ public class Attendee extends Student {
 					System.out.println("0) Confirm");
 					System.out.println("1) Enter again");
 					choice=sc.nextInt();
+					sc.nextLine();
 					if(choice==0)
 					{
 						//create new enquiry
@@ -394,6 +399,7 @@ public class Attendee extends Student {
 		{
 			System.out.println("Please enter the index of the enquiry you want to edit:(0 Quit)");
 			enquiryChoice=sc.nextInt();
+			sc.nextLine();
 			//quit check
 			if (enquiryChoice==0) return;
 			//invalid input check
@@ -413,6 +419,7 @@ public class Attendee extends Student {
 					System.out.println("0) Confirm");
 					System.out.println("1) Enter again");
 					choice=sc.nextInt();
+					sc.nextLine();
 					if(choice==0)
 					{
 						//update camp enquiry list and user's enquiry list
@@ -476,6 +483,7 @@ public class Attendee extends Student {
 		{
 			System.out.println("Please enter the index of the enquiry you want to edit:(0 Quit)");
 			enquiryChoice=sc.nextInt();
+			sc.nextLine();
 			//quit check
 			if (enquiryChoice==0) return;
 			//invalid input check
@@ -490,6 +498,7 @@ public class Attendee extends Student {
 				System.out.println("1) Confirm");
 				System.out.println("0) Quit");
 				choice=sc.nextInt();
+				sc.nextLine();
 
 				if(choice==0) return;
 				if(choice==1)
@@ -550,6 +559,7 @@ public class Attendee extends Student {
 		while(true)
 		{
 			choice=sc.nextInt();
+			sc.nextLine();
 			if(choice==0) break;
 			//check input error
 			if(choice <0 || choice>this.attendeeStatus.size())
@@ -570,6 +580,7 @@ public class Attendee extends Student {
 				System.out.println("Warning! You are withdrawing "+ removedCamp.getCampName()+ ". \n Please confirm to continue: 1) Yes 2) No");
 				int confirm;
 				confirm=sc.nextInt();
+				sc.nextLine();
 				if(confirm==0) return;
 				//remove camp date from days occupied
 				LocalDate removedDate;
@@ -671,6 +682,7 @@ public class Attendee extends Student {
 			System.out.println("=======================================");
 			System.out.println("0) QUIT");
 			choice=sc.nextInt();
+			sc.nextLine();
 			switch (choice)
 			{
 				case 1: viewCampList();

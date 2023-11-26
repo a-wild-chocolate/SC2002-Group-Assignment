@@ -23,6 +23,7 @@ public class SearchApp {
             System.out.println("1) AND");
             System.out.println("2) OR");
             choice=sc.nextInt();
+            sc.nextLine();
             if(choice!=1 && choice!=2)
             {
                 System.out.println("Invalid Input!!! Please enter again:");
@@ -43,6 +44,7 @@ public class SearchApp {
                     System.out.println("8) User Group (faculty);");
                     System.out.println("0) Quit;");
                     filterChoice=sc.nextInt();
+                    sc.nextLine();
                     switch (filterChoice)
                     {
                         case 1:
@@ -100,6 +102,7 @@ public class SearchApp {
                     System.out.println("8) User Group (faculty);");
                     System.out.println("0) Quit;");
                     filterChoice=sc.nextInt();
+                    sc.nextLine();
                     switch (filterChoice)
                     {
                         case 1:

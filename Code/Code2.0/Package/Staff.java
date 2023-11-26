@@ -88,6 +88,7 @@ public class Staff extends Account {
 		System.out.println("Please enter the number of the faculty to select the user group of the camp (0 to finish)");
 		while(true){
 			int userChioce = sc.nextInt();
+			sc.nextLine();
 			//quit
 			if (userChioce==0) break;
 			//input check
@@ -109,12 +110,14 @@ public class Staff extends Account {
 		do{
 			System.out.println("Please enter the number of the total attendee slot (exclude committee slot)");
 			totalSlot=sc.nextInt();
+			sc.nextLine();
 			if (totalSlot<=0) System.out.println("Invalid input! Please input a positive number.");
 		}while(totalSlot<=0);
 //get committee slot
 		do{
 			System.out.println("Please enter the number of the committee slot, it should be less than 10");
 			committeeSlot=sc.nextInt();
+			sc.nextLine();
 			if(committeeSlot>10||committeeSlot<0) System.out.println("Invalid Input! Please input again");
 		}while(committeeSlot>10||committeeSlot<0);
 //get descriptio
@@ -126,6 +129,7 @@ public class Staff extends Account {
 			System.out.println("0) No");
 			System.out.println("1) Yes");
 			int v = sc.nextInt();
+			sc.nextLine();
 			//input check
 			if (v != 0 || v != 1) {
 				System.out.println("Invalid input!!! Please enter agian!");
@@ -166,6 +170,7 @@ public class Staff extends Account {
 				System.out.printf(i+1+") "+createCampList.get(i).getCampName()+"\n");
 			}
 			choiceCamp=sc.nextInt();
+			sc.nextLine();
 			if (choiceCamp==0) break;
 			currentCamp=createCampList.get(choiceCamp-1);
 			Camp currentCampB=createCampList.get(choiceCamp-1);
@@ -175,6 +180,7 @@ public class Staff extends Account {
 				System.out.printf("Which part of camp do you want to edit?\n");
 				System.out.printf("1) Camp name\n2) Camp date\n3)Camp registration date\n4) Total Slot \n 5) Committee Slot\n6) Description\n7) Visibility\n8)Location\n9)User Group\n0) Quit");
 				choicePart=sc.nextInt();
+				sc.nextLine();
 				switch (choicePart) {
 					//Camp name
 					case 1:
@@ -206,6 +212,7 @@ public class Staff extends Account {
 					case 4:
 						System.out.println("Please enter new camp slot:");
 						int Tslot= sc.nextInt();
+						sc.nextLine();
 						currentCamp.setTotalSlot(Tslot);
 						break;
 					//Camp Registration Slot
@@ -214,6 +221,7 @@ public class Staff extends Account {
 						{
 							System.out.println("Please enter new committee slot:");
 							int Cslot= sc.nextInt();
+							sc.nextLine();
 							if(Cslot>10||Cslot<=0)
 							{
 								System.out.println("Invalid input! Please enter agian.");
@@ -242,6 +250,7 @@ public class Staff extends Account {
 							System.out.println("0) No");
 							System.out.println("1) Yes");
 							int v = sc.nextInt();
+							sc.nextLine();
 							//input check
 							if (v != 0 || v != 1) {
 								System.out.println("Invalid input!!! Please enter agian!");
@@ -287,6 +296,7 @@ public class Staff extends Account {
 						System.out.println("Please enter the number of the faculty to select the user group of the camp (0 to finish)");
 						while(true){
 							int userChioce = sc.nextInt();
+							sc.nextLine();
 							//quit
 							if (userChioce==0) break;
 							//input check
@@ -331,6 +341,7 @@ public class Staff extends Account {
 		while (true)
 		{
 			choice=sc.nextInt();
+			sc.nextLine();
 			//input check
 			if(choice==0) return;
 			if(choice<0 || choice>this.createCampList.size())
@@ -348,6 +359,7 @@ public class Staff extends Account {
 			name=createCampList.get(choice-1).getCampName();
 			System.out.println("Warning! You are deleting"+name+"camp. Please Confirm! 0:YES 1:NO");
 			confirm=sc.nextInt();
+			sc.nextLine();
 			if(confirm==1) return;
 			CampList.deleteCamp(createCampList.get(choice-1).getCampName());
 			Camp deleteCamp=createCampList.get(choice-1);
@@ -373,6 +385,7 @@ public class Staff extends Account {
 			System.out.println("1) Quit; ");
 			System.out.println("2) Filter; ");
 			choice = sc.nextInt();
+			sc.nextLine();
 			if(choice!=1 && choice !=2) System.out.println("Invalid input! Please input again!");
 			else if (choice ==2) {
 				campDisplayer.display(SearchApp.searchApp(CampList.getCampList()),this);
@@ -391,6 +404,7 @@ public class Staff extends Account {
 			System.out.println("1) Quit; ");
 			System.out.println("2) Filter; ");
 			choice = sc.nextInt();
+			sc.nextLine();
 			if(choice!=1 && choice !=2) System.out.println("Invalid input! Please input again!");
 			else if (choice ==2)
 			{
@@ -423,6 +437,7 @@ public class Staff extends Account {
 			while (true)
 			{
 				choiceC=sc.nextInt();
+				sc.nextLine();
 				//quit check
 				if(choiceC==0)return;
 				//iput check
@@ -455,6 +470,7 @@ public class Staff extends Account {
 					System.out.println("1) Yes");
 					System.out.println("0) Quit");
 					choice=sc.nextInt();
+					sc.nextLine();
 					//back to start
 					if(choice==0 )return;
 					//back to loop start
@@ -488,6 +504,7 @@ public class Staff extends Account {
 		{
 			System.out.println("Please select which camp enquiry you want to view: (0 Quit)");
 			campChoice=sc.nextInt();
+			sc.nextLine();
 			if(campChoice==0) return;
 			else {
 				currentCamp=this.getCreateCampList().get(campChoice-1);
@@ -516,6 +533,7 @@ public class Staff extends Account {
 				while (true) {
 					System.out.println("Please enter the id of enquiry you want to edit: (-1 Quit)");
 					id = sc.nextInt();
+					sc.nextLine();
 					if (id == -1) return;
 					//find enquiry
 					for (int i = 0; i < currentCamp.getEnquiryList().size(); i++) {
@@ -538,6 +556,7 @@ public class Staff extends Account {
 						System.out.println("1) Confirm");
 						System.out.println("0) Quit");
 						choice = sc.nextInt();
+						sc.nextLine();
 						if (choice == 0) return;
 						if (choice == 2) continue;
 						if (choice == 1) {
@@ -589,6 +608,7 @@ public class Staff extends Account {
 			while (true)
 			{
 				choiceC=sc.nextInt();
+				sc.nextLine();
 				//quit check
 				if(choiceC==0)return;
 				//iput check
@@ -619,6 +639,7 @@ public class Staff extends Account {
 					System.out.println("1) Yes");
 					System.out.println("0) Quit");
 					choice=sc.nextInt();
+					sc.nextLine();
 					//back to start
 					if(choice==0 )return;
 					//back to loop start
@@ -650,6 +671,7 @@ public class Staff extends Account {
 		while (true) {
 			System.out.println("Please select which camp suggestion you want to view: (0 Quit)");
 			campChoice = sc.nextInt();
+			sc.nextLine();
 			if (campChoice == 0) return;
 			else {
 				camp = this.getCreateCampList().get(campChoice - 1);
@@ -700,6 +722,7 @@ public class Staff extends Account {
 			do{
 				System.out.println("Please enter the index of suggestion you want to process: (0 Quit)");
 				choice=sc.nextInt();
+				sc.nextLine();
 				//TODO: Error check
 				currentSuggestion=pendingSuggestionList.get(choice-1);
 				//Quit
@@ -708,6 +731,7 @@ public class Staff extends Account {
 				else {
 					System.out.println("You want to approve or reject it? (1 for approve, 0 for reject)");
 					approve=sc.nextInt();
+					sc.nextLine();
 					if(approve==0)
 					{
 						currentSuggestion.setStatus(SuggestionStatus.rejected);
@@ -756,6 +780,7 @@ public class Staff extends Account {
 				{
 					System.out.println("Do you want to process more suggestion? 1) Yes 0) Quit");
 					continueChoice=sc.nextInt();
+					sc.nextLine();
 					if(continueChoice!=1 && continueChoice!=0) System.out.println("Invalid input. Please enter again.");
 					else break;
 				}
@@ -789,6 +814,7 @@ public class Staff extends Account {
 			while (true) {
 				System.out.println("Please select which camp report you want to generate : (0 Quit)");
 				campChoice = sc.nextInt();
+				sc.nextLine();
 				if (campChoice == 0) return;
 				else {
 					camp = this.getCreateCampList().get(campChoice - 1);
@@ -805,6 +831,7 @@ public class Staff extends Account {
 			System.out.println("0) Continue");
 			int c;
 			c= sc.nextInt();
+			sc.nextLine();
 			if(c==1) return;
 			//else continue
 		}
@@ -834,6 +861,7 @@ public class Staff extends Account {
 			while (true) {
 				System.out.println("Please select which camp report you want to generate : (0 Quit)");
 				campChoice = sc.nextInt();
+				sc.nextLine();
 				if (campChoice == 0) return;
 				else {
 					camp = this.getCreateCampList().get(campChoice - 1);
@@ -850,6 +878,7 @@ public class Staff extends Account {
 			System.out.println("0) Continue");
 			int c;
 			c= sc.nextInt();
+			sc.nextLine();
 			if(c==1) return;
 			//else continue
 		}
@@ -878,6 +907,7 @@ public class Staff extends Account {
 			while (true) {
 				System.out.println("Please select which camp report you want to generate : (0 Quit)");
 				campChoice = sc.nextInt();
+				sc.nextLine();
 				if (campChoice == 0) return;
 				else {
 					camp = this.getCreateCampList().get(campChoice - 1);
@@ -894,6 +924,7 @@ public class Staff extends Account {
 			System.out.println("0) Continue");
 			int c;
 			c= sc.nextInt();
+			sc.nextLine();
 			if(c==1) return;
 			//else continue
 		}
@@ -983,6 +1014,7 @@ public class Staff extends Account {
 			System.out.println("0) QUIT");
 
 			choice=sc.nextInt();
+			sc.nextLine();
 			switch (choice)
 			{
 				case 0: return;
