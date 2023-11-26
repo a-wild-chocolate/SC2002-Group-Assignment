@@ -26,12 +26,13 @@ public class Attendee extends Student {
 		enquiryList = new ArrayList<Enquiry>();
 	}
 
-	public Attendee (String userID, String name,AccountStatus accountStatus, Faculty faculty, String password, String securityQuestion, String secureAnswer,ArrayList<Camp>, ArrayList<Camp> withdrawStatus){
+	public Attendee (String userID, String name,AccountStatus accountStatus, Faculty faculty, String password, String securityQuestion, String secureAnswer,ArrayList<Camp>attendeeStatus, ArrayList<Camp> withdrawStatus, ArrayList<Enquiry> enquiryList){
 		super(userID,name,accountStatus,faculty,password,securityQuestion,secureAnswer);
-		attendeeStatus = new ArrayList<Camp>();
-		withdrawStatus = new ArrayList<Camp>();
-		enquiryList = new ArrayList<Enquiry>();
+		this.attendeeStatus = attendeeStatus;
+		this.withdrawStatus = withdrawStatus;
+		this.enquiryList = enquiryList;
 	}
+
 
 
 

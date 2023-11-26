@@ -38,6 +38,15 @@ public class Suggestion //extends Message
 		suggestionNum++;
 
 	}
+	public Suggestion(String content,CommitteeMember sender,Camp camp,SuggestionStatus status,int suggestionNum, Staff dealer)
+	{
+		this.content=content;
+		this.sender=sender;
+		this.camp=camp;
+		this.dealer=dealer;
+		this.status=status;
+		this.suggestionId=suggestionNum;
+	}
 
 //get and set methods
 //content

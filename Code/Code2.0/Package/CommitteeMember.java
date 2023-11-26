@@ -29,6 +29,11 @@ public class CommitteeMember extends Student {
 		suggestionList= new ArrayList<Suggestion>();
 	}
 
+	public CommitteeMember(String userID, String name, AccountStatus accountStatus,Faculty faculty, String password, String securityQuestion, String secureAnswer,ArrayList<Suggestion> suggestionList) {
+		super(userID,name,accountStatus,faculty,password,securityQuestion,secureAnswer);
+		this.suggestionList= suggestionList;
+	}
+
 //get and set
 
 	/**

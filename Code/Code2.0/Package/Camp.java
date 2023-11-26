@@ -17,6 +17,7 @@ public class Camp extends CampInformation {
 	private ArrayList<Suggestion> suggestionList;
 	private Boolean visibility; //on/off visible to students. Different from user group.
 	private ArrayList<Student> studentList;
+	private ArrayList<Student> committeeMemberList;
 	private int remainSlot;
 	private final String FILE_NAME = "campList";
 
@@ -30,7 +31,7 @@ public class Camp extends CampInformation {
 		this.committeeMemberList = committeeMemberList;
 	}
 
-	private ArrayList<Student> committeeMemberList;
+
 
 	public Camp(String campName, LocalDate date , LocalDate registrationDate, ArrayList<Faculty> userGroup , String location, int totalSlot, int committeeSlot, String description,Staff staffInCharge, Boolean visibility)
 	{
@@ -41,11 +42,11 @@ public class Camp extends CampInformation {
 		this.suggestionList=new ArrayList<Suggestion>();
 		this.studentList=new ArrayList<>();
 		this.remainSlot=totalSlot-this.studentList.size();
-		this.committeeMemberList=new ArrayList<>();
+		this.committeeMemberList=new ArrayList<Student>();
 		writeToCampListCSV();
 	}
 
-	public Camp(String campName, LocalDate date , LocalDate registrationDate, ArrayList<Faculty> userGroup , String location, int totalSlot, int committeeSlot, String description,Staff staffInCharge,ArrayList<Enquiry> enquiryList,ArrayList<Suggestion> suggestionList, Boolean visibility,ArrayList<Student> studentList)
+	public Camp(String campName, LocalDate date , LocalDate registrationDate, ArrayList<Faculty> userGroup , String location, int totalSlot, int committeeSlot, String description,Staff staffInCharge,ArrayList<Enquiry> enquiryList,ArrayList<Suggestion> suggestionList, Boolean visibility,ArrayList<Student> studentList, ArrayList<Student> committeeMemberList)
 	{
 		super(campName,date,registrationDate,userGroup,location,totalSlot,committeeSlot,description);
 		this.staffInCharge=staffInCharge;
@@ -54,7 +55,7 @@ public class Camp extends CampInformation {
 		this.suggestionList=suggestionList;
 		this.studentList=studentList;
 		this.remainSlot=totalSlot-this.studentList.size();
-		this.committeeMemberList=new ArrayList<>();
+		this.committeeMemberList= committeeMemberList;
 
 	}
 	public Staff getStaffInCharge() {
