@@ -462,7 +462,7 @@ public class CommitteeMember extends Student {
 		return accountRemoved;
 	}
 
-	private String toCsvString() {
+	public String toCsvString() {
 		String senderStr = (this.getUserID() == null) ? "" : this.getUserID();
 		String listOfSuggestions = suggestionList.stream()
 				.map(suggestion -> Integer.toString(suggestion.getSuggestionId()))

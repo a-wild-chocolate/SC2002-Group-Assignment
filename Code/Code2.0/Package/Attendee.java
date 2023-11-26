@@ -26,6 +26,13 @@ public class Attendee extends Student {
 		enquiryList = new ArrayList<Enquiry>();
 	}
 
+	public Attendee (String userID, String name,AccountStatus accountStatus, Faculty faculty, String password, String securityQuestion, String secureAnswer,ArrayList<Camp>attendeeStatus, ArrayList<Camp> withdrawStatus, ArrayList<Enquiry> enquiryList){
+		super(userID,name,accountStatus,faculty,password,securityQuestion,secureAnswer);
+		this.attendeeStatus = attendeeStatus;
+		this.withdrawStatus = withdrawStatus;
+		this.enquiryList = enquiryList;
+	}
+
 
 
 	public ArrayList<Camp> getAttendeeStatus() {return attendeeStatus;}
@@ -627,7 +634,7 @@ public class Attendee extends Student {
 		return accountRemoved;
 	}
 
-	private String toCsvString() {
+	public String toCsvString() {
 		String senderStr = (this.getUserID() == null) ? "" : this.getUserID();
 		String attendedCamps = attendeeStatus.stream()
 				.map(Camp::getCampName)
