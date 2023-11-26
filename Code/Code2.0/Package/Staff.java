@@ -131,6 +131,9 @@ public class Staff extends Account {
 //creat new camp
 		newCamp = new Camp(campName,campDate,registrationDate,userGroup,location,totalSlot,committeeSlot,description,this,visibility);
 		campList.addCamp(newCamp);
+		ArrayList<Camp> temp=this.getCreateCampList();
+		temp.add(newCamp);
+		this.setCreateCampList(temp);
 		System.out.println("Successfully create a new camp! The details show below:");
 		newCamp.printAllInformation();
 //return to staff start.
@@ -153,6 +156,7 @@ public class Staff extends Account {
 			choiceCamp=sc.nextInt();
 			if (choiceCamp==0) break;
 			currentCamp=createCampList.get(choiceCamp-1);
+			Camp currentCampB=createCampList.get(choiceCamp-1);
 			do{
 				System.out.println("Current camp information:");
 				currentCamp.printAllInformation();
@@ -292,6 +296,10 @@ public class Staff extends Account {
 				}
 			}while(choicePart!=6);
 			campList.editCamp(currentCamp,choiceCamp-1);
+			ArrayList<Camp> temp=createCampList;
+			temp.remove(currentCampB);
+			temp.add(currentCamp);
+			this.setCreateCampList(temp);
 		}while(choiceCamp!=0);
 		//Return to Start;
 	}
@@ -330,6 +338,11 @@ public class Staff extends Account {
 			confirm=sc.nextInt();
 			if(confirm==1) return;
 			CampList.deleteCamp(createCampList.get(choice-1).getCampName());
+			Camp deleteCamp=createCampList.get(choice-1);
+			ArrayList<Camp> temp;
+			temp=this.getCreateCampList();
+			temp.remove(deleteCamp);
+			this.setCreateCampList(temp);
 			System.out.println("Successfully delete "+name+" camp");
 			break;
 		}
