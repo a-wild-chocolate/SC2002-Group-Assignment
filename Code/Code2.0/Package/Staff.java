@@ -193,9 +193,21 @@ public class Staff extends Account {
 						break;
 					//Camp Registration Slot
 					case 5:
-						System.out.println("Please enter new committee slot:");
-						int Cslot= sc.nextInt();
-						currentCamp.setCommitteeSlot(Cslot);
+						while (true)
+						{
+							System.out.println("Please enter new committee slot:");
+							int Cslot= sc.nextInt();
+							if(Cslot>10||Cslot<=0)
+							{
+								System.out.println("Invalid input! Please enter agian.");
+								continue;
+							}
+							else {
+								currentCamp.setCommitteeSlot(Cslot);
+								break;
+							}
+						}
+
 						break;
 					//Camp Description
 					case 6:
@@ -429,6 +441,103 @@ public class Staff extends Account {
 		}
 	}
 
+	public void replyEnquiry()
+	{
+
+		if(this.getCreateCampList()==null)
+		{
+			System.out.println("Sorry, there is no camp created.");
+			return;
+		}
+		int index=1;
+		int campChoice;
+		Camp currentCamp;
+
+		for(Camp camp: this.getCreateCampList())
+		{
+			System.out.println(index+") "+camp.getCampName());
+			index++;
+		}
+		while (true)
+		{
+			System.out.println("Please select which camp enquiry you want to view: (0 Quit)");
+			campChoice=sc.nextInt();
+			if(campChoice==0) return;
+			else {
+				currentCamp=this.getCreateCampList().get(campChoice-1);
+				if(currentCamp==null)
+				{
+					System.out.println("Invalid input! Please enter again.");
+					continue;
+				}
+				if(currentCamp.getEnquiryList().isEmpty())
+				{
+					System.out.println("Sorry, this camp does not have enquiry.");
+					break;
+				}
+				//print all enquiries
+				for(Enquiry enquiry: currentCamp.getEnquiryList())
+				{
+					enquiry.printWithReply();
+					System.out.println();
+				}
+				int id;
+				Enquiry currentEnquiry=null;
+				String reply;
+				int choice;
+				ArrayList<Enquiry> temp1;
+				ArrayList<Enquiry> temp2;
+				while (true) {
+					System.out.println("Please enter the id of enquiry you want to edit: (-1 Quit)");
+					id = sc.nextInt();
+					if (id == -1) return;
+					//find enquiry
+					for (int i = 0; i < currentCamp.getEnquiryList().size(); i++) {
+						if (id == currentCamp.getEnquiryList().get(i).getEnquiryId()) {
+							currentEnquiry = currentCamp.getEnquiryList().get(i);
+							break;
+						}
+					}
+					if (currentEnquiry == null) {
+						System.out.println("Invalid input. Please enter again.");
+						continue;
+					}
+					//find enquiry, print it out
+					System.out.println("Enquiry finds!");
+					currentEnquiry.printWithoutReply();
+					while (true) {
+						//enter the reply
+						System.out.println("Please enter your reply:");
+						reply = sc.nextLine();
+						System.out.println("1) Confirm");
+						System.out.println("0) Quit");
+						choice = sc.nextInt();
+						if (choice == 0) return;
+						if (choice == 2) continue;
+						if (choice == 1) {
+							EnquiryReply enquiryReply = new EnquiryReply(this, reply);
+							temp1 = currentEnquiry.getCamp().getEnquiryList();
+							temp2 = currentEnquiry.getSender().getEnquiryList();
+							temp1.remove(currentEnquiry);
+							temp2.remove(currentEnquiry);
+							currentEnquiry.setStatus(EnquiryStatus.replied);
+							currentEnquiry.setReply(enquiryReply);
+							temp2.add(currentEnquiry);
+							temp1.add(currentEnquiry);
+							currentEnquiry.getCamp().setEnquiryList(temp1);
+							currentEnquiry.getSender().setEnquiryList(temp2);
+							System.out.println("Successfully reply.");
+							return;
+						} else {
+							System.out.println("Invalid input. Please enter again.");
+						}
+					}
+				}
+			}
+		}
+
+	}
+
 
 
 	public void viewSuggestion() {
@@ -615,8 +724,19 @@ public class Staff extends Account {
 
 
 	public void start() {
-		// TODO - implement Staff.start
-		throw new UnsupportedOperationException();
+		System.out.println("Welcome "+this.getUserID()+"! What do you want to do today?");
+		System.out.println("---Camp---");
+		System.out.println("1) View Camp List");
+		System.out.println("2) View Camp Created");
+		System.out.println("3) Create Camp");
+		System.out.println("4) Edit Camp");
+		System.out.println("5) Delete Camp");
+		System.out.println();
+		System.out.println("---Suggestion---");
+		System.out.println("6) view Suggestions");
+		System.out.println("6) ");
+		System.out.println("---Enquiry---");
+		System.out.println("---Report---");
 	}
 
 }
