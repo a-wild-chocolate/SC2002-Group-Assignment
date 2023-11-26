@@ -725,6 +725,19 @@ public class Staff extends Account {
 					temp.set(location,currentSuggestion);
 					//set temp array as formal array;
 					camp.setSuggestionList(temp);
+					temp=currentSuggestion.getSender().getSuggestionList();
+					location=0;
+					for(Suggestion suggestion:temp)
+					{
+						if(id==suggestion.getSuggestionId())
+						{
+							break;
+						}
+						location++;
+					}
+					temp.set(location,currentSuggestion);
+					currentSuggestion.getSender().setSuggestionList(temp);
+
 
 				}
 				while(true)
