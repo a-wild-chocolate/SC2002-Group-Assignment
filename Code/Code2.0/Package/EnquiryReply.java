@@ -12,7 +12,7 @@ public class EnquiryReply {
     private int replyId;
     private String content;
     private static int replyNumber=0;
-    private final String FILE_NAME = "enquiryReply";
+    //private final String FILE_NAME = "enquiryReply";
     private Account replier;
     //for user
     public EnquiryReply(Account replier,String content)
@@ -47,7 +47,7 @@ public class EnquiryReply {
         this.replier = replier;
     }
 
-    public void writeToEnquiryCSV()
+    /*public void writeToEnquiryCSV()
     {
         String header = "EnquiryReply ID,Sender Name,Content\n";
         CSVReadWriter csvModifier = new CSVReadWriter(FILE_NAME,header);
@@ -96,7 +96,7 @@ public class EnquiryReply {
                 Integer.toString(replyId),
                 senderStr,
                 contentStr);
-    }
+    }*/
 
 
 }

@@ -25,7 +25,7 @@ public class CampReport extends Report {
 	
 
 	public void GenerateReport(Camp camp){
-		ArrayList<Student> sortedstudentList = this.report(camp);
+		ArrayList<Student> sortedStudentList = this.report(camp);
 		String fileName = camp.getCampName()+"_CampReport";
         String header = "Camp Name, Dates, Registration closing date, User group, Location, Total Slots, Camp Committee Slots, Description, Staff in charge\n";
         
@@ -49,7 +49,7 @@ public class CampReport extends Report {
 			reportModifier.checkCreateOrUpdate("-1", studentsHeader);
 
 			// Loop through the sorted student list and write each student's data
-			for (Student student : sortedstudentList) {
+			for (Student student : sortedStudentList) {
 				String committeeStatus = "NULL";
 				if (student.getCommitteeStatus()==camp){
 					committeeStatus = "Committee";

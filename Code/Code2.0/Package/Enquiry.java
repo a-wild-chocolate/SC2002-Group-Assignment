@@ -22,7 +22,7 @@ public class Enquiry {
 
 	private EnquiryReply reply;
 
-	private final String FILE_NAME = "enquiry";
+	//private final String FILE_NAME = "enquiry";
 //for user
 	public Enquiry(String content,Camp camp,Attendee sender)
 	{
@@ -98,9 +98,10 @@ public class Enquiry {
 		EnquiryPrinter ep=new EnquiryPrinter(this);
 		ep.printEnquiryWithReply();
 	}
+}
 
 	//CSV method
-	public void writeToEnquiryCSV()
+	/*public void writeToEnquiryCSV()
 	{
 		String header = "Enquiry ID,Sender Name,Camp Name,Status,Content,Reply\n";
         CSVReadWriter csvModifier = new CSVReadWriter(FILE_NAME,header);
@@ -155,7 +156,7 @@ public class Enquiry {
 			contentStr,
 			Integer.toString(this.getReply().getReplyId()));
 	}
-}
+}*/
 
 
 
