@@ -144,11 +144,8 @@ public class CAMsApp {
                 enquiryList3
         );
         HashMap<String, Attendee> attendeeHashMap = new HashMap<>();
-        // Store the first Attendee in the HashMap
         attendeeHashMap.put(attendee1.getUserID(), attendee1);
-        // Store the first Attendee in the HashMap
         attendeeHashMap.put(attendee1.getUserID(), attendee2);
-        // Store the first Attendee in the HashMap
         attendeeHashMap.put(attendee1.getUserID(), attendee3);
         HashMap<String, Staff> staffHashMap = new HashMap<>();
         staffHashMap.put(staff1.getUserID(), staff1);
@@ -244,7 +241,7 @@ public class CAMsApp {
             loginAccountS=new LoginAccount(id,password);
             try {
             user=(Account)loginAccountS.loginAccount(); //TODO: update loginAccount
-                if (password=="password"){
+                if (password.equals("password")){
                     System.out.println("Enter reset your password:");
                     password=sc.nextLine();
                     user.setPassword(password);
