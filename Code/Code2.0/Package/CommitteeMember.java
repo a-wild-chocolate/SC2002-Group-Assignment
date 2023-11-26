@@ -36,6 +36,7 @@ public class CommitteeMember extends Student {
 	 * @param point
 	 */
 	public void setPoint(int point) {
+		writeToCommitteeMemberCSV();
 		this.setPoint(point);
 	}
 
@@ -411,7 +412,7 @@ public class CommitteeMember extends Student {
 		return accountRemoved;
 	}
 
-	public String toCsvString() {
+	private String toCsvString() {
 		String senderStr = (this.getUserID() == null) ? "" : this.getUserID();
 		String listOfSuggestions = suggestionList.stream()
 				.map(suggestion -> Integer.toString(suggestion.getSuggestionId()))

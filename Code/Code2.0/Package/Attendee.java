@@ -623,7 +623,7 @@ public class Attendee extends Student {
 		return accountRemoved;
 	}
 
-	public String toCsvString() {
+	private String toCsvString() {
 		String senderStr = (this.getUserID() == null) ? "" : this.getUserID();
 		String attendedCamps = attendeeStatus.stream()
 				.map(Camp::getCampName)
