@@ -96,7 +96,7 @@ public class AccountInformation {
     }
 
     public boolean createNewAccount() throws IOException, NoSuchAlgorithmException {
-        String header = "userID,name,faculty,password,securityQuestion,secureAnswer\n";
+        String header = "userID,name,Account Status,faculty,password,securityQuestion,secureAnswer\n";
         CSVReadWriter csvModifier = new CSVReadWriter(FILE_NAME,header);
         return csvModifier.createNewRecord(this.userID, this.createCSVDataLine());
     }
@@ -104,7 +104,7 @@ public class AccountInformation {
     public String createCSVDataLine() throws IOException, NoSuchAlgorithmException {
         String facultyString = this.faculty.name(); // Assuming faculty is an enum and we want the name of the enum
         String passwordHash = hashPassword(this.password); // Hash the password before storing it
-        String csvData = String.join(",", this.userID, this.name, facultyString, passwordHash, this.securityQuestion, hashPassword(this.secureAnswer));
+        String csvData = String.join(",", this.userID, this.name, this.accountStatus.toString(),facultyString, passwordHash, this.securityQuestion, hashPassword(this.secureAnswer));
         return csvData;
     }
 

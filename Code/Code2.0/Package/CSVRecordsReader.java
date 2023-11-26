@@ -15,7 +15,7 @@ import java.lang.reflect.Constructor;
 
 public class CSVRecordsReader<T> {
     private String CSV_FILE;
-    private final Function<String[], T> recordParser ={};
+    private Function<String[], T> recordParser ;
 
     public CSVRecordsReader(String fileName){
         this.CSV_FILE = "./"+fileName+".csv";

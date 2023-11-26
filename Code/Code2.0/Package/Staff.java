@@ -19,13 +19,18 @@ public class Staff extends Account {
 	private CampList campList = new CampList();
 	private Displayer displayer = new NormalDisplay();
 	private Scanner sc = new Scanner(System.in);
-	private final String FILE_NAME = "StaffList";
+	private final String FILE_NAME = "staffList";
 	//private Converter cv = new Converter();
 	//constructor
 	public Staff(String userID, String name,AccountStatus accountStatus, Faculty faculty, String password, String securityQuestion, String secureAnswer) {
 
 		super(userID,name,accountStatus,faculty,password,securityQuestion,secureAnswer);
 		createCampList = new ArrayList<>();
+	}
+	public Staff(String userID, String name,AccountStatus accountStatus, Faculty faculty, String password, String securityQuestion, String secureAnswer, ArrayList<Camp> campList){
+
+		super(userID,name,accountStatus,faculty,password,securityQuestion,secureAnswer);
+		this.createCampList = campList;
 	}
 
 	//get&set methods
@@ -900,7 +905,7 @@ public class Staff extends Account {
 		String header = "User ID,email address,Name,Faculty, Camp Created\n";
 		CSVReadWriter csvModifier = new CSVReadWriter(FILE_NAME,header);
 		//String csvData = String.join(",", this.enquiryId, this.sender, this.camp, this.status, this.dealer.getName(), this.content);
-		String csvData=toCsvString();
+		String csvData=toStaffString();
 		try {
 			csvModifier.checkCreateOrUpdate(this.getUserID(), csvData);
 		} catch (IOException e) {
@@ -934,7 +939,7 @@ public class Staff extends Account {
 		return accountRemoved;
 	}
 
-	private String toCsvString() {
+	private String toStaffString() {
 		String staffIDStr = (this.getUserID() == null) ? "" : this.getUserID();
 		String emailAddress = this.getUserID()+"@e.ntu.edu.sg";
 		String name = (this.getName() == null) ? "" : this.getName();

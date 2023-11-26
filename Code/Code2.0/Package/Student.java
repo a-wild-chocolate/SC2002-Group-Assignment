@@ -23,7 +23,13 @@ public abstract class Student extends Account {
 		this.point = 0;
 		//this.daysOccupied=new ArrayList<LocalDate>();
 		committeeStatus = null;
+	}
 
+	public Student(String userID, String name,AccountStatus accountStatus, Faculty faculty, String password, String securityQuestion, String secureAnswer, int point) {
+		super(userID, name,accountStatus, faculty, password, securityQuestion, secureAnswer);
+		this.point = point;
+		//this.daysOccupied=new ArrayList<LocalDate>();
+		committeeStatus = null;
 	}
 
 	public int getPoint() {
@@ -106,7 +112,7 @@ public abstract class Student extends Account {
 		return accountRemoved;
 	}
 
-	private String toCsvString() {
+	public String toCsvString() {
 		String studentIDStr = (this.getUserID() == null) ? "" : this.getUserID();
 		String emailAddress = this.getUserID()+"@e.ntu.edu.sg";
 		String name = (this.getName() == null) ? "" : this.getName();
