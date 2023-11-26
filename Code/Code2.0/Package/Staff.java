@@ -131,7 +131,7 @@ public class Staff extends Account {
 			int v = sc.nextInt();
 			sc.nextLine();
 			//input check
-			if (v != 0 || v != 1) {
+			if (v != 0 && v != 1) {
 				System.out.println("Invalid input!!! Please enter agian!");
 				continue;
 			}
@@ -252,7 +252,7 @@ public class Staff extends Account {
 							int v = sc.nextInt();
 							sc.nextLine();
 							//input check
-							if (v != 0 || v != 1) {
+							if (v != 0 && v != 1) {
 								System.out.println("Invalid input!!! Please enter agian!");
 								continue;
 							}
