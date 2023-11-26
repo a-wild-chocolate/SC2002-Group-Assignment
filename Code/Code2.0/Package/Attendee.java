@@ -36,7 +36,7 @@ public class Attendee extends Student {
 	 */
 	public void setAttendeeStatus(ArrayList<Camp> attendeeStatus) {
 	this.attendeeStatus=attendeeStatus;
-	writeToAttendeeCSV();
+    writeToAttendeeCSV();
 	}
 
 	public ArrayList<Camp> getWithdrawStatus() {
@@ -47,21 +47,17 @@ public class Attendee extends Student {
 	 * 
 	 * @param withdrawStatus
 	 */
-	public void setWithdrawStatus(ArrayList<Camp> withdrawStatus) {
-		this.withdrawStatus=withdrawStatus;
-		writeToAttendeeCSV();
-	}
+	public void setWithdrawStatus(ArrayList<Camp> withdrawStatus) {this.withdrawStatus=withdrawStatus;
+        writeToAttendeeCSV();}
 
 	/**
 	 * 
 	 * @param enquiryList
 	 */
-	public void setEnquiryList(ArrayList<Enquiry> enquiryList) {
-		this.enquiryList=enquiryList;
-		writeToAttendeeCSV();
-	}
+	public void setEnquiryList(ArrayList<Enquiry> enquiryList) {this.enquiryList=enquiryList;writeToAttendeeCSV();}
 
 	public ArrayList<Enquiry> getEnquiryList() {
+
 	return enquiryList;
 	}
 
@@ -137,7 +133,7 @@ public class Attendee extends Student {
 			}
 
 		}while(registerCamp==null);
-		this.attendeeStatus.add(registerCamp);
+
 		//update days occupied
 		ArrayList<LocalDate>tempD=this.getDaysOccupied();
 		tempD.add(registerCamp.getDate());
@@ -146,6 +142,11 @@ public class Attendee extends Student {
 		ArrayList<Student> temp=registerCamp.getStudentList();
 		temp.add(this);
 		registerCamp.setStudentList(temp);
+		//update attendee camp
+		ArrayList<Camp> tempC=this.attendeeStatus;
+		tempC.add(registerCamp);
+		this.setAttendeeStatus(tempC);
+
 
 	}
 
@@ -638,4 +639,20 @@ public class Attendee extends Student {
 				attendedCamps,
 				withdrawCamps);
 	}
+
+    public void start()
+    {
+        System.out.println("Welcome "+this.getUserID()+"! What do you want to do today?");
+        System.out.println("---Camp---");
+        System.out.println("1) View Camp List");
+        System.out.println("2) View Camp Joined");
+        System.out.println("3) Register Camp as Attendee");
+        System.out.println("4) Register Camp as Committee Member");
+        System.out.println("5) Withdraw Camp");
+        System.out.println("6) Send Enquiry");
+        System.out.println("7) View Enquiry");
+        System.out.println("8) Edit Enquiry");
+		System.out.println("9) Delete Enquiry");
+		System.out.println("10) ");
+    }
 }
