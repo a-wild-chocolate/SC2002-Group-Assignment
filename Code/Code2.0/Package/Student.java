@@ -35,6 +35,7 @@ public abstract class Student extends Account {
 	 */
 	public void setPoint(int point) {
 		this.point = point;
+		writeToStudentCSV();
 	}
 
 	public Camp getCommitteeStatus() {
@@ -46,6 +47,7 @@ public abstract class Student extends Account {
 	 */
 	public void setCommitteeStatus(Camp committeeStatus) {
 		this.committeeStatus = committeeStatus;
+		writeToStudentCSV();
 	}
 
 
@@ -56,6 +58,7 @@ public abstract class Student extends Account {
 
 	public void setDaysOccupied(ArrayList<LocalDate> daysOccupied) {
 		this.daysOccupied = daysOccupied;
+		writeToStudentCSV();
 	}
 
 
@@ -103,7 +106,7 @@ public abstract class Student extends Account {
 		return accountRemoved;
 	}
 
-	public String toCsvString() {
+	private String toCsvString() {
 		String studentIDStr = (this.getUserID() == null) ? "" : this.getUserID();
 		String emailAddress = this.getUserID()+"@e.ntu.edu.sg";
 		String name = (this.getName() == null) ? "" : this.getName();

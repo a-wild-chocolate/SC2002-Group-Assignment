@@ -36,6 +36,7 @@ public class Attendee extends Student {
 	 */
 	public void setAttendeeStatus(ArrayList<Camp> attendeeStatus) {
 	this.attendeeStatus=attendeeStatus;
+	writeToAttendeeCSV();
 	}
 
 	public ArrayList<Camp> getWithdrawStatus() {
@@ -46,13 +47,19 @@ public class Attendee extends Student {
 	 * 
 	 * @param withdrawStatus
 	 */
-	public void setWithdrawStatus(ArrayList<Camp> withdrawStatus) {this.withdrawStatus=withdrawStatus;}
+	public void setWithdrawStatus(ArrayList<Camp> withdrawStatus) {
+		this.withdrawStatus=withdrawStatus;
+		writeToAttendeeCSV();
+	}
 
 	/**
 	 * 
 	 * @param enquiryList
 	 */
-	public void setEnquiryList(ArrayList<Enquiry> enquiryList) {this.enquiryList=enquiryList;}
+	public void setEnquiryList(ArrayList<Enquiry> enquiryList) {
+		this.enquiryList=enquiryList;
+		writeToAttendeeCSV();
+	}
 
 	public ArrayList<Enquiry> getEnquiryList() {
 	return enquiryList;
