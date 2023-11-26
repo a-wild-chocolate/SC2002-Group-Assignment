@@ -1,23 +1,28 @@
+package Package;
 import java.time.LocalDate;
 import java.util.ArrayList;
-
+/*
 import Package.CampList;
 import Package.Displayer;
 import Package.PerformanceReport;
 import Package.RestrictedDisplay;
 import Package.SortCampByName;
+import Package.Enquiry;
 import Package.Sorter;
 import Package.Student;
+import Package.Report;
+*/
 import java.util.Scanner;
 
+
 public class SorterDisplay extends Displayer{
-    public static ArrayList<Enquiry> displaySortingMethod(ArrayList<Student> studentList, Report report) {
+    public static ArrayList<Student> displaySortingMethod(ArrayList<Student> studentList, Report report) {
 		
         System.out.println("----- Sorting Methods -----");
 		System.out.println();
 		System.out.println("1) Sorting by name");
 		System.out.println("2) Sorting by score");
-        if (report instanceof GenerateReport){
+        if (report instanceof CampReport){
             System.out.println("3) Sorting by role");
         }
 		System.out.println("0) Quit");
@@ -44,7 +49,7 @@ public class SorterDisplay extends Displayer{
 		}
 	}
 
-	public static ArrayList<Enaquiry> displaySortingEnquiryList(ArrayList<Enquiry> enquiriesList) {
+	public static ArrayList<Enquiry> displaySortingEnquiryList(ArrayList<Enquiry> enquiriesList) {
 		
         System.out.println("----- Sorting Methods -----");
 		System.out.println();
