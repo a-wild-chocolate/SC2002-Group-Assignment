@@ -62,10 +62,7 @@ public abstract class Student extends Account {
 	}
 
 
-	public void start() {
-		// TODO - implement Student.start
-		throw new UnsupportedOperationException();
-	}
+	public abstract void start() ;
 
 	public void writeToStudentCSV()
 	{
