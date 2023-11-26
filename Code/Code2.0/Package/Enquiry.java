@@ -98,6 +98,23 @@ public class Enquiry {
 		EnquiryPrinter ep=new EnquiryPrinter(this);
 		ep.printEnquiryWithReply();
 	}
+
+	public String toCsvString() {
+		String senderStr = (sender == null) ? "" : sender.toString();
+		String campStr = (camp == null) ? "" : camp.toString();
+		String statusStr = (status == null) ? "" : status.toString();
+		String contentStr = (content == null) ? "" : content;
+		//String replyStr = (reply == null) ? "" : reply.getContent();
+
+
+		return String.join(",",
+				Integer.toString(enquiryId),
+				senderStr,
+				campStr,
+				statusStr,
+				contentStr,
+				Integer.toString(this.getReply().getReplyId()));
+	}
 }
 
 	//CSV method
