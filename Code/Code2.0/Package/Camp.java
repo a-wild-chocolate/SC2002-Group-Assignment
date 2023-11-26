@@ -200,4 +200,20 @@ public class Camp extends CampInformation {
 				visibilityStr,
 				remainSlotsStr);
 	}
+
+	public void printAllInformation() {
+		System.out.println(
+				"Camp name: " + this.campName + "\n" +
+						"Camp Date: " + this.date + "\n" +
+						"Camp Registration closure date " + this.registrationDate + "\n" +
+						"Camp open to faculties: " + this.userGroup + "\n" +
+						"Camp Location: " + this.location + "\n" +
+						"Camp total Slots: " + this.totalSlot + "\n" +
+						"Camp committeeMember slots: " + this.committeeSlot + "\n" +
+						"Camp description: " + this.description + "\n" +
+						"Camp staff in charge: " + this.staffInCharge + "\n" +
+						"Camp current number of students: " + this.studentList.size() + "\n" +
+						"Camp current number of committee members: " + this.committeeMemberList.size() + "\n"
+		);
+	}
 }
