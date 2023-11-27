@@ -1,5 +1,9 @@
 Camp Name, Dates, Registration closing date, User group, Location, Total Slots, Camp Committee Slots, Description, Staff in charge
-test,2023 11 30,2023 11 29,ADM,ASE,CCEB,ss,10,1,ns,Name1
+test,2023 11 30,2023 11 29,ADM,ASE,CCEB,North Spine,20,2,test,Name1
 UserID, Name, Faculty, Committee Status, Point
 UserID, Name, Faculty, Committee Status, Point
 UserID, Name, Faculty, Committee Status, Point
+ 
+UserID, Name, Faculty, Committee Status, Point
+studentID1,Name3,CCEB,NULL,0
+studentID2,Name4,ASE,Committee,1

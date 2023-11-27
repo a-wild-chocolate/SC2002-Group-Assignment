@@ -1,6 +1,8 @@
 Camp Name, Dates, Registration closing date, User group, Location, Total Slots, Camp Committee Slots, Description, Staff in charge
-test,2023 11 29,2023 11 30,ADM,ASE,CCEB,ss,10,1,test,Name1
+test,2023 11 30,2023 11 29,ADM,ASE,CCEB,North Spine,20,2,test,Name1
 Enquiry ID,Sender Name,Camp Name,Status,Content,Reply
-0,Package.Attendee@71dac704,Package.Camp@123772c4,replied,What is the theme?,1
+0,Package.Student.Attendee@3830f1c0,Package.Camp.Camp@39ed3c8d,replied,What,1
 1,Package.Attendee@71dac704,Package.Camp@123772c4,replied,What is the object related?,2
+Enquiry ID,Sender Name,Camp Name,Status,Content,Reply
+Enquiry ID,Sender Name,Camp Name,Status,Content,Reply
 Enquiry ID,Sender Name,Camp Name,Status,Content,Reply

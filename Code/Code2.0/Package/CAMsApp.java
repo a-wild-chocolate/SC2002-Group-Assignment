@@ -1,4 +1,16 @@
 package Package;
+import Package.Account.AccountInformation;
+import Package.Camp.Camp;
+import Package.Enquiry.Enquiry;
+import Package.Enum.AccountStatus;
+import Package.Enum.Faculty;
+import Package.Account.LoginAccount;
+import Package.Account.ResetAccount;
+import Package.Staff.Staff;
+import Package.Student.Attendee;
+import Package.Student.CommitteeMember;
+import Package.Suggestion.Suggestion;
+
 import java.awt.image.PackedColorModel;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -18,9 +30,9 @@ import java.util.List;
 import java.util.Map;
 
 public class CAMsApp {
-    static HashMap<String, Staff> staffHashMap = new HashMap<>();
-    static HashMap<String, CommitteeMember> committeeMemberHashMap = new HashMap<>();
-    static HashMap<String, Attendee> attendeeHashMap = new HashMap<>();
+   public static HashMap<String, Staff> staffHashMap = new HashMap<>();
+   public static HashMap<String, CommitteeMember> committeeMemberHashMap = new HashMap<>();
+   public static HashMap<String, Attendee> attendeeHashMap = new HashMap<>();
     public static void main(String[] args)
     {
         //TODO: LoadObjects
@@ -210,13 +222,13 @@ public class CAMsApp {
                 "SecurityQuestion7",
                 "SecureAnswer7");*/
         try {
-            a.createNewAccount();
-            b.createNewAccount();
-            c.createNewAccount();
-            d.createNewAccount();
-            l.createNewAccount();
-            //f.createNewAccount();
-            //g.createNewAccount();
+        a.createNewAccount();
+        b.createNewAccount();
+        c.createNewAccount();
+        d.createNewAccount();
+        l.createNewAccount();
+        //f.createNewAccount();
+        //g.createNewAccount();
 //        LoginAccount ccc = new LoginAccount("111", "111");
 //        ResetAccount ddd = new ResetAccount ("111", "111");
 //        LoginAccount ggg = new LoginAccount("111", "222");
@@ -237,6 +249,11 @@ public class CAMsApp {
             System.out.println("0) Quit");
             choice=sc.nextInt();
             if(choice==0) return;
+            else if(choice!=1)
+            {
+                System.out.println("Invalid input! Please enter again.");
+                continue;
+            }
             sc.nextLine();
             System.out.println("---------Login---------");
             System.out.println("Enter your ID:");
@@ -245,7 +262,7 @@ public class CAMsApp {
             password=sc.nextLine();
             loginAccountS=new LoginAccount(id,password);
             try {
-                user=loginAccountS.loginAccount();
+            user=loginAccountS.loginAccount();
                 if (user!=null){
                     //user.printAccountInformation();
                     if (password.equals("password")){
@@ -270,7 +287,6 @@ public class CAMsApp {
                     {
                         reset=false;
                         while(!reset){
-
                             sc.nextLine();
                             System.out.println("---------Reset password---------");
                             System.out.println("Enter your ID:");
@@ -295,37 +311,37 @@ public class CAMsApp {
                 }
                 if(user==null)
                     continue;
-                if(user.getAccountStatus()==AccountStatus.STAFF)
-                {
-                    Staff staff=staffHashMap.get(user.getUserID());
-                    staff.start();
-                }
-                else if(user.getAccountStatus()==AccountStatus.STUDENT)
-                {
+            if(user.getAccountStatus()==AccountStatus.STAFF)
+            {
+                Staff staff=staffHashMap.get(user.getUserID());
+                staff.start();
+            }
+            else if(user.getAccountStatus()==AccountStatus.STUDENT)
+            {
 
-                    while (true)
+                while (true)
+                {
+                    System.out.println("Do you want to use attendee account or committee account today?");
+                    System.out.println("1) Attendee account");
+                    System.out.println("2) Committee account");
+                    System.out.println("0) Quit");
+                    choice=sc.nextInt();
+                    if(choice==0) break;
+                    else if(choice==1)
                     {
-                        System.out.println("Do you want to use attendee account or committee account today?");
-                        System.out.println("1) Attendee account");
-                        System.out.println("2) Committee account");
-                        System.out.println("0) Quit");
-                        choice=sc.nextInt();
-                        if(choice==0) break;
-                        else if(choice==1)
-                        {
-                            Attendee attendee = attendeeHashMap.get(user.getUserID());
-                            attendee.start();//jump to attendee start
-                        }
-                        else if(choice==2)
-                        {
-                            CommitteeMember committeeMember = committeeMemberHashMap.get(user.getUserID());
-                            committeeMember.start();//jump to committeeMember start
-                        }
-
-                        System.out.println();
+                        Attendee attendee = attendeeHashMap.get(user.getUserID());
+                        attendee.start();//jump to attendee start
+                    }
+                    else if(choice==2)
+                    {
+                        CommitteeMember committeeMember = committeeMemberHashMap.get(user.getUserID());
+                        committeeMember.start();//jump to committeeMember start
                     }
 
+                    System.out.println();
                 }
+
+            }
             } catch (IOException e) {
                 System.out.println("An I/O error occurred while creating the new account.");
                 e.printStackTrace();

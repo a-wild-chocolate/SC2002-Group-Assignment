@@ -1,4 +1,6 @@
 campName,date,registrationDate,userGroup,location,total Slots,committeeSlot,description,Staff In Charge,Visibility,remain slots
-test, 2023-11-29, 2023-11-30, ADM+ASE+CCEB, ss, 10, 1, test, Package.Staff@15327b79, Visible, 10
-MathLover, 2023-11-30, 2023-11-29, ADM+ASE+CCEB, North Spine, 10, 1, A camp for computer science lover., Package.Staff@5e8c92f4, Visible, 10
-CSLover, 2023-11-30, 2023-11-29, ADM+ASE+CCEB, North Spine, 10, 1, A camp for computer science lover, Package.Staff@782830e, Visible, 10
+CSEC, 2023-11-30, 2023-11-29, ADM+ASE+CCEB, ns, 10, 1, test, Package.Staff.Staff@3d82c5f3, Visible, 10
+CSClub, 2023-11-30, 2023-11-29, ADM+ASE+CCEB, North Spine, 20, 2, This is a camp for CS lover to make friends and communicate., staffID1, Visible, 20
+CSLover, 2023-11-30, 2023-11-29, ADM+ASE+CCEB, North Spine, 10, 1, A camp for computer science lover, Package.Staff.Staff@782830e, Visible, 10
+CS Lover, 2023-11-30, 2023-11-29, ADM+ASE+CCEB, North Spine, 20, 2, This is a club for CS lover., Package.Staff.Staff@5e8c92f4, Visible, 20
+test, 2023-11-30, 2023-11-29, ADM+ASE+CCEB, North Spine, 20, 2, test, Package.Staff.Staff@5e8c92f4, Visible, 20
