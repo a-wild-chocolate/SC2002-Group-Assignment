@@ -67,6 +67,25 @@ public abstract class Student extends Account {
 		writeToStudentCSV();
 	}
 
+	public void viewProfile()
+	{
+		System.out.println("Name: "+ this.getName());
+		System.out.println("UserID: "+this.getUserID());
+		System.out.println("Faculty: "+this.getFaculty().toString());
+		System.out.println("Email: "+this.getUserID()+"@e.ntu.edu.sg");
+		if(this.getCommitteeStatus()==null)
+		{
+			System.out.println("Committee Status: null");
+		}
+		else
+		{
+			System.out.println("Committee Status: "+this.getCommitteeStatus().getCampName());
+		}
+		System.out.println("Point: "+this.point);
+		System.out.println("Days occupied: "+this.getDaysOccupied());
+
+	}
+
 
 	public abstract void start() ;
 

@@ -170,7 +170,9 @@ public class CommitteeMember extends Student{
 					int currentPoint=this.getPoint();
 					currentPoint++;
 					this.setPoint(currentPoint);
-					System.out.println("Successfully reply");
+					Attendee attendee=CAMsApp.attendeeHashMap.get(this.getUserID());
+					attendee.setPoint(currentPoint);
+					System.out.println("Successfully reply.");
 					return;
 				}
 				else {
@@ -261,7 +263,7 @@ public class CommitteeMember extends Student{
 		//let user enter the suggestion he wants to choose
 		while (true)
 		{
-			System.out.println("Which suggestion do you want to edit? Please enter the number (0:Quit)");
+			System.out.println("Which suggestion do you want to edit? Please enter the intex (0:Quit)");
 			choice=sc.nextInt();
 			sc.nextLine();
 			if(choice==0) return;
@@ -394,6 +396,8 @@ public class CommitteeMember extends Student{
 				System.out.println("---Enquiry---");
 				System.out.println("7) View Enquiries");
 				System.out.println("8) Reply Enquiries");
+				System.out.println("---Profile---");
+				System.out.println("9) View Profile");
 				System.out.println("=======================================");
 				System.out.println("0) QUIT");
 				choice=sc.nextInt();
@@ -415,6 +419,8 @@ public class CommitteeMember extends Student{
 					case 7: viewEnquiry();
 					break;
 					case 8: replyEnquiry();
+					break;
+					case 9: viewProfile();
 					break;
 					case 0: return;
 					default: System.out.println("Invalid input. Please enter again.");

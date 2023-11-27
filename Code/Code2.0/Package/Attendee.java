@@ -259,6 +259,7 @@ public class Attendee extends Student {
 		//update days occupied
 		ArrayList<LocalDate>tempD=this.getDaysOccupied();
 		tempD.add(registerCamp.getDate());
+		committeeMember.setDaysOccupied(tempD);
 		this.setDaysOccupied(tempD);
 
 	}
@@ -590,6 +591,8 @@ public class Attendee extends Student {
 				confirm=sc.nextInt();
 				sc.nextLine();
 				if(confirm==0) return;
+				CommitteeMember committeeMember;
+				committeeMember=CAMsApp.committeeMemberHashMap.get(this.getUserID());
 				//remove camp date from days occupied
 				LocalDate removedDate;
 				ArrayList<LocalDate> temp;
@@ -597,6 +600,7 @@ public class Attendee extends Student {
 				temp=this.getDaysOccupied();
 				temp.remove(removedDate);
 				this.setDaysOccupied(temp);
+				committeeMember.setDaysOccupied(temp);
 				//remove camp from camp student list.
 				this.attendeeStatus.remove(removedCamp);
 				ArrayList<Student> Stemp;
@@ -687,6 +691,8 @@ public class Attendee extends Student {
 			System.out.println("7) View Enquiry");
 			System.out.println("8) Edit Enquiry");
 			System.out.println("9) Delete Enquiry");
+			System.out.println("---Profile---");
+			System.out.println("10) View Profile");
 			System.out.println("=======================================");
 			System.out.println("0) QUIT");
 			choice=sc.nextInt();
@@ -711,6 +717,8 @@ public class Attendee extends Student {
 					break;
 				case 9: deleteEnquiry();
 					break;
+				case 10: viewProfile();
+				break;
 				case 0: return;
 				default:System.out.println("Invalid input. Please enter again.");
 			}
