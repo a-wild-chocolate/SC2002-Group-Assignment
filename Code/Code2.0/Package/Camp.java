@@ -184,7 +184,7 @@ public class Camp extends CampInformation {
 		String totalSlotsStr = Integer.toString(this.totalSlot);
 		String committeeSlotStr = Integer.toString(this.committeeSlot);
 		String descriptionStr = this.description != null ? this.description : "";
-		String staffInChargeStr = this.staffInCharge != null ? this.staffInCharge.toString() : ""; // Assuming Staff has a proper toString method.
+		String staffInChargeStr = this.staffInCharge != null ? this.staffInCharge.getUserID(): ""; // Assuming Staff has a proper toString method.
 		String visibilityStr = this.visibility ? "Visible" : "Not Visible";
 		String remainSlotsStr = Integer.toString(this.remainSlot);
 
