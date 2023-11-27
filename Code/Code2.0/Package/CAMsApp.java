@@ -210,13 +210,13 @@ public class CAMsApp {
                 "SecurityQuestion7",
                 "SecureAnswer7");*/
         try {
-        a.createNewAccount();
-        b.createNewAccount();
-        c.createNewAccount();
-        d.createNewAccount();
-        l.createNewAccount();
-        //f.createNewAccount();
-        //g.createNewAccount();
+            a.createNewAccount();
+            b.createNewAccount();
+            c.createNewAccount();
+            d.createNewAccount();
+            l.createNewAccount();
+            //f.createNewAccount();
+            //g.createNewAccount();
 //        LoginAccount ccc = new LoginAccount("111", "111");
 //        ResetAccount ddd = new ResetAccount ("111", "111");
 //        LoginAccount ggg = new LoginAccount("111", "222");
@@ -245,12 +245,7 @@ public class CAMsApp {
             password=sc.nextLine();
             loginAccountS=new LoginAccount(id,password);
             try {
-            user=loginAccountS.loginAccount();
-            if(user==null)
-            {
-                System.out.println("Invalid ID or password! Please enter again.");
-                continue;
-            }
+                user=loginAccountS.loginAccount();
                 if (user!=null){
                     //user.printAccountInformation();
                     if (password.equals("password")){
@@ -273,8 +268,8 @@ public class CAMsApp {
                     }
                     else if(choice==2)
                     {
-                        reset=false;
                         while(!reset){
+                            reset=false;
                             sc.nextLine();
                             System.out.println("---------Reset password---------");
                             System.out.println("Enter your ID:");
@@ -299,37 +294,37 @@ public class CAMsApp {
                 }
                 if(user==null)
                     continue;
-            if(user.getAccountStatus()==AccountStatus.STAFF)
-            {
-                Staff staff=staffHashMap.get(user.getUserID());
-                staff.start();
-            }
-            else if(user.getAccountStatus()==AccountStatus.STUDENT)
-            {
-
-                while (true)
+                if(user.getAccountStatus()==AccountStatus.STAFF)
                 {
-                    System.out.println("Do you want to use attendee account or committee account today?");
-                    System.out.println("1) Attendee account");
-                    System.out.println("2) Committee account");
-                    System.out.println("0) Quit");
-                    choice=sc.nextInt();
-                    if(choice==0) break;
-                    else if(choice==1)
-                    {
-                        Attendee attendee = attendeeHashMap.get(user.getUserID());
-                        attendee.start();//jump to attendee start
-                    }
-                    else if(choice==2)
-                    {
-                        CommitteeMember committeeMember = committeeMemberHashMap.get(user.getUserID());
-                        committeeMember.start();//jump to committeeMember start
-                    }
-
-                    System.out.println();
+                    Staff staff=staffHashMap.get(user.getUserID());
+                    staff.start();
                 }
+                else if(user.getAccountStatus()==AccountStatus.STUDENT)
+                {
 
-            }
+                    while (true)
+                    {
+                        System.out.println("Do you want to use attendee account or committee account today?");
+                        System.out.println("1) Attendee account");
+                        System.out.println("2) Committee account");
+                        System.out.println("0) Quit");
+                        choice=sc.nextInt();
+                        if(choice==0) break;
+                        else if(choice==1)
+                        {
+                            Attendee attendee = attendeeHashMap.get(user.getUserID());
+                            attendee.start();//jump to attendee start
+                        }
+                        else if(choice==2)
+                        {
+                            CommitteeMember committeeMember = committeeMemberHashMap.get(user.getUserID());
+                            committeeMember.start();//jump to committeeMember start
+                        }
+
+                        System.out.println();
+                    }
+
+                }
             } catch (IOException e) {
                 System.out.println("An I/O error occurred while creating the new account.");
                 e.printStackTrace();
