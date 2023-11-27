@@ -38,7 +38,7 @@ public class ResetAccount {
         return false;
     }
 
-    public boolean resetPassword() throws IOException, NoSuchAlgorithmException {
+    public AccountInformation resetPassword() throws IOException, NoSuchAlgorithmException {
         if (compareUserQuestion()) {
             String newPassword = getNewPasswordFromUserInput(); // This method needs to be implemented to get user input
             //String hashedNewPassword = hashSecureAnswer(newPassword);
@@ -48,10 +48,10 @@ public class ResetAccount {
             String[] userDetails = users.get(inputID);
             AccountInformation modifyAccount = new AccountInformation(inputID, userDetails[1],  AccountStatus.valueOf(userDetails[2]),Faculty.valueOf(userDetails[3]),userDetails[4], userDetails[5], userDetails[6]);
             modifyAccount.setPassword(newPassword);
-            return true;
+            return modifyAccount;
             
         }
-        return false;
+        return null;
     }
 
     private String getNewPasswordFromUserInput() {
