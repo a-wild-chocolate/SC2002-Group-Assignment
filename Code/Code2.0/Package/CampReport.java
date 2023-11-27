@@ -18,7 +18,8 @@ public class CampReport extends Report {
 	 */
 	public ArrayList<Student> report(Camp camp) {
         ArrayList<Student> studentList = camp.getStudentList(); // Get the list of students
-        System.out.println("The list of sorting methods shows below: ");
+        studentList.addAll(camp.getCommitteeMemberList());
+		System.out.println("The list of sorting methods shows below: ");
 		ArrayList<Student> sortedStudentList = SorterDisplay.displaySortingMethod(studentList, this); // Sort the list
         return sortedStudentList; // Return the sorted list
     }
@@ -45,6 +46,7 @@ public class CampReport extends Report {
 		try {
 			reportModifier.checkCreateOrUpdate(camp.getCampName(), campCsvData);
 			// Write students header
+			reportModifier.checkCreateOrUpdate("-100000"," ");
 			String studentsHeader = "UserID, Name, Faculty, Committee Status, Point";
 			reportModifier.checkCreateOrUpdate("-1", studentsHeader);
 
