@@ -275,6 +275,7 @@ public class Attendee extends Student {
 		committeeMember.setDaysOccupied(tempD);
 		this.setDaysOccupied(tempD);
 
+
 	}
 
 	public void viewCampList() {
@@ -604,8 +605,8 @@ public class Attendee extends Student {
 				confirm=sc.nextInt();
 				sc.nextLine();
 				if(confirm==0) return;
-				CommitteeMember committeeMember;
-				committeeMember=CAMsApp.committeeMemberHashMap.get(this.getUserID());
+
+
 				//remove camp date from days occupied
 				LocalDate removedDate;
 				ArrayList<LocalDate> temp;
@@ -613,7 +614,12 @@ public class Attendee extends Student {
 				temp=this.getDaysOccupied();
 				temp.remove(removedDate);
 				this.setDaysOccupied(temp);
-				committeeMember.setDaysOccupied(temp);
+				if(this.getCommitteeStatus()!=null)
+				{
+					CommitteeMember committeeMember;
+					committeeMember=CAMsApp.committeeMemberHashMap.get(this.getUserID());
+					committeeMember.setDaysOccupied(temp);
+				}
 				//remove camp from camp student list.
 				this.attendeeStatus.remove(removedCamp);
 				ArrayList<Student> Stemp;
@@ -626,6 +632,7 @@ public class Attendee extends Student {
 				Ctemp.add(removedCamp);
 				this.setWithdrawStatus(Ctemp);
 				System.out.println("Successfully withdraw "+removedCamp.getCampName()+" camp");
+				return;
 			}
 		}
 	}
