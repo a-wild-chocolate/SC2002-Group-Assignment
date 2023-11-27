@@ -65,17 +65,37 @@ public class Staff extends Account {
 		campName=sc.nextLine();
 
 //get camp date
-		System.out.println("Please enter the date of Camp");   //TODO: transfer single date to a range
-		System.out.println("Enter a date (yyyy-MM-dd): ");
-		String userInput = sc.nextLine();
-		campDate = Converter.stringToLocalDate(userInput);
+
+		while(true)
+		{
+			System.out.println("Please enter the date of Camp");
+			System.out.println("Enter a date (yyyy-MM-dd): ");
+			String userInput = sc.nextLine();
+			campDate = Converter.stringToLocalDate(userInput);
+			if(campDate.compareTo(LocalDate.now())<0)
+			{
+				System.out.println("Sorry, this date is invalid. Please enter a legal date.");
+			}
+			else break;
+		}
+
 
 //get camp registration date
-		System.out.println("Please enter the last registrate date of Camp");
-		System.out.println("Please enter the date of Camp");   //TODO: transfer single date to a range
-		System.out.println("Enter a date (yyyy-MM-dd): ");
-		userInput = sc.nextLine();
-		registrationDate = Converter.stringToLocalDate(userInput);
+
+		while(true)
+		{
+			System.out.println("Please enter the last registrate date of Camp");
+			System.out.println("Please enter the date of Camp");
+			System.out.println("Enter a date (yyyy-MM-dd): ");
+			String userInput = sc.nextLine();
+			registrationDate = Converter.stringToLocalDate(userInput);
+			if(registrationDate.compareTo(campDate)>0)
+			{
+				System.out.println("Sorry, the last registration date can not be late than camp date. Please enter again.");
+				continue;
+			}
+			else break;
+		}
 
 // get user group
 		System.out.println("Available Faculties:");
@@ -120,7 +140,7 @@ public class Staff extends Account {
 			sc.nextLine();
 			if(committeeSlot>10||committeeSlot<0) System.out.println("Invalid Input! Please input again");
 		}while(committeeSlot>10||committeeSlot<0);
-//get descriptio
+//get description
 		System.out.println("Please enter the description of the camp");
 		description=sc.nextLine();
 //get visibility
@@ -547,6 +567,10 @@ public class Staff extends Account {
 					if (currentEnquiry == null) {
 						System.out.println("Invalid input. Please enter again.");
 						continue;
+					}
+					if(currentEnquiry.getStatus()==EnquiryStatus.replied)
+					{
+						System.out.println("Sorry, this enquiry is replied. Please choose others.");
 					}
 					//find enquiry, print it out
 					System.out.println("Enquiry finds!");
