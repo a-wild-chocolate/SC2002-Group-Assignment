@@ -119,7 +119,7 @@ public class AccountInformation {
     }
 
     // Main method for testing purposes
-    public static void main(String[] args) {
+   /* public static void main(String[] args) {
         AccountInformation aaa = new AccountInformation("111", "111",AccountStatus.STUDENT, Faculty.ADM, "111", "111", "111");
 		AccountInformation bbb = new AccountInformation("222", "222",AccountStatus.STUDENT,Faculty.CEE, "222", "222", "222");
         LoginAccount ccc = new LoginAccount("111", "111");
@@ -151,6 +151,6 @@ public class AccountInformation {
         System.out.println("The cryptographic algorithm is not available in the current environment.");
         e.printStackTrace();
     }
-    }
+    }*/
 }
 

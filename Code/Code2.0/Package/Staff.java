@@ -403,6 +403,11 @@ public class Staff extends Account {
 
 		campDisplayer=new NormalDisplay();
 		campDisplayer.display(campList.getCampList(),this);
+		if(CampList.getCampList().isEmpty())
+		{
+			System.out.println("Sorry, there is no camp in the list. Return...");
+			return;
+		}
 		do {
 			System.out.println("1) Quit; ");
 			System.out.println("2) Filter; ");
@@ -421,6 +426,11 @@ public class Staff extends Account {
 		int choice=0;
 		int filterChoice;
 		displayer.display(this.createCampList,this);
+		if(this.createCampList.isEmpty())
+		{
+			System.out.println("Sorry, you did not create any camp.");
+			return;
+		}
 		do {
 
 			System.out.println("1) Quit; ");
@@ -568,10 +578,7 @@ public class Staff extends Account {
 						System.out.println("Invalid input. Please enter again.");
 						continue;
 					}
-					if(currentEnquiry.getStatus()==EnquiryStatus.replied)
-					{
-						System.out.println("Sorry, this enquiry is replied. Please choose others.");
-					}
+					viewCampList();
 					//find enquiry, print it out
 					System.out.println("Enquiry finds!");
 					currentEnquiry.printWithoutReply();
@@ -750,10 +757,15 @@ public class Staff extends Account {
 				System.out.println("Please enter the index of suggestion you want to process: (0 Quit)");
 				choice=sc.nextInt();
 				sc.nextLine();
-				//TODO: Error check
 				currentSuggestion=pendingSuggestionList.get(choice-1);
 				//Quit
 				if(choice==0) return;
+				//error check
+				if(currentSuggestion==null)
+				{
+					System.out.println("Invalid input! Please enter again.");
+					continue;
+				}
 				//approve or reject
 				else {
 					System.out.println("You want to approve or reject it? (1 for approve, 0 for reject)");

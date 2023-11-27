@@ -397,7 +397,8 @@ public class Attendee extends Student {
 		for(index=0;index<availableEnquiry.size();index++)
 		{
 
-			System.out.println(index+1 +") " +availableEnquiry.get(index));
+			System.out.println(index+1 +") ID:" +availableEnquiry.get(index).getEnquiryId());
+			System.out.println(availableEnquiry.get(index).getContent());
 		}
 
 		while (true)
@@ -438,7 +439,7 @@ public class Attendee extends Student {
 						//set temp back to camp enquiry list and user's enquiry list
 						currentEnquiry.getCamp().setEnquiryList(temp1);
 						this.setEnquiryList(temp2);
-						System.out.println("The enquiry is edit successfully!");
+						System.out.println("The enquiry is edited successfully!");
 						//back to main
 						return;
 					}

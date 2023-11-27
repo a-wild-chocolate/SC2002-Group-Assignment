@@ -244,6 +244,11 @@ public class CAMsApp {
             loginAccountS=new LoginAccount(id,password);
             try {
             user=loginAccountS.loginAccount();
+            if(user==null)
+            {
+                System.out.println("Invalid ID or password! Please enter again.");
+                continue;
+            }
                 if (password.equals("password")){
                     System.out.println("Enter reset your password:");
                     password=sc.nextLine();

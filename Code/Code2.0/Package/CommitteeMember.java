@@ -335,7 +335,7 @@ public class CommitteeMember extends Student{
 		//let user enter the suggestion he wants to choose
 		while (true)
 		{
-			System.out.println("Which suggestion do you want to delete? Please enter the number (0:Quit)");
+			System.out.println("Which suggestion do you want to delete? Please enter the index (0:Quit)");
 			choice=sc.nextInt();
 			sc.nextLine();
 			if(choice==0) return;
