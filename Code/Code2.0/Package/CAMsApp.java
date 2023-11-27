@@ -27,6 +27,8 @@ public class CAMsApp {
         LoginAccount loginAccountS;
         String id;
         String password;
+        String securityAns;
+        boolean reset = false;
         int choice;
         AccountInformation user;
         Scanner sc = new Scanner(System.in);
@@ -249,11 +251,54 @@ public class CAMsApp {
                 System.out.println("Invalid ID or password! Please enter again.");
                 continue;
             }
-                if (password.equals("password")){
-                    System.out.println("Enter reset your password:");
-                    password=sc.nextLine();
-                    user.setPassword(password);
+                if (user!=null){
+                    //user.printAccountInformation();
+                    if (password.equals("password")){
+                        System.out.println("Enter reset your password:");
+                        password=sc.nextLine();
+                        user.setPassword(password);
+                    }
                 }
+                else{
+
+                    System.out.println("---------Invalid user ID or wrong password---------");
+                    System.out.println("1) Login use another account");
+                    System.out.println("2) Reset password by security answer");
+                    System.out.println("0) Quit");
+                    choice=sc.nextInt();
+                    if(choice==0) break;
+                    else if(choice==1)
+                    {
+                        continue;
+                    }
+                    else if(choice==2)
+                    {
+                        reset=false;
+                        while(!reset){
+                            sc.nextLine();
+                            System.out.println("---------Reset password---------");
+                            System.out.println("Enter your ID:");
+                            id=sc.nextLine();
+                            System.out.println("Enter your security answer:");
+                            securityAns=sc.nextLine();
+                            ResetAccount resetAccount=new ResetAccount(id,securityAns);
+                            user =resetAccount.resetPassword();
+                            if (user!=null){
+                                System.out.println("Reset success");
+                                reset=true;
+                            }
+                            else{
+                                System.out.println("---------Invalid user ID or wrong security answer---------");
+                                System.out.println("Try again.");
+                                System.out.println();
+                                continue;
+                            }
+                        }
+                    }
+
+                }
+                if(user==null)
+                    continue;
             if(user.getAccountStatus()==AccountStatus.STAFF)
             {
                 Staff staff=staffHashMap.get(user.getUserID());
