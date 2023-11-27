@@ -268,8 +268,9 @@ public class CAMsApp {
                     }
                     else if(choice==2)
                     {
+                        reset=false;
                         while(!reset){
-                            reset=false;
+
                             sc.nextLine();
                             System.out.println("---------Reset password---------");
                             System.out.println("Enter your ID:");
