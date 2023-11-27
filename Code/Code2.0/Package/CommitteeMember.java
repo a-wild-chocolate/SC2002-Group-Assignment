@@ -117,6 +117,7 @@ public class CommitteeMember extends Student{
 			System.out.println("There is no enquiry requires reply.");
 			return;
 		}
+
 		//user input the id of enquiry
 		while (true)
 		{
