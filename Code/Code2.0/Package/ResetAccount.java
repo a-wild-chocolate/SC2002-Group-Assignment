@@ -57,6 +57,10 @@ public class ResetAccount {
             //return storedSecureAnswerHash.equals(hashSecureAnswer(inputSecureAnswer));
             String hash1=hashSecureAnswer(storedSecureAnswerHash);
             String hash2=hashSecureAnswer(inputSecureAnswer);
+            if(Objects.equals(storedSecureAnswerHash,hash2 ))
+            {
+                return true;
+            }
             return Objects.equals(hash1,hash2 );}
 
         return false;
